@@ -51,7 +51,7 @@
     <Compile Include="Model\Season.cs" />
     <Compile Include="Model\Weekday.cs" />
     <Compile Include="Model\Genre.cs" />
-    <Compile Include="Model\Color.cs" />
+    <Compile Include="Model\Colors.cs" />
     <Compile Include="Model\EducationForm.cs" />
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>

@@ -1,8 +1,8 @@
 ﻿namespace Programming.Model
 {
-    public enum Color
+    public enum Colors
     {
-        Red,
+        Red = 1,
         Yellow,
         Green,
         Black,

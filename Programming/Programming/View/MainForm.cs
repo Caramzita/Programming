@@ -22,28 +22,21 @@ namespace Programming.View
             string[] enums = { "Color", "EducationForm", "Genre", "Manufactures", "Season", "Weekday" };
             EnumsListBox.Items.AddRange(enums);
             EnumsListBox.SelectedIndex = 0;
-            ParsingTextOut.Visible = false;
             SeasonComboBox.Items.Clear();
             foreach (var value in Enum.GetValues(typeof(Season)))
             {
                 SeasonComboBox.Items.Add(value);
             }
             SeasonComboBox.SelectedIndex = 0;
-
-        }
-
-        private void Enums_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var item = Enum.GetValues(typeof(Model.Color));
+            var item = Enum.GetValues(typeof(Colors));
             switch (EnumsListBox.SelectedItem)
             {
                 case "Color":
-                    item = Enum.GetValues(typeof(Model.Color));
+                    item = Enum.GetValues(typeof(Colors));
                     break;
                 case "EducationForm":
                     item = Enum.GetValues(typeof(EducationForm));
@@ -70,61 +63,22 @@ namespace Programming.View
 
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Int_value.Text = ((int)ValuesListBox.SelectedIndex + 1).ToString(); 
+            IntValueTextBox.Text = ((int)ValuesListBox.SelectedItem).ToString(); 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void ParseButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Weekday day;
-            string str = ParsingTextbox.Text;
-            if (Enum.TryParse(str, true, out day))
+            Weekday WeekDay;
+            string ParsingWeekDayTextBox = ParsingTextBox.Text;
+            if (Enum.TryParse(ParsingWeekDayTextBox, true, out WeekDay))
             {
-                ParsingTextOut.Text = $"Этот день недели ({str} = {(int)day})";
+                ParsingLabelOut.Text = $"Этот день недели ({ParsingWeekDayTextBox} = {(int)WeekDay})";
             }
             else
             {
-                ParsingTextOut.Text = "Нет такого дня недели";
+                ParsingLabelOut.Text = "Нет такого дня недели";
             }
-            ParsingTextOut.Visible = true;
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ParsingTextOut_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void SeasonComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            ParsingLabelOut.Visible = true;
         }
 
         private void SeasonButton_Click(object sender, EventArgs e)
@@ -150,15 +104,9 @@ namespace Programming.View
                 "Сообщение",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information,
-                MessageBoxDefaultButton.Button1);
-                    
+                MessageBoxDefaultButton.Button1);     
                     break;
             }
-        }
-
-        private void Enumirations_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }
