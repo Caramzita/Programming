@@ -155,5 +155,10 @@ namespace Programming.View
                     break;
             }
         }
+
+        private void Enumirations_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
