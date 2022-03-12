@@ -78,7 +78,7 @@ namespace Programming.View
             this.SeasonGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SeasonGroupBox.Name = "SeasonGroupBox";
             this.SeasonGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.SeasonGroupBox.Size = new System.Drawing.Size(284, 126);
+            this.SeasonGroupBox.Size = new System.Drawing.Size(281, 126);
             this.SeasonGroupBox.TabIndex = 15;
             this.SeasonGroupBox.TabStop = false;
             this.SeasonGroupBox.Text = "Season Handle";
@@ -127,7 +127,7 @@ namespace Programming.View
             this.EnumirationsGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.EnumirationsGroupBox.Name = "EnumirationsGroupBox";
             this.EnumirationsGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.EnumirationsGroupBox.Size = new System.Drawing.Size(557, 226);
+            this.EnumirationsGroupBox.Size = new System.Drawing.Size(554, 226);
             this.EnumirationsGroupBox.TabIndex = 13;
             this.EnumirationsGroupBox.TabStop = false;
             this.EnumirationsGroupBox.Text = "Enumerations";

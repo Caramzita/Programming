@@ -17,6 +17,7 @@ namespace Programming.View
         {
             InitializeComponent();           
         }
+        
         private void MainForm_Load(object sender, EventArgs e)
         {
             string[] enums = { "Color", "EducationForm", "Genre", "Manufactures", "Season", "Weekday" };
