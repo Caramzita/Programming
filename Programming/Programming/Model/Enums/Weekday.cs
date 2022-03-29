@@ -1,6 +1,6 @@
 ﻿namespace Programming.Model
 {
-    public enum Weekday
+    public enum WeekDay
     {
         Monday = 1,
         Tuesday,

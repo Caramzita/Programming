@@ -54,9 +54,6 @@ namespace Programming.View
         private void MainForm_Load(object sender, EventArgs e)
         {
             string[] enums = { "Color", "EducationForm", "Genre", "Manufactures", "Season", "Weekday" };
-            string[] colors = { "White", "Black", "Red", "Orange", "Green", "Blue", "Brown", "Yellow", "Grey", "Pink" };
-            string[] filmsNames = { "The Dark Knight", "The Fly", "The Conjuring", "The Thing", "Blade", "Insidious" };
-            string[] genres = { " Drama", "Comedy", "Musical", "Romance", "Romantic comedy" };
             EnumsListBox.Items.AddRange(enums);
             EnumsListBox.SelectedIndex = 0;
             SeasonComboBox.Items.Clear();
@@ -66,20 +63,31 @@ namespace Programming.View
             }
             SeasonComboBox.SelectedIndex = 0;
             _rectangles = new Model.Classes.Rectangle[5];
+            MakeFilms();
+            MakeRectangles();
+        }
+        void MakeFilms()
+        {
+            Random random = new Random();
+            string[] filmsNames = { "The Dark Knight", "The Fly", "The Conjuring", "The Thing", "Blade", "Insidious" };
+            string[] genres = { " Drama", "Comedy", "Musical", "Romance", "Romantic comedy" };
+            _films = new Model.Classes.Film[6];
+            for (int i = 0; i < 6; i++)
+            {
+                _films[i] = new Model.Classes.Film(filmsNames[random.Next(filmsNames.Length)], random.Next(60, 180), random.Next(2000, 2022), genres[random.Next(genres.Length)], random.Next(0, 10));
+                FilmListBox.Items.Add($"Film {i + 1}");
+            }
+        }
+        void MakeRectangles()
+        {
+            string[] colors = { "White", "Black", "Red", "Orange", "Green", "Blue", "Brown", "Yellow", "Grey", "Pink" };
+            _rectangles = new Model.Classes.Rectangle[5];
             Random random = new Random();
             for (int i = 0; i < 5; i++)
             {
                 _rectangles[i] = new Model.Classes.Rectangle(random.Next(1, 100), random.Next(1, 100), colors[random.Next(colors.Length)]);
-                RectanglesListBox.Items.Add($"Rectangle {i+1}");
+                RectanglesListBox.Items.Add($"Rectangle {i + 1}");
             }
-            RectanglesListBox.SelectedIndex = 0;
-            _films = new Model.Classes.Film[6];
-            for (int i = 0; i < 6; i++)
-            {
-                _films[i] = new Model.Classes.Film(filmsNames[random.Next(filmsNames.Length)], random.Next(60, 180), random.Next(2000,2022), genres[random.Next(genres.Length)], random.Next(0,10));
-                FilmListBox.Items.Add($"Film {i + 1}");
-            }
-            FilmListBox.SelectedIndex = 0;
         }
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -120,7 +128,7 @@ namespace Programming.View
                     item = Enum.GetValues(typeof(Season));
                     break;
                 case "Weekday":
-                    item = Enum.GetValues(typeof(Weekday));
+                    item = Enum.GetValues(typeof(WeekDay));
                     break;
             }
             ValuesListBox.Items.Clear();
@@ -137,7 +145,7 @@ namespace Programming.View
 
         private void ParseButton_Click(object sender, EventArgs e)
         {
-            Weekday weekDay;
+            WeekDay weekDay;
             string ParsingWeekDayTextBox = ParsingTextBox.Text;
             if (Enum.TryParse(ParsingWeekDayTextBox, true, out weekDay))
             {

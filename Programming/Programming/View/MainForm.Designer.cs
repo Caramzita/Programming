@@ -91,7 +91,7 @@ namespace Programming.View
             this.EnumsTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.EnumsTabPage.Name = "EnumsTabPage";
             this.EnumsTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.EnumsTabPage.Size = new System.Drawing.Size(763, 449);
+            this.EnumsTabPage.Size = new System.Drawing.Size(756, 441);
             this.EnumsTabPage.TabIndex = 0;
             this.EnumsTabPage.Text = "Enums";
             this.EnumsTabPage.UseVisualStyleBackColor = true;
@@ -286,7 +286,7 @@ namespace Programming.View
             this.MainTabControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MainTabControl.Name = "MainTabControl";
             this.MainTabControl.SelectedIndex = 0;
-            this.MainTabControl.Size = new System.Drawing.Size(771, 478);
+            this.MainTabControl.Size = new System.Drawing.Size(764, 470);
             this.MainTabControl.TabIndex = 0;
             // 
             // Classes
@@ -298,7 +298,7 @@ namespace Programming.View
             this.Classes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Classes.Name = "Classes";
             this.Classes.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Classes.Size = new System.Drawing.Size(763, 449);
+            this.Classes.Size = new System.Drawing.Size(756, 441);
             this.Classes.TabIndex = 1;
             this.Classes.Text = "Classes";
             this.Classes.UseVisualStyleBackColor = true;
@@ -315,9 +315,9 @@ namespace Programming.View
             this.FilmGroupBox.Controls.Add(this.DurationTextBox);
             this.FilmGroupBox.Controls.Add(this.DurationLabel);
             this.FilmGroupBox.Controls.Add(this.FilmListBox);
-            this.FilmGroupBox.Location = new System.Drawing.Point(318, 6);
+            this.FilmGroupBox.Location = new System.Drawing.Point(364, 6);
             this.FilmGroupBox.Name = "FilmGroupBox";
-            this.FilmGroupBox.Size = new System.Drawing.Size(304, 288);
+            this.FilmGroupBox.Size = new System.Drawing.Size(386, 427);
             this.FilmGroupBox.TabIndex = 2;
             this.FilmGroupBox.TabStop = false;
             this.FilmGroupBox.Text = "Films";
@@ -326,7 +326,7 @@ namespace Programming.View
             // 
             this.FindFilmButton.Location = new System.Drawing.Point(180, 241);
             this.FindFilmButton.Name = "FindFilmButton";
-            this.FindFilmButton.Size = new System.Drawing.Size(97, 23);
+            this.FindFilmButton.Size = new System.Drawing.Size(160, 23);
             this.FindFilmButton.TabIndex = 9;
             this.FindFilmButton.Text = "Find";
             this.FindFilmButton.UseVisualStyleBackColor = true;
@@ -336,7 +336,7 @@ namespace Programming.View
             // 
             this.RatingTextBox.Location = new System.Drawing.Point(177, 188);
             this.RatingTextBox.Name = "RatingTextBox";
-            this.RatingTextBox.Size = new System.Drawing.Size(100, 22);
+            this.RatingTextBox.Size = new System.Drawing.Size(160, 22);
             this.RatingTextBox.TabIndex = 8;
             // 
             // RatingLabel
@@ -352,7 +352,7 @@ namespace Programming.View
             // 
             this.GenreTextBox.Location = new System.Drawing.Point(177, 138);
             this.GenreTextBox.Name = "GenreTextBox";
-            this.GenreTextBox.Size = new System.Drawing.Size(100, 22);
+            this.GenreTextBox.Size = new System.Drawing.Size(160, 22);
             this.GenreTextBox.TabIndex = 6;
             // 
             // GenreLabel
@@ -368,7 +368,7 @@ namespace Programming.View
             // 
             this.YearOfIssueTextBox.Location = new System.Drawing.Point(177, 90);
             this.YearOfIssueTextBox.Name = "YearOfIssueTextBox";
-            this.YearOfIssueTextBox.Size = new System.Drawing.Size(100, 22);
+            this.YearOfIssueTextBox.Size = new System.Drawing.Size(160, 22);
             this.YearOfIssueTextBox.TabIndex = 4;
             // 
             // YearOfIssueLabel
@@ -384,7 +384,7 @@ namespace Programming.View
             // 
             this.DurationTextBox.Location = new System.Drawing.Point(177, 42);
             this.DurationTextBox.Name = "DurationTextBox";
-            this.DurationTextBox.Size = new System.Drawing.Size(100, 22);
+            this.DurationTextBox.Size = new System.Drawing.Size(160, 22);
             this.DurationTextBox.TabIndex = 2;
             // 
             // DurationLabel
@@ -420,7 +420,7 @@ namespace Programming.View
             this.Reactangles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Reactangles.Name = "Reactangles";
             this.Reactangles.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Reactangles.Size = new System.Drawing.Size(304, 288);
+            this.Reactangles.Size = new System.Drawing.Size(350, 427);
             this.Reactangles.TabIndex = 1;
             this.Reactangles.TabStop = false;
             this.Reactangles.Text = "Rectangles";
@@ -430,7 +430,7 @@ namespace Programming.View
             this.FindButton.Location = new System.Drawing.Point(179, 241);
             this.FindButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.FindButton.Name = "FindButton";
-            this.FindButton.Size = new System.Drawing.Size(100, 25);
+            this.FindButton.Size = new System.Drawing.Size(160, 25);
             this.FindButton.TabIndex = 7;
             this.FindButton.Text = "Find";
             this.FindButton.UseVisualStyleBackColor = true;
@@ -441,7 +441,7 @@ namespace Programming.View
             this.ColorTextBox.Location = new System.Drawing.Point(179, 139);
             this.ColorTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ColorTextBox.Name = "ColorTextBox";
-            this.ColorTextBox.Size = new System.Drawing.Size(100, 22);
+            this.ColorTextBox.Size = new System.Drawing.Size(160, 22);
             this.ColorTextBox.TabIndex = 6;
             this.ColorTextBox.TextChanged += new System.EventHandler(this.ColorTextBox_TextChanged);
             // 
@@ -459,7 +459,7 @@ namespace Programming.View
             this.WidthTextBox.Location = new System.Drawing.Point(179, 91);
             this.WidthTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.WidthTextBox.Name = "WidthTextBox";
-            this.WidthTextBox.Size = new System.Drawing.Size(100, 22);
+            this.WidthTextBox.Size = new System.Drawing.Size(160, 22);
             this.WidthTextBox.TabIndex = 4;
             this.WidthTextBox.TextChanged += new System.EventHandler(this.WidthTextBox_TextChanged);
             // 
@@ -477,7 +477,7 @@ namespace Programming.View
             this.LengthTextBox.Location = new System.Drawing.Point(179, 43);
             this.LengthTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LengthTextBox.Name = "LengthTextBox";
-            this.LengthTextBox.Size = new System.Drawing.Size(100, 22);
+            this.LengthTextBox.Size = new System.Drawing.Size(160, 22);
             this.LengthTextBox.TabIndex = 2;
             this.LengthTextBox.TextChanged += new System.EventHandler(this.LengthTextBox_TextChanged);
             // 
@@ -513,7 +513,7 @@ namespace Programming.View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(771, 478);
+            this.ClientSize = new System.Drawing.Size(764, 470);
             this.Controls.Add(this.MainTabControl);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";

@@ -56,7 +56,7 @@
     <Compile Include="Model\Classes\Rectangle.cs" />
     <Compile Include="Model\Enums\Manufactures.cs" />
     <Compile Include="Model\Enums\Season.cs" />
-    <Compile Include="Model\Enums\Weekday.cs" />
+    <Compile Include="Model\Enums\WeekDay.cs" />
     <Compile Include="Model\Enums\Genre.cs" />
     <Compile Include="Model\Enums\Colors.cs" />
     <Compile Include="Model\Enums\EducationForm.cs" />
