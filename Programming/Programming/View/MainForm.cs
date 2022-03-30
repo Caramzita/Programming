@@ -13,9 +13,9 @@ namespace Programming.View
 {
     public partial class MainForm : Form
     {
-        private Color ErrorColor = Color.LightPink;
+        private readonly Color ErrorColor = Color.LightPink;
 
-        private Color CorrectColor = Color.White;
+        private readonly Color CorrectColor = Color.White;
 
         private Model.Classes.Rectangle[] _rectangles;
 
