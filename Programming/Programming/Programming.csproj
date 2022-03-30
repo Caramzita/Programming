@@ -47,12 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Classes\Discipline.cs" />
+    <Compile Include="Model\Classes\Subject.cs" />
     <Compile Include="Model\Classes\Song.cs" />
     <Compile Include="Model\Classes\Contact.cs" />
     <Compile Include="Model\Classes\Time.cs" />
-    <Compile Include="Model\Classes\Film.cs" />
-    <Compile Include="Model\Classes\Fligth.cs" />
+    <Compile Include="Model\Classes\Movies.cs" />
+    <Compile Include="Model\Classes\Flight.cs" />
     <Compile Include="Model\Classes\Rectangle.cs" />
     <Compile Include="Model\Enums\Manufactures.cs" />
     <Compile Include="Model\Enums\Season.cs" />

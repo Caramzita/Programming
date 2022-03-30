@@ -5,11 +5,15 @@ namespace Programming.Model.Classes
     public class Time
     {
         private int _hours;
+
         private int _minutes;
+
         private int _seconds;
+
         public Time()
         {
         }
+
         public Time(int hours,
             int minutes,
             int seconds)
@@ -18,6 +22,7 @@ namespace Programming.Model.Classes
             Minutes = minutes;
             Seconds = seconds;
         }
+
         public int Hours
         {
             get
@@ -35,6 +40,7 @@ namespace Programming.Model.Classes
                 _hours = value;
             }
         }
+
         public int Minutes
         {
             get
@@ -43,7 +49,7 @@ namespace Programming.Model.Classes
             }
             set
             {
-                if (value < 0 || value > 60)
+                if (value < 0 || value > 59)
                 {
                     throw new ArgumentException(
                         "Минуты не соответствует требованию");
@@ -51,6 +57,7 @@ namespace Programming.Model.Classes
                 _minutes = value;
             }
         }
+
        public int Seconds
         {
             get
@@ -59,7 +66,7 @@ namespace Programming.Model.Classes
             }
             set
             {
-                if (value < 0 || value > 60)
+                if (value < 0 || value > 59)
                 {
                     throw new ArgumentException(
                         "Секунды не соответствует требованию");

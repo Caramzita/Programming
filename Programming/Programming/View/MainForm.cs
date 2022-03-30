@@ -13,98 +13,210 @@ namespace Programming.View
 {
     public partial class MainForm : Form
     {
+        private Color ErrorColor = Color.LightPink;
+
+        private Color CorrectColor = Color.White;
+
+        private Model.Classes.Rectangle[] _rectangles;
+
+        private Model.Classes.Movies[] _movies;
+
+        private Model.Classes.Rectangle _currentRectangle;
+
+        private Model.Classes.Movies _currentMovie;
+
         public MainForm()
         {
             InitializeComponent();
         }
-        private Model.Classes.Rectangle[] _rectangles;
-        private Model.Classes.Film[] _films;
-        private Model.Classes.Rectangle _currentRecrangle;
-        private Model.Classes.Film _currentFilm;
-        private int FindRectangleWithMaxWidth(Model.Classes.Rectangle[] array)
+
+        private int FindRectangleWithMaxWidth(Model.Classes.Rectangle[] rectangles)
         {
-            var _currecntIndex = -1;
+            var currentIndex = -1;
             double max = 0;
-            for(int i = 0; i < _rectangles.Length; i++)
+            for (int i = 0; i < rectangles.Length; i++)
             {
-                if (_rectangles[i].Width > max)
+                if (rectangles[i].Width > max)
                 {
-                    max = _rectangles[i].Width;
-                    _currecntIndex = i;
+                    max = rectangles[i].Width;
+                    currentIndex = i;
                 }
             }
-            return _currecntIndex;
-        }
-        private int FindFilmWithMaxRating(Model.Classes.Film[] array)
-        {
-            var _currecntIndex = -1;
-            double max = 0;
-            for (int i = 0; i < _films.Length; i++)
-            {
-                if (_films[i].Rating > max)
-                {
-                    max = _films[i].Rating;
-                    _currecntIndex = i;
-                }
-            }
-            return _currecntIndex;
+            return currentIndex;
         }
 
+        private int FindMovieWithMaxRating(Model.Classes.Movies[] movies)
+        {
+            var currentIndex = -1;
+            double max = 0;
+            for (int i = 0; i < movies.Length; i++)
+            {
+                if (movies[i].Rating > max)
+                {
+                    max = movies[i].Rating;
+                    currentIndex = i;
+                }
+            }
+            return currentIndex;
+        }
+
+        private void MakeMovie()
+        {
+            Random random = new Random();
+            string[] moviesNames = { "The Dark Knight", "The Fly", "The Conjuring",
+                "The Thing", "Blade", "Insidious" };
+            string[] genres = { " Drama", "Comedy", "Musical",
+                "Romance", "Romantic comedy" };
+            _movies = new Model.Classes.Movies[6];
+            for (int i = 0; i < 6; i++)
+            {
+                _movies[i] = new Model.Classes.Movies(moviesNames[random.Next(moviesNames.Length)],
+                    random.Next(60, 180), random.Next(2000, 2022),
+                    genres[random.Next(genres.Length)],
+                    random.Next(0, 10));
+                MovieListBox.Items.Add($"Film {i + 1}");
+            }
+        }
+
+        private void MakeRectangle()
+        {
+            Random random = new Random();
+            string[] colors = { "White", "Black", "Red", "Orange", "Green",
+                "Blue", "Brown", "Yellow", "Grey", "Pink" };
+            _rectangles = new Model.Classes.Rectangle[5];
+            for (int i = 0; i < 5; i++)
+            {
+                _rectangles[i] = new Model.Classes.Rectangle(random.Next(1, 100),
+                    random.Next(1, 100),
+                    colors[random.Next(colors.Length)]);
+                RectanglesListBox.Items.Add($"Rectangle {i + 1}");
+            }
+        }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            string[] enums = { "Color", "EducationForm", "Genre", "Manufactures", "Season", "Weekday" };
+            string[] enums = { "Color", "EducationForm", "Genre", "Manufactures",
+                "Season", "Weekday" };
             EnumsListBox.Items.AddRange(enums);
             EnumsListBox.SelectedIndex = 0;
+            ValuesListBox.SelectedIndex = 0;
             SeasonComboBox.Items.Clear();
             foreach (var value in Enum.GetValues(typeof(Season)))
             {
                 SeasonComboBox.Items.Add(value);
             }
             SeasonComboBox.SelectedIndex = 0;
-            _rectangles = new Model.Classes.Rectangle[5];
-            MakeFilms();
-            MakeRectangles();
+            MakeMovie();
+            MakeRectangle();
         }
-        void MakeFilms()
-        {
-            Random random = new Random();
-            string[] filmsNames = { "The Dark Knight", "The Fly", "The Conjuring", "The Thing", "Blade", "Insidious" };
-            string[] genres = { " Drama", "Comedy", "Musical", "Romance", "Romantic comedy" };
-            _films = new Model.Classes.Film[6];
-            for (int i = 0; i < 6; i++)
-            {
-                _films[i] = new Model.Classes.Film(filmsNames[random.Next(filmsNames.Length)], random.Next(60, 180), random.Next(2000, 2022), genres[random.Next(genres.Length)], random.Next(0, 10));
-                FilmListBox.Items.Add($"Film {i + 1}");
-            }
-        }
-        void MakeRectangles()
-        {
-            string[] colors = { "White", "Black", "Red", "Orange", "Green", "Blue", "Brown", "Yellow", "Grey", "Pink" };
-            _rectangles = new Model.Classes.Rectangle[5];
-            Random random = new Random();
-            for (int i = 0; i < 5; i++)
-            {
-                _rectangles[i] = new Model.Classes.Rectangle(random.Next(1, 100), random.Next(1, 100), colors[random.Next(colors.Length)]);
-                RectanglesListBox.Items.Add($"Rectangle {i + 1}");
-            }
-        }
+
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedIndex = RectanglesListBox.SelectedIndex;
-            _currentRecrangle = _rectangles[selectedIndex];
+            _currentRectangle = _rectangles[selectedIndex];
             LengthTextBox.Text = _rectangles[selectedIndex].Length.ToString();
             WidthTextBox.Text = _rectangles[selectedIndex].Width.ToString();
             ColorTextBox.Text = _rectangles[selectedIndex].Color;
         }
-        private void FilmListBox_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void MovieListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedIndex = FilmListBox.SelectedIndex;
-            _currentFilm = _films[selectedIndex];
-            DurationTextBox.Text = _films[selectedIndex].Duration.ToString();
-            YearOfIssueTextBox.Text = _films[selectedIndex].YearOfIssue.ToString();
-            GenreTextBox.Text = _films[selectedIndex].Genre;
-            RatingTextBox.Text = _films[selectedIndex].Rating.ToString();
+            var selectedIndex = MovieListBox.SelectedIndex;
+            _currentMovie = _movies[selectedIndex];
+            DurationTextBox.Text = _movies[selectedIndex].Duration.ToString();
+            ReleasedDateTextBox.Text = _movies[selectedIndex].ReleasedDate.ToString();
+            GenreTextBox.Text = _movies[selectedIndex].Genre;
+            RatingTextBox.Text = _movies[selectedIndex].Rating.ToString();
+        }
+
+        private void LengthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentRectangle.Length = Double.Parse(LengthTextBox.Text);
+                LengthTextBox.BackColor = CorrectColor;
+            }
+            catch
+            {
+                LengthTextBox.BackColor = ErrorColor;
+                return;
+            }
+        }
+
+        private void WidthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentRectangle.Width = Double.Parse(WidthTextBox.Text);
+                WidthTextBox.BackColor = CorrectColor;
+            }
+            catch
+            {
+                WidthTextBox.BackColor = ErrorColor;
+                return;
+            }
+        }
+
+        private void RatingTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentMovie.Rating = Double.Parse(RatingTextBox.Text);
+                RatingTextBox.BackColor = CorrectColor;
+            }
+            catch
+            {
+                RatingTextBox.BackColor = ErrorColor;
+                return;
+            }
+        }
+
+        private void ColorTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _currentRectangle.Color = ColorTextBox.Text;
+        }
+
+        private void DurationTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentMovie.Duration = Int32.Parse(DurationTextBox.Text);
+                DurationTextBox.BackColor = CorrectColor;
+            }
+            catch
+            {
+                DurationTextBox.BackColor = ErrorColor;
+                return;
+            }
+        }
+
+        private void ReleasedDate_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentMovie.ReleasedDate = Int32.Parse(ReleasedDateTextBox.Text);
+                ReleasedDateTextBox.BackColor = CorrectColor;
+            }
+            catch
+            {
+                ReleasedDateTextBox.BackColor = ErrorColor;
+                return;
+            }
+        }
+
+        private void GenreTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _currentMovie.Genre = GenreTextBox.Text;
+        }
+
+        private void FindButton_Click(object sender, EventArgs e)
+        {
+            RectanglesListBox.SelectedIndex = FindRectangleWithMaxWidth(_rectangles);
+        }
+
+        private void FindMovieButton_Click(object sender, EventArgs e)
+        {
+            MovieListBox.SelectedIndex = FindMovieWithMaxRating(_movies);
         }
 
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -184,52 +296,6 @@ namespace Programming.View
                 MessageBoxDefaultButton.Button1);
                     break;
             }
-        }
-
-        private void LengthTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                _currentRecrangle.Length = Double.Parse(LengthTextBox.Text);
-                LengthTextBox.BackColor = Color.White;
-            }
-            catch
-            {
-                //ToolTip.SetToolTip(LengthTextBox, exception.Message);
-                LengthTextBox.BackColor = Color.LightPink;
-                return;
-            }
-        }
-
-        private void WidthTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                _currentRecrangle.Width = Double.Parse(WidthTextBox.Text);
-                WidthTextBox.BackColor = Color.White;
-            }
-            catch
-            {
-                //ToolTip.SetToolTip(LengthTextBox, exception.Message);
-                WidthTextBox.BackColor = Color.LightPink;
-                return;
-            }
-        }
-
-        private void ColorTextBox_TextChanged(object sender, EventArgs e)
-        {
-            _currentRecrangle.Color = ColorTextBox.Text;
-        }
-
-        private void FindButton_Click(object sender, EventArgs e)
-        {
-            RectanglesListBox.SelectedIndex = FindRectangleWithMaxWidth(_rectangles);
-
-        }
-
-        private void FindFilmButton_Click(object sender, EventArgs e)
-        {
-            FilmListBox.SelectedIndex = FindFilmWithMaxRating(_films);
         }
     }
 }

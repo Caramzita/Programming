@@ -2,41 +2,46 @@
 
 namespace Programming.Model.Classes
 {
-    public class Film
+    public class Movies
     {
-        private int _yearOfIssue;
+        private int _releasedDate;
+
         private double _rating;
-        public Film()
+
+        public Movies()
         {
         }
-        public Film(string name,
+
+        public Movies(string name,
             int duration,
-            int yearOfIssue,
+            int releasedDate,
             string genre,
             double rating)
         {
             Name = name;
             Duration = duration;
-            YearOfIssue = yearOfIssue;
+            ReleasedDate = releasedDate;
             Genre = genre;
             Rating = rating;
         }
-        public int YearOfIssue
+
+        public int ReleasedDate
         {
             get
             {
-                return _yearOfIssue;
+                return _releasedDate;
             }
             set
             {
                 if (value < 1900 || value > DateTime.Now.Year)
                 {
                     throw new ArgumentException(
-                        "Год не соответствует требованию");
+                        "Год должен быть больше 1900");
                 }
-                _yearOfIssue = value;
+                _releasedDate = value;
             }
         }
+
         public double Rating
         {
             get
@@ -53,8 +58,11 @@ namespace Programming.Model.Classes
                 _rating = value;
             }
         }
+
         public string Name { get; set; }
+
         public int Duration { get; set; }
+
         public string Genre { get; set; }
     }
 }

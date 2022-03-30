@@ -9,6 +9,7 @@ namespace Programming.Model.Classes
         public Contact()
         {
         }
+
         public Contact(string name,
                        string phoneNumber,
                        string email)
@@ -17,6 +18,7 @@ namespace Programming.Model.Classes
             PhoneNumber = phoneNumber;
             Email = email;
         }
+
         public string PhoneNumber
         {
             get
@@ -38,7 +40,9 @@ namespace Programming.Model.Classes
                 _phoneNumber = value;
             }
         }
+
         public string Name { get; set; }
+
         public string Email { get; set; }
     }
 }

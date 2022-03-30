@@ -2,25 +2,28 @@
 
 namespace Programming.Model.Classes
 {
-    public class Fligth
+    public class Flight
     {
-        private int _fligthTime;
-        public Fligth()
+        private int _flightTime;
+
+        public Flight()
         {
         }
-        public Fligth(string departurePoint,
+
+        public Flight(string departure,
             string destination,
-            int fligthTime)
+            int flightTime)
         {
-            DeparturePoint = departurePoint;
+            Departure = departure;
             Destination = destination;
-            FligthTime = fligthTime;
+            FlightTime = flightTime;
         }
-        public int FligthTime
+
+        public int FlightTime
         {
             get
             {
-                return _fligthTime;
+                return _flightTime;
             }
             set
             {
@@ -28,10 +31,12 @@ namespace Programming.Model.Classes
                 {
                     throw new ArgumentException("Длина полета не может быть отрицательной");
                 }
-                _fligthTime = value;
+                _flightTime = value;
             }
         }
-        public string DeparturePoint { get; set; }
+
+        public string Departure { get; set; }
+
         public string Destination { get; set; }
     }
 }

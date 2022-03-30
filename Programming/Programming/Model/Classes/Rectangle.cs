@@ -5,10 +5,13 @@ namespace Programming.Model.Classes
     public class Rectangle
     {
         private double _length;
+
         private double _width;
+
         public Rectangle()
         {
         }
+
         public Rectangle(double length,
             double width,
             string color)
@@ -17,6 +20,7 @@ namespace Programming.Model.Classes
             Width = width;
             Color = color;
         }
+
         public double Length
         {
             get
@@ -32,6 +36,7 @@ namespace Programming.Model.Classes
                 _length = value;
             }
         }
+
         public double Width
         {
             get
@@ -40,13 +45,14 @@ namespace Programming.Model.Classes
             }
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
                     throw new ArgumentException("Длина не может быть отрицательной");
                 }
                 _width = value;
             }
         }
+
         public string Color { get; set; }
     }
 }
