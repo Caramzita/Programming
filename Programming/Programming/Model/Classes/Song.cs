@@ -27,10 +27,7 @@ namespace Programming.Model.Classes
             }
             set
             {
-                if(value < 0)
-                {
-                    throw new ArgumentException("Длина не может быть отрицательной");
-                }
+                Validator.AssertOnPositiveValue(value, "Продолжительность");
                 _duration = value;
             }
         }

@@ -8,6 +8,8 @@ namespace Programming.Model.Classes
 
         private double _rating;
 
+        private int _duration;
+
         public Movies()
         {
         }
@@ -33,11 +35,7 @@ namespace Programming.Model.Classes
             }
             set
             {
-                if (value < 1900 || value > DateTime.Now.Year)
-                {
-                    throw new ArgumentException(
-                        "Год должен быть больше 1900");
-                }
+                Validator.AssertValueInRange(value, 1900, DateTime.Now.Year, "Дата выхода");
                 _releasedDate = value;
             }
         }
@@ -50,18 +48,25 @@ namespace Programming.Model.Classes
             }
             set
             {
-                if (value < 0 || value > 10)
-                {
-                    throw new ArgumentException(
-                        "Рейтинг не соответствует требованию");
-                }
+                Validator.AssertValueInRange(value, 0, 10, "Рейтинг");
                 _rating = value;
             }
         }
 
         public string Name { get; set; }
 
-        public int Duration { get; set; }
+        public int Duration
+        {
+            get
+            {
+                return _duration;
+            }
+            set
+            {
+                Validator.AssertOnPositiveValue(value, "Продолжительность");
+                _duration = value;
+            }
+        }
 
         public string Genre { get; set; }
     }

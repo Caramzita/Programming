@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Programming.Model;
 
@@ -88,7 +82,8 @@ namespace Programming.View
             {
                 _rectangles[i] = new Model.Classes.Rectangle(random.Next(1, 100),
                     random.Next(1, 100),
-                    colors[random.Next(colors.Length)]);
+                    colors[random.Next(colors.Length)],
+                    new Model.Classes.Point2D(random.Next(1, 50), random.Next(1, 50)));
                 RectanglesListBox.Items.Add($"Rectangle {i + 1}");
             }
         }
@@ -117,6 +112,9 @@ namespace Programming.View
             LengthTextBox.Text = _rectangles[selectedIndex].Length.ToString();
             WidthTextBox.Text = _rectangles[selectedIndex].Width.ToString();
             ColorTextBox.Text = _rectangles[selectedIndex].Color;
+            XcordTextBox.Text = _rectangles[selectedIndex].Center.X.ToString();
+            YcordTextBox.Text = _rectangles[selectedIndex].Center.Y.ToString();
+            IdTextBox.Text = _rectangles[selectedIndex].Id.ToString();
         }
 
         private void MovieListBox_SelectedIndexChanged(object sender, EventArgs e)

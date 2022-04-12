@@ -62,6 +62,10 @@ namespace Programming.View
             this.DurationLabel = new System.Windows.Forms.Label();
             this.MovieListBox = new System.Windows.Forms.ListBox();
             this.Reactangles = new System.Windows.Forms.GroupBox();
+            this.YcordTextBox = new System.Windows.Forms.TextBox();
+            this.yLabel = new System.Windows.Forms.Label();
+            this.xLabel = new System.Windows.Forms.Label();
+            this.XcordTextBox = new System.Windows.Forms.TextBox();
             this.FindButton = new System.Windows.Forms.Button();
             this.ColorTextBox = new System.Windows.Forms.TextBox();
             this.ColorLabel = new System.Windows.Forms.Label();
@@ -72,6 +76,8 @@ namespace Programming.View
             this.RectanglesListBox = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.IdLabel = new System.Windows.Forms.Label();
+            this.IdTextBox = new System.Windows.Forms.TextBox();
             this.EnumsTabPage.SuspendLayout();
             this.SeasonGroupBox.SuspendLayout();
             this.EnumirationsGroupBox.SuspendLayout();
@@ -420,6 +426,12 @@ namespace Programming.View
             // 
             // Reactangles
             // 
+            this.Reactangles.Controls.Add(this.IdTextBox);
+            this.Reactangles.Controls.Add(this.IdLabel);
+            this.Reactangles.Controls.Add(this.YcordTextBox);
+            this.Reactangles.Controls.Add(this.yLabel);
+            this.Reactangles.Controls.Add(this.xLabel);
+            this.Reactangles.Controls.Add(this.XcordTextBox);
             this.Reactangles.Controls.Add(this.FindButton);
             this.Reactangles.Controls.Add(this.ColorTextBox);
             this.Reactangles.Controls.Add(this.ColorLabel);
@@ -437,9 +449,43 @@ namespace Programming.View
             this.Reactangles.TabStop = false;
             this.Reactangles.Text = "Rectangles";
             // 
+            // YcordTextBox
+            // 
+            this.YcordTextBox.Location = new System.Drawing.Point(176, 280);
+            this.YcordTextBox.Name = "YcordTextBox";
+            this.YcordTextBox.ReadOnly = true;
+            this.YcordTextBox.Size = new System.Drawing.Size(161, 22);
+            this.YcordTextBox.TabIndex = 11;
+            // 
+            // yLabel
+            // 
+            this.yLabel.AutoSize = true;
+            this.yLabel.Location = new System.Drawing.Point(174, 262);
+            this.yLabel.Name = "yLabel";
+            this.yLabel.Size = new System.Drawing.Size(21, 17);
+            this.yLabel.TabIndex = 10;
+            this.yLabel.Text = "Y:";
+            // 
+            // xLabel
+            // 
+            this.xLabel.AutoSize = true;
+            this.xLabel.Location = new System.Drawing.Point(173, 215);
+            this.xLabel.Name = "xLabel";
+            this.xLabel.Size = new System.Drawing.Size(21, 17);
+            this.xLabel.TabIndex = 9;
+            this.xLabel.Text = "X:";
+            // 
+            // XcordTextBox
+            // 
+            this.XcordTextBox.Location = new System.Drawing.Point(177, 235);
+            this.XcordTextBox.Name = "XcordTextBox";
+            this.XcordTextBox.ReadOnly = true;
+            this.XcordTextBox.Size = new System.Drawing.Size(160, 22);
+            this.XcordTextBox.TabIndex = 8;
+            // 
             // FindButton
             // 
-            this.FindButton.Location = new System.Drawing.Point(179, 241);
+            this.FindButton.Location = new System.Drawing.Point(177, 321);
             this.FindButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.FindButton.Name = "FindButton";
             this.FindButton.Size = new System.Drawing.Size(160, 25);
@@ -450,7 +496,7 @@ namespace Programming.View
             // 
             // ColorTextBox
             // 
-            this.ColorTextBox.Location = new System.Drawing.Point(179, 139);
+            this.ColorTextBox.Location = new System.Drawing.Point(177, 188);
             this.ColorTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ColorTextBox.Name = "ColorTextBox";
             this.ColorTextBox.Size = new System.Drawing.Size(160, 22);
@@ -460,7 +506,7 @@ namespace Programming.View
             // ColorLabel
             // 
             this.ColorLabel.AutoSize = true;
-            this.ColorLabel.Location = new System.Drawing.Point(175, 119);
+            this.ColorLabel.Location = new System.Drawing.Point(173, 168);
             this.ColorLabel.Name = "ColorLabel";
             this.ColorLabel.Size = new System.Drawing.Size(45, 17);
             this.ColorLabel.TabIndex = 5;
@@ -468,7 +514,7 @@ namespace Programming.View
             // 
             // WidthTextBox
             // 
-            this.WidthTextBox.Location = new System.Drawing.Point(179, 91);
+            this.WidthTextBox.Location = new System.Drawing.Point(177, 140);
             this.WidthTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.WidthTextBox.Name = "WidthTextBox";
             this.WidthTextBox.Size = new System.Drawing.Size(160, 22);
@@ -478,7 +524,7 @@ namespace Programming.View
             // WidthLabel
             // 
             this.WidthLabel.AutoSize = true;
-            this.WidthLabel.Location = new System.Drawing.Point(175, 71);
+            this.WidthLabel.Location = new System.Drawing.Point(173, 120);
             this.WidthLabel.Name = "WidthLabel";
             this.WidthLabel.Size = new System.Drawing.Size(48, 17);
             this.WidthLabel.TabIndex = 3;
@@ -486,7 +532,7 @@ namespace Programming.View
             // 
             // LengthTextBox
             // 
-            this.LengthTextBox.Location = new System.Drawing.Point(179, 43);
+            this.LengthTextBox.Location = new System.Drawing.Point(177, 92);
             this.LengthTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LengthTextBox.Name = "LengthTextBox";
             this.LengthTextBox.Size = new System.Drawing.Size(160, 22);
@@ -496,7 +542,7 @@ namespace Programming.View
             // LengthLabel
             // 
             this.LengthLabel.AutoSize = true;
-            this.LengthLabel.Location = new System.Drawing.Point(175, 21);
+            this.LengthLabel.Location = new System.Drawing.Point(173, 70);
             this.LengthLabel.Name = "LengthLabel";
             this.LengthLabel.Size = new System.Drawing.Size(56, 17);
             this.LengthLabel.TabIndex = 1;
@@ -509,7 +555,7 @@ namespace Programming.View
             this.RectanglesListBox.Location = new System.Drawing.Point(5, 21);
             this.RectanglesListBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RectanglesListBox.Name = "RectanglesListBox";
-            this.RectanglesListBox.Size = new System.Drawing.Size(161, 244);
+            this.RectanglesListBox.Size = new System.Drawing.Size(161, 324);
             this.RectanglesListBox.TabIndex = 0;
             this.RectanglesListBox.SelectedIndexChanged += new System.EventHandler(this.RectanglesListBox_SelectedIndexChanged);
             // 
@@ -520,6 +566,23 @@ namespace Programming.View
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(0, 17);
             this.label5.TabIndex = 0;
+            // 
+            // IdLabel
+            // 
+            this.IdLabel.AutoSize = true;
+            this.IdLabel.Location = new System.Drawing.Point(177, 21);
+            this.IdLabel.Name = "IdLabel";
+            this.IdLabel.Size = new System.Drawing.Size(23, 17);
+            this.IdLabel.TabIndex = 12;
+            this.IdLabel.Text = "Id:";
+            // 
+            // IdTextBox
+            // 
+            this.IdTextBox.Location = new System.Drawing.Point(177, 42);
+            this.IdTextBox.Name = "IdTextBox";
+            this.IdTextBox.ReadOnly = true;
+            this.IdTextBox.Size = new System.Drawing.Size(160, 22);
+            this.IdTextBox.TabIndex = 13;
             // 
             // MainForm
             // 
@@ -594,6 +657,12 @@ namespace Programming.View
         private System.Windows.Forms.Button FindFilmButton;
         private System.Windows.Forms.TextBox RatingTextBox;
         private System.Windows.Forms.Label RatingLabel;
+        private System.Windows.Forms.TextBox YcordTextBox;
+        private System.Windows.Forms.Label yLabel;
+        private System.Windows.Forms.Label xLabel;
+        private System.Windows.Forms.TextBox XcordTextBox;
+        private System.Windows.Forms.TextBox IdTextBox;
+        private System.Windows.Forms.Label IdLabel;
     }
 }
 

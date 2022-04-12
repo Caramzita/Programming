@@ -31,12 +31,7 @@ namespace Programming.Model.Classes
             }
             set
             {
-
-                if (value < 0 || value > 23)
-                {
-                    throw new ArgumentException(
-                        "Часы не соответствует требованию");
-                }
+                Validator.AssertValueInRange(value, 0, 23, "Часы");
                 _hours = value;
             }
         }
@@ -49,11 +44,7 @@ namespace Programming.Model.Classes
             }
             set
             {
-                if (value < 0 || value > 59)
-                {
-                    throw new ArgumentException(
-                        "Минуты не соответствует требованию");
-                }
+                Validator.AssertValueInRange(value, 0, 59, "Минуты");
                 _minutes = value;
             }
         }
@@ -66,11 +57,7 @@ namespace Programming.Model.Classes
             }
             set
             {
-                if (value < 0 || value > 59)
-                {
-                    throw new ArgumentException(
-                        "Секунды не соответствует требованию");
-                }
+                Validator.AssertValueInRange(value, 0, 59, "Секунды");
                 _seconds = value;
             }
         }
