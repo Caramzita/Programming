@@ -8,7 +8,6 @@ namespace Programming.Model.Classes
 
         private double _innerRadius;
 
-
         public Ring()
         {
         }
@@ -30,8 +29,8 @@ namespace Programming.Model.Classes
             }
             set
             {
-                Validator.AssertOnPositiveValue(value, "Внешний радиус");
-                Validator.AssertValueInRange(value, Convert.ToInt32(InnerRadius), 250,"Внешний радиус");
+                Validator.AssertOnPositiveValue(value, nameof(OuterRadius));
+                Validator.AssertValueInRange(value, Convert.ToInt32(InnerRadius), 100 ,nameof(OuterRadius));
                 _outerRadius = value;
             }
         }
@@ -44,8 +43,8 @@ namespace Programming.Model.Classes
             }
             set
             {
-                Validator.AssertOnPositiveValue(value, "Внутренний радиус");
-                Validator.AssertValueInRange(value, 0, Convert.ToInt32(OuterRadius), "Внешний радиус");
+                Validator.AssertOnPositiveValue(value, nameof(InnerRadius));
+                Validator.AssertValueInRange(value, 0, Convert.ToInt32(OuterRadius), nameof(InnerRadius));
                 _innerRadius = value;
             }
         }

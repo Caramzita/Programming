@@ -27,13 +27,12 @@ namespace Programming.Model.Classes
             }
             set
             {
-                Validator.AssertOnPositiveValue(value, "Продолжительность");
+                Validator.AssertOnPositiveValue(value, nameof(Duration));
                 _duration = value;
             }
         }
 
         public string Name { get; set; }
-
         public string Artist { get; set; }
     }
 }

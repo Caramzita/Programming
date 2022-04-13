@@ -62,6 +62,8 @@ namespace Programming.View
             this.DurationLabel = new System.Windows.Forms.Label();
             this.MovieListBox = new System.Windows.Forms.ListBox();
             this.Reactangles = new System.Windows.Forms.GroupBox();
+            this.IdTextBox = new System.Windows.Forms.TextBox();
+            this.IdLabel = new System.Windows.Forms.Label();
             this.YcordTextBox = new System.Windows.Forms.TextBox();
             this.yLabel = new System.Windows.Forms.Label();
             this.xLabel = new System.Windows.Forms.Label();
@@ -76,8 +78,6 @@ namespace Programming.View
             this.RectanglesListBox = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.IdLabel = new System.Windows.Forms.Label();
-            this.IdTextBox = new System.Windows.Forms.TextBox();
             this.EnumsTabPage.SuspendLayout();
             this.SeasonGroupBox.SuspendLayout();
             this.EnumirationsGroupBox.SuspendLayout();
@@ -449,6 +449,23 @@ namespace Programming.View
             this.Reactangles.TabStop = false;
             this.Reactangles.Text = "Rectangles";
             // 
+            // IdTextBox
+            // 
+            this.IdTextBox.Location = new System.Drawing.Point(177, 42);
+            this.IdTextBox.Name = "IdTextBox";
+            this.IdTextBox.ReadOnly = true;
+            this.IdTextBox.Size = new System.Drawing.Size(160, 22);
+            this.IdTextBox.TabIndex = 13;
+            // 
+            // IdLabel
+            // 
+            this.IdLabel.AutoSize = true;
+            this.IdLabel.Location = new System.Drawing.Point(177, 21);
+            this.IdLabel.Name = "IdLabel";
+            this.IdLabel.Size = new System.Drawing.Size(23, 17);
+            this.IdLabel.TabIndex = 12;
+            this.IdLabel.Text = "Id:";
+            // 
             // YcordTextBox
             // 
             this.YcordTextBox.Location = new System.Drawing.Point(176, 280);
@@ -566,23 +583,6 @@ namespace Programming.View
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(0, 17);
             this.label5.TabIndex = 0;
-            // 
-            // IdLabel
-            // 
-            this.IdLabel.AutoSize = true;
-            this.IdLabel.Location = new System.Drawing.Point(177, 21);
-            this.IdLabel.Name = "IdLabel";
-            this.IdLabel.Size = new System.Drawing.Size(23, 17);
-            this.IdLabel.TabIndex = 12;
-            this.IdLabel.Text = "Id:";
-            // 
-            // IdTextBox
-            // 
-            this.IdTextBox.Location = new System.Drawing.Point(177, 42);
-            this.IdTextBox.Name = "IdTextBox";
-            this.IdTextBox.ReadOnly = true;
-            this.IdTextBox.Size = new System.Drawing.Size(160, 22);
-            this.IdTextBox.TabIndex = 13;
             // 
             // MainForm
             // 

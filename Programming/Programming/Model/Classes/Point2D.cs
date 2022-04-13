@@ -22,7 +22,7 @@ namespace Programming.Model.Classes
             }
             set
             {
-                Validator.AssertValueInRange(value, 0, 250, "Точка х");
+                Validator.AssertValueInRange(value, 0, 250, nameof(X));
                 _x = value;
             }
         }
@@ -35,7 +35,7 @@ namespace Programming.Model.Classes
             }
             set
             {
-                Validator.AssertValueInRange(value, 0, 250, "Точка у");
+                Validator.AssertValueInRange(value, 0, 250, nameof(Y));
                 _y = value;
             }
         }

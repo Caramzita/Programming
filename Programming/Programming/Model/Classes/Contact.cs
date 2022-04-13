@@ -6,7 +6,9 @@ namespace Programming.Model.Classes
     public class Contact
     {
         private string _phoneNumber;
+
         private string _surname;
+
         private string _name;
 
         public Contact()
@@ -32,11 +34,11 @@ namespace Programming.Model.Classes
             }
             set
             {
-                Validator.AssertValueInRange(value.Length, 11, 11, "Длина номера");
+                Validator.AssertValueInRange(value.Length, 11, 11, nameof(PhoneNumber));
                 if (long.TryParse(value, out long number) == false)
                 {
                     throw new ArgumentException(
-                        "Номер содержит только цифры");
+                        "The number contains only numbers");
                 }
                 _phoneNumber = value;
             }
@@ -50,7 +52,7 @@ namespace Programming.Model.Classes
             }
             set
             {
-                AssertStringContainsOnlyLetters(Name, "Имя");   
+                AssertStringContainsOnlyLetters(Name, nameof(Name));   
                 _name = value;
             }
         }
@@ -63,20 +65,20 @@ namespace Programming.Model.Classes
             }
             set
             {
-                AssertStringContainsOnlyLetters(Surname, "Фамилия");
+                AssertStringContainsOnlyLetters(Surname, nameof(Surname));
                 _surname = value;
             }
         }
 
         public string Email { get; set; }
 
-        private void AssertStringContainsOnlyLetters(string value, string nameField)
+        private void AssertStringContainsOnlyLetters(string value, string fieldName)
         {
             for (int i = 0; i < value.Length; i++)
             {
                 if (!char.IsLetter(value[i]))
                 {
-                    throw new ArgumentException($"{nameField} может содержать только английские буквы");
+                    throw new ArgumentException($"{fieldName} can only contain English letters");
                 }
             }
         }

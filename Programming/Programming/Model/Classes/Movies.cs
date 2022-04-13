@@ -35,7 +35,7 @@ namespace Programming.Model.Classes
             }
             set
             {
-                Validator.AssertValueInRange(value, 1900, DateTime.Now.Year, "Дата выхода");
+                Validator.AssertValueInRange(value, 1900, DateTime.Now.Year, nameof(ReleasedDate));
                 _releasedDate = value;
             }
         }
@@ -48,7 +48,7 @@ namespace Programming.Model.Classes
             }
             set
             {
-                Validator.AssertValueInRange(value, 0, 10, "Рейтинг");
+                Validator.AssertValueInRange(value, 0, 10, nameof(Rating));
                 _rating = value;
             }
         }
@@ -63,7 +63,7 @@ namespace Programming.Model.Classes
             }
             set
             {
-                Validator.AssertOnPositiveValue(value, "Продолжительность");
+                Validator.AssertOnPositiveValue(value, nameof(Duration));
                 _duration = value;
             }
         }

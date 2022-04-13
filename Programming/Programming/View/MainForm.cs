@@ -54,7 +54,7 @@ namespace Programming.View
             return currentIndex;
         }
 
-        private void MakeMovie()
+        private void MakeMovies()
         {
             Random random = new Random();
             string[] moviesNames = { "The Dark Knight", "The Fly", "The Conjuring",
@@ -68,11 +68,11 @@ namespace Programming.View
                     random.Next(60, 180), random.Next(2000, 2022),
                     genres[random.Next(genres.Length)],
                     random.Next(0, 10));
-                MovieListBox.Items.Add($"Film {i + 1}");
+                MovieListBox.Items.Add($"Movie {i + 1}");
             }
         }
 
-        private void MakeRectangle()
+        private void MakeRectangles()
         {
             Random random = new Random();
             string[] colors = { "White", "Black", "Red", "Orange", "Green",
@@ -101,9 +101,10 @@ namespace Programming.View
                 SeasonComboBox.Items.Add(value);
             }
             SeasonComboBox.SelectedIndex = 0;
-            MakeMovie();
-            MakeRectangle();
+            MakeMovies();
+            MakeRectangles();
         }
+
 
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -133,10 +134,12 @@ namespace Programming.View
             {
                 _currentRectangle.Length = Double.Parse(LengthTextBox.Text);
                 LengthTextBox.BackColor = CorrectColor;
+                ToolTip.SetToolTip(LengthTextBox, "");
             }
-            catch
-            {
+            catch(Exception exception)
+            {   
                 LengthTextBox.BackColor = ErrorColor;
+                ToolTip.SetToolTip(LengthTextBox, exception.Message);
                 return;
             }
         }
@@ -146,11 +149,13 @@ namespace Programming.View
             try
             {
                 _currentRectangle.Width = Double.Parse(WidthTextBox.Text);
+                ToolTip.SetToolTip(WidthTextBox, "");
                 WidthTextBox.BackColor = CorrectColor;
             }
-            catch
+            catch(Exception exception)
             {
                 WidthTextBox.BackColor = ErrorColor;
+                ToolTip.SetToolTip(WidthTextBox, exception.Message);
                 return;
             }
         }
@@ -160,11 +165,13 @@ namespace Programming.View
             try
             {
                 _currentMovie.Rating = Double.Parse(RatingTextBox.Text);
+                ToolTip.SetToolTip(RatingTextBox, "");
                 RatingTextBox.BackColor = CorrectColor;
             }
-            catch
+            catch(Exception exception)
             {
                 RatingTextBox.BackColor = ErrorColor;
+                ToolTip.SetToolTip(RatingTextBox, exception.Message);
                 return;
             }
         }
@@ -179,11 +186,13 @@ namespace Programming.View
             try
             {
                 _currentMovie.Duration = Int32.Parse(DurationTextBox.Text);
+                ToolTip.SetToolTip(DurationTextBox, "");
                 DurationTextBox.BackColor = CorrectColor;
             }
-            catch
+            catch(Exception exception)
             {
                 DurationTextBox.BackColor = ErrorColor;
+                ToolTip.SetToolTip(DurationTextBox, exception.Message);
                 return;
             }
         }
@@ -193,11 +202,13 @@ namespace Programming.View
             try
             {
                 _currentMovie.ReleasedDate = Int32.Parse(ReleasedDateTextBox.Text);
+                ToolTip.SetToolTip(ReleasedDateTextBox, "");
                 ReleasedDateTextBox.BackColor = CorrectColor;
             }
-            catch
+            catch(Exception exception)
             {
                 ReleasedDateTextBox.BackColor = ErrorColor;
+                ToolTip.SetToolTip(ReleasedDateTextBox, exception.Message);
                 return;
             }
         }
