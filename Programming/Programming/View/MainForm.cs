@@ -110,22 +110,22 @@ namespace Programming.View
         {
             var selectedIndex = RectanglesListBox.SelectedIndex;
             _currentRectangle = _rectangles[selectedIndex];
-            LengthTextBox.Text = _rectangles[selectedIndex].Length.ToString();
-            WidthTextBox.Text = _rectangles[selectedIndex].Width.ToString();
-            ColorTextBox.Text = _rectangles[selectedIndex].Color;
-            XcordTextBox.Text = _rectangles[selectedIndex].Center.X.ToString();
-            YcordTextBox.Text = _rectangles[selectedIndex].Center.Y.ToString();
-            IdTextBox.Text = _rectangles[selectedIndex].Id.ToString();
+            LengthTextBox.Text = _currentRectangle.Length.ToString();
+            WidthTextBox.Text = _currentRectangle.Width.ToString();
+            ColorTextBox.Text = _currentRectangle.Color;
+            XcordTextBox.Text = _currentRectangle.Center.X.ToString();
+            YcordTextBox.Text = _currentRectangle.Center.Y.ToString();
+            IdTextBox.Text = _currentRectangle.Id.ToString();
         }
 
         private void MovieListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedIndex = MovieListBox.SelectedIndex;
             _currentMovie = _movies[selectedIndex];
-            DurationTextBox.Text = _movies[selectedIndex].Duration.ToString();
-            ReleasedDateTextBox.Text = _movies[selectedIndex].ReleasedDate.ToString();
-            GenreTextBox.Text = _movies[selectedIndex].Genre;
-            RatingTextBox.Text = _movies[selectedIndex].Rating.ToString();
+            DurationTextBox.Text = _currentMovie.Duration.ToString();
+            ReleasedDateTextBox.Text = _currentMovie.ReleasedDate.ToString();
+            GenreTextBox.Text = _currentMovie.Genre;
+            RatingTextBox.Text = _currentMovie.Rating.ToString();
         }
 
         private void LengthTextBox_TextChanged(object sender, EventArgs e)

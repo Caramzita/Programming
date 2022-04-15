@@ -460,7 +460,7 @@ namespace Programming.View
             // IdLabel
             // 
             this.IdLabel.AutoSize = true;
-            this.IdLabel.Location = new System.Drawing.Point(177, 21);
+            this.IdLabel.Location = new System.Drawing.Point(173, 21);
             this.IdLabel.Name = "IdLabel";
             this.IdLabel.Size = new System.Drawing.Size(23, 17);
             this.IdLabel.TabIndex = 12;
