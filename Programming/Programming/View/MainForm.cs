@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using Programming.Model.Classes;
 using Programming.Model;
 
 namespace Programming.View
@@ -11,24 +13,39 @@ namespace Programming.View
 
         private readonly Color CorrectColor = Color.White;
 
-        private Model.Classes.Rectangle[] _rectangles;
+        private Movies _currentMovie;
 
-        private Model.Classes.Movies[] _movies;
+        private Movies[] _movies;
+
+        private List<Model.Classes.Rectangle> _rectangles;
+
+        private List<Panel> _rectanglePanels;
 
         private Model.Classes.Rectangle _currentRectangle;
 
-        private Model.Classes.Movies _currentMovie;
+        private Image pictureAddLeave = Image.FromFile(Environment.CurrentDirectory + @"\" + "plus.png");
+
+        private Image pictureAddMove = Image.FromFile(Environment.CurrentDirectory + @"\" + "plus_correct.png");
+
+        private Image pictureRemoveLeave = Image.FromFile(Environment.CurrentDirectory + @"\" + "minus.png");
+
+        private Image pictureRemoveMove = Image.FromFile(Environment.CurrentDirectory + @"\" + "minus_remove.png");
+
+        private string[] colors = { "White", "Black", "Red", "Orange", "Green",
+                "Blue", "Brown", "Yellow", "Grey", "Pink" };
+
+        Random random = new Random();
 
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private int FindRectangleWithMaxWidth(Model.Classes.Rectangle[] rectangles)
+        private int FindRectangleWithMaxWidth(List<Model.Classes.Rectangle> rectangles)
         {
             var currentIndex = -1;
             double max = 0;
-            for (int i = 0; i < rectangles.Length; i++)
+            for (int i = 0; i < rectangles.Count; i++)
             {
                 if (rectangles[i].Width > max)
                 {
@@ -39,7 +56,7 @@ namespace Programming.View
             return currentIndex;
         }
 
-        private int FindMovieWithMaxRating(Model.Classes.Movies[] movies)
+        private int FindMovieWithMaxRating(Movies[] movies)
         {
             var currentIndex = -1;
             double max = 0;
@@ -54,17 +71,37 @@ namespace Programming.View
             return currentIndex;
         }
 
+        private void FindCollisions(List<Model.Classes.Rectangle> rectangle)
+        {
+            
+            for(int i = 0; i < _rectangles.Count; i++)
+            {
+                for (int j = 0; j < _rectangles.Count; j++)
+                {
+                    if (CollisionManager.IsCollision(rectangle[i], rectangle[j]))
+                    {
+                        _rectanglePanels[i].BackColor = Color.FromArgb(127, 255, 127, 127);
+                        _rectanglePanels[j].BackColor = Color.FromArgb(127, 255, 127, 127);
+                    }
+                    if (rectangle[i].Center == rectangle[j].Center) 
+                    {
+                        _rectanglePanels[i].BackColor = Color.FromArgb(127, 127, 255, 127);
+                        _rectanglePanels[j].BackColor = Color.FromArgb(127, 127, 255, 127);
+                    }
+                }
+            }
+        }
+
         private void MakeMovies()
         {
-            Random random = new Random();
             string[] moviesNames = { "The Dark Knight", "The Fly", "The Conjuring",
                 "The Thing", "Blade", "Insidious" };
             string[] genres = { " Drama", "Comedy", "Musical",
                 "Romance", "Romantic comedy" };
-            _movies = new Model.Classes.Movies[6];
+            _movies = new Movies[6];
             for (int i = 0; i < 6; i++)
             {
-                _movies[i] = new Model.Classes.Movies(moviesNames[random.Next(moviesNames.Length)],
+                _movies[i] = new Movies(moviesNames[random.Next(moviesNames.Length)],
                     random.Next(60, 180), random.Next(2000, 2022),
                     genres[random.Next(genres.Length)],
                     random.Next(0, 10));
@@ -74,17 +111,23 @@ namespace Programming.View
 
         private void MakeRectangles()
         {
-            Random random = new Random();
-            string[] colors = { "White", "Black", "Red", "Orange", "Green",
-                "Blue", "Brown", "Yellow", "Grey", "Pink" };
-            _rectangles = new Model.Classes.Rectangle[5];
-            for (int i = 0; i < 5; i++)
+            _rectangles = new List<Model.Classes.Rectangle>();
             {
-                _rectangles[i] = new Model.Classes.Rectangle(random.Next(1, 100),
-                    random.Next(1, 100),
-                    colors[random.Next(colors.Length)],
-                    new Model.Classes.Point2D(random.Next(1, 50), random.Next(1, 50)));
-                RectanglesListBox.Items.Add($"Rectangle {i + 1}");
+                for (int i = 0; i < 5; i++)
+                {
+                    _currentRectangle = new Model.Classes.Rectangle();
+                    _currentRectangle.Width = random.Next(1, 150);
+                    _currentRectangle.Length = random.Next(1, 150);
+                    _currentRectangle.Color = colors[random.Next(colors.Length)];
+                    _currentRectangle.Center = new Point2D(random.Next(1, 150), random.Next(1, 150));
+                    _rectangles.Add(_currentRectangle);
+                    RectanglesListBox.Items.Add($"Rectangle {i + 1}");
+                    RectanglesPanelListBox.Items.Add($"{_currentRectangle.Id}: " +
+                        $"(X = {_currentRectangle.Center.X}; " +
+                        $"Y = {_currentRectangle.Center.Y}; " +
+                        $"W = {_currentRectangle.Length}; " +
+                        $"H = {_currentRectangle.Width})");
+                };
             }
         }
 
@@ -102,14 +145,16 @@ namespace Programming.View
             }
             SeasonComboBox.SelectedIndex = 0;
             MakeMovies();
-            MakeRectangles();
+            _rectangles = new List<Model.Classes.Rectangle>();
+            _rectanglePanels = new List<Panel>();
+            //MakeRectangles();
+            //RectanglesPanelListBox.SelectedIndex = 0;
         }
 
 
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedIndex = RectanglesListBox.SelectedIndex;
-            _currentRectangle = _rectangles[selectedIndex];
+            _currentRectangle = _rectangles[RectanglesListBox.SelectedIndex];
             LengthTextBox.Text = _currentRectangle.Length.ToString();
             WidthTextBox.Text = _currentRectangle.Width.ToString();
             ColorTextBox.Text = _currentRectangle.Color;
@@ -136,8 +181,8 @@ namespace Programming.View
                 LengthTextBox.BackColor = CorrectColor;
                 ToolTip.SetToolTip(LengthTextBox, "");
             }
-            catch(Exception exception)
-            {   
+            catch (Exception exception)
+            {
                 LengthTextBox.BackColor = ErrorColor;
                 ToolTip.SetToolTip(LengthTextBox, exception.Message);
                 return;
@@ -152,7 +197,7 @@ namespace Programming.View
                 ToolTip.SetToolTip(WidthTextBox, "");
                 WidthTextBox.BackColor = CorrectColor;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 WidthTextBox.BackColor = ErrorColor;
                 ToolTip.SetToolTip(WidthTextBox, exception.Message);
@@ -168,7 +213,7 @@ namespace Programming.View
                 ToolTip.SetToolTip(RatingTextBox, "");
                 RatingTextBox.BackColor = CorrectColor;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 RatingTextBox.BackColor = ErrorColor;
                 ToolTip.SetToolTip(RatingTextBox, exception.Message);
@@ -189,7 +234,7 @@ namespace Programming.View
                 ToolTip.SetToolTip(DurationTextBox, "");
                 DurationTextBox.BackColor = CorrectColor;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 DurationTextBox.BackColor = ErrorColor;
                 ToolTip.SetToolTip(DurationTextBox, exception.Message);
@@ -205,7 +250,7 @@ namespace Programming.View
                 ToolTip.SetToolTip(ReleasedDateTextBox, "");
                 ReleasedDateTextBox.BackColor = CorrectColor;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 ReleasedDateTextBox.BackColor = ErrorColor;
                 ToolTip.SetToolTip(ReleasedDateTextBox, exception.Message);
@@ -305,6 +350,153 @@ namespace Programming.View
                 MessageBoxDefaultButton.Button1);
                     break;
             }
+        }
+
+        private void RectanglesListBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentRectangle = _rectangles[RectanglesPanelListBox.SelectedIndex];
+                IdPanelTextBox.Text = _currentRectangle.Id.ToString();
+                XPanelTextBox.Text = _currentRectangle.Center.X.ToString();
+                YPanelTextBox.Text = _currentRectangle.Center.Y.ToString();
+                WidthPanelTextBox.Text = _currentRectangle.Length.ToString();
+                HeightPanelTextBox.Text = _currentRectangle.Width.ToString();
+            }
+            catch
+            {
+                IdPanelTextBox.Clear();
+                XPanelTextBox.Clear();
+                XPanelTextBox.BackColor = CorrectColor;
+                YPanelTextBox.Clear();
+                YPanelTextBox.BackColor = CorrectColor;
+                WidthPanelTextBox.Clear();
+                WidthPanelTextBox.BackColor = CorrectColor;
+                HeightPanelTextBox.Clear();
+                HeightPanelTextBox.BackColor = CorrectColor;
+            }
+        }
+
+        private void RectanlgeAddPictureBox_Click(object sender, EventArgs e)
+        {
+            _currentRectangle = new Model.Classes.Rectangle();
+            _currentRectangle.Width = random.Next(1, 250);
+            _currentRectangle.Length = random.Next(1, 250);
+            _currentRectangle.Color = colors[random.Next(colors.Length)];
+            _currentRectangle.Center = new Point2D(random.Next(1, 250), random.Next(1, 250));
+            _rectangles.Add(_currentRectangle);
+            RectanglesPanelListBox.Items.Add($"{_currentRectangle.Id}: " +
+                $"(X = {_currentRectangle.Center.X}; " +
+                $"Y = {_currentRectangle.Center.Y}; " +
+                $"W = {_currentRectangle.Length}; " +
+                $"H = {_currentRectangle.Width})");
+            RectanglesPanelListBox.SelectedIndex = _rectangles.Count - 1;
+            Panel panel = new Panel();
+            panel.Location = new Point(_currentRectangle.Center.X, _currentRectangle.Center.Y);
+            panel.Size = new Size((int)_currentRectangle.Length, (int)_currentRectangle.Width);
+            RectanglesPanel.Controls.Add(panel);
+            _rectanglePanels.Add(panel);
+            FindCollisions(_rectangles);
+        }
+
+        private void RecrangleRemovePictureBox_Click(object sender, EventArgs e)
+        {
+            int index = RectanglesPanelListBox.SelectedIndex;
+            FindCollisions(_rectangles);
+            if (_rectangles.Count != 0)
+            {
+                _rectangles.RemoveAt(RectanglesPanelListBox.SelectedIndex);
+            }
+            RectanglesPanelListBox.Items.Remove(RectanglesPanelListBox.SelectedItem);
+            if (index >= 0)
+            {
+                RectanglesPanelListBox.SelectedIndex = index - 1;
+                RectanglesPanel.Controls.RemoveAt(index);
+                _rectanglePanels.RemoveAt(index);
+            }
+        }
+        private void XPanelTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentRectangle.Center.X = Int32.Parse(XPanelTextBox.Text);
+                ToolTip.SetToolTip(XPanelTextBox, "");
+                XPanelTextBox.BackColor = CorrectColor;
+            }
+            catch (Exception exception)
+            {
+                XPanelTextBox.BackColor = ErrorColor;
+                ToolTip.SetToolTip(XPanelTextBox, exception.Message);
+                return;
+            }
+        }
+
+        private void YPanelTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentRectangle.Center.X = Int32.Parse(YPanelTextBox.Text);
+                ToolTip.SetToolTip(YPanelTextBox, "");
+                YPanelTextBox.BackColor = CorrectColor;
+            }
+            catch (Exception exception)
+            {
+                YPanelTextBox.BackColor = ErrorColor;
+                ToolTip.SetToolTip(YPanelTextBox, exception.Message);
+                return;
+            }
+        }
+
+        private void WidthPanelTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentRectangle.Length = Int32.Parse(WidthPanelTextBox.Text);
+                ToolTip.SetToolTip(WidthPanelTextBox, "");
+                WidthPanelTextBox.BackColor = CorrectColor;
+            }
+            catch (Exception exception)
+            {
+                WidthPanelTextBox.BackColor = ErrorColor;
+                ToolTip.SetToolTip(WidthPanelTextBox, exception.Message);
+                return;
+            }
+        }
+
+        private void HeightPanelTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentRectangle.Center.X = Int32.Parse(HeightPanelTextBox.Text);
+                ToolTip.SetToolTip(HeightPanelTextBox, "");
+                HeightPanelTextBox.BackColor = CorrectColor;
+            }
+            catch (Exception exception)
+            {
+                HeightPanelTextBox.BackColor = ErrorColor;
+                ToolTip.SetToolTip(HeightPanelTextBox, exception.Message);
+                return;
+            }
+        }
+
+        private void RectanlgeAddPictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            RectanlgeAddPictureBox.BackgroundImage = pictureAddMove;
+        }
+
+        private void RectanlgeAddPictureBox_MouseLeave(object sender, EventArgs e)
+        {
+            RectanlgeAddPictureBox.BackgroundImage = pictureAddLeave;
+        }
+
+        private void RecrangleRemovePictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            RecrangleRemovePictureBox.BackgroundImage = pictureRemoveMove;
+        }
+
+        private void RecrangleRemovePictureBox_MouseLeave(object sender, EventArgs e)
+        {
+            RecrangleRemovePictureBox.BackgroundImage = pictureRemoveLeave;
         }
     }
 }
