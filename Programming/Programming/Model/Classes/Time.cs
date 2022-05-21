@@ -2,18 +2,39 @@
 
 namespace Programming.Model.Classes
 {
+    /// <summary>
+    /// Хранит данные о времени: часы, минуты, секунды.
+    /// </summary>
     public class Time
     {
+        /// <summary>
+        /// Хранит часы.
+        /// </summary>
         private int _hours;
 
+        /// <summary>
+        /// Хранит минуты.
+        /// </summary>
         private int _minutes;
 
+        /// <summary>
+        /// Хранит секунды.
+        /// </summary>
         private int _seconds;
 
+        /// <summary>
+        /// Создает пустой экземпляр класса <see cref="Time"/>.
+        /// </summary>
         public Time()
         {
         }
 
+        /// <summary>
+        /// Создает пустой экземпляр класса <see cref="Time"/>.
+        /// </summary>
+        /// <param name="hours">Часы. Должны быть положительными и не больше 23.</param>
+        /// <param name="minutes">Минуты. Должны быть положительными и не больше 59.</param>
+        /// <param name="seconds">Секунды. Должны быть положительными и не больше 59.</param>
         public Time(int hours,
             int minutes,
             int seconds)
@@ -23,6 +44,9 @@ namespace Programming.Model.Classes
             Seconds = seconds;
         }
 
+        /// <summary>
+        /// Возвращает и задает часы. Должны быть положительными и не больше 23.
+        /// </summary>
         public int Hours
         {
             get
@@ -36,6 +60,9 @@ namespace Programming.Model.Classes
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает минуты. Должны быть положительными и не больше 59.
+        /// </summary>
         public int Minutes
         {
             get
@@ -49,7 +76,10 @@ namespace Programming.Model.Classes
             }
         }
 
-       public int Seconds
+        /// <summary>
+        /// Возвращает и задает секунды. Должны быть положительными и не больше 59.
+        /// </summary>
+        public int Seconds
         {
             get
             {

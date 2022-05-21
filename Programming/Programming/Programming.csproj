@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -21,7 +36,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>3</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,23 +62,61 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Classes\CollisionManager.cs" />
-    <Compile Include="Model\Classes\Point2D.cs" />
-    <Compile Include="Model\Classes\Ring.cs" />
+    <Compile Include="Model\Classes\AppColors.cs" />
+    <Compile Include="Model\Classes\Geometry\RectangleFactory.cs" />
+    <Compile Include="Model\Classes\Geometry\CollisionManager.cs" />
+    <Compile Include="Model\Classes\Geometry\Point2D.cs" />
+    <Compile Include="Model\Classes\Geometry\Ring.cs" />
     <Compile Include="Model\Classes\Validator.cs" />
     <Compile Include="Model\Classes\Subject.cs" />
     <Compile Include="Model\Classes\Song.cs" />
     <Compile Include="Model\Classes\Contact.cs" />
     <Compile Include="Model\Classes\Time.cs" />
-    <Compile Include="Model\Classes\Movies.cs" />
+    <Compile Include="Model\Classes\Movie.cs" />
     <Compile Include="Model\Classes\Flight.cs" />
-    <Compile Include="Model\Classes\Rectangle.cs" />
+    <Compile Include="Model\Classes\Geometry\Rectangle.cs" />
     <Compile Include="Model\Enums\Manufactures.cs" />
     <Compile Include="Model\Enums\Season.cs" />
     <Compile Include="Model\Enums\WeekDay.cs" />
     <Compile Include="Model\Enums\Genre.cs" />
     <Compile Include="Model\Enums\Colors.cs" />
     <Compile Include="Model\Enums\EducationForm.cs" />
+    <Compile Include="View\Controls\EnumerationsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Controls\EnumerationsControl.Designer.cs">
+      <DependentUpon>EnumerationsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\MoviesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Controls\MoviesControl.Designer.cs">
+      <DependentUpon>MoviesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\RectanglesCollisionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Controls\RectanglesCollisionControl.Designer.cs">
+      <DependentUpon>RectanglesCollisionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\RectanglesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Controls\RectanglesControl.Designer.cs">
+      <DependentUpon>RectanglesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\SeasonHandleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Controls\SeasonHandleControl.Designer.cs">
+      <DependentUpon>SeasonHandleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\WeekdayParsingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Controls\WeekdayParsingControl.Designer.cs">
+      <DependentUpon>WeekdayParsingControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +125,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="View\Controls\EnumerationsControl.resx">
+      <DependentUpon>EnumerationsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Controls\MoviesControl.resx">
+      <DependentUpon>MoviesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Controls\RectanglesCollisionControl.resx">
+      <DependentUpon>RectanglesCollisionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Controls\RectanglesControl.resx">
+      <DependentUpon>RectanglesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Controls\SeasonHandleControl.resx">
+      <DependentUpon>SeasonHandleControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Controls\WeekdayParsingControl.resx">
+      <DependentUpon>WeekdayParsingControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -83,6 +154,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -96,6 +168,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_correct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus_remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
