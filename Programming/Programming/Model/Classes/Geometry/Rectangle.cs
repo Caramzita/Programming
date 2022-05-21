@@ -1,12 +1,12 @@
 ﻿
 namespace Programming.Model.Classes.Geometry
 {   /// <summary>
-    /// Хранит данные о прямоугольнике: длина, ширина, id, положение на панели, цвет.
+    /// Хранит данные о прямоугольнике.
     /// </summary>
     public class Rectangle
     {
         /// <summary>
-        /// Идентификатор количества прямоугольников.
+        /// Хранит количество прямоугольников.
         /// </summary>
         private static int _allRectanglesCount;
 
