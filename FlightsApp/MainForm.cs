@@ -43,7 +43,7 @@ namespace FlightsApp
             }
             foreach(var flight in _flights)
             {
-                SortFlights(_flights);
+                SortFlights();
                 FlightsListBox.Items.Add($"{flight.DepartureTime}: {flight.Departure} - " +
                     $"{flight.Destination}");
             }
@@ -63,33 +63,9 @@ namespace FlightsApp
             return _currentFlight;
         }
 
-        private List<Flight> SortFlights(List<Flight> flights)
+        private void SortFlights()
         {
-            for(int i = 0; i < flights.Count; i++)
-            {
-                for(int j = 0; j < flights.Count - 1; j++)
-                {
-                    if (flights[j].DepartureTime >= flights[j + 1].DepartureTime)
-                    {
-                        var departure = flights[j].Departure;
-                        var destination = flights[j].Destination;
-                        var duration = flights[j].Duration;
-                        var departureTime = flights[j].DepartureTime;
-                        var flightType = flights[j].FlightType;
-                        flights[j].Departure = flights[j + 1].Departure;
-                        flights[j].Destination = flights[j + 1].Destination;
-                        flights[j].Duration = flights[j + 1].Duration;
-                        flights[j].DepartureTime = flights[j + 1].DepartureTime;
-                        flights[j].FlightType = flights[j + 1].FlightType;
-                        flights[j + 1].Departure = departure;
-                        flights[j + 1].Destination = destination;
-                        flights[j + 1].Duration = duration;
-                        flights[j + 1].DepartureTime = departureTime;
-                        flights[j + 1].FlightType = flightType;
-                    }
-                }
-            }
-            return flights;
+            _flights = _flights.OrderBy(flight => flight.DepartureTime).ToList();
         }
 
         private void UpdateInfo(Flight currentFlight)
@@ -246,7 +222,7 @@ namespace FlightsApp
         private void UpdatePickureBox_Click(object sender, EventArgs e)
         {
             FlightsListBox.Items.Clear();
-            SortFlights(_flights);
+            SortFlights();
             foreach (var flight in _flights)
             {
                 FlightsListBox.Items.Add($"{flight.DepartureTime}: {flight.Departure} - " +
