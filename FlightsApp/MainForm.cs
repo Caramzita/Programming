@@ -13,17 +13,17 @@ namespace FlightsApp
 {
     public partial class FlightsApp : Form
     {
+        private readonly Color ErrorColor = Color.LightPink;
+
+        private readonly Color CorrectColor = Color.White;
+
+        private string[] _flightType = { "Interior", "International" };
+
         private List<Flight> _flights = new List<Flight>();
 
         private Flight _currentFlight;
 
         private Random random = new Random();
-
-        private string[] _flightType = { "Interior", "International" };
-
-        private readonly Color ErrorColor = Color.LightPink;
-
-        private readonly Color CorrectColor = Color.White;
 
         private Image _addPicture = Properties.Resources.AddButton;
 
@@ -41,11 +41,10 @@ namespace FlightsApp
             {
                 _flights.Add(MakeFlights());  
             }
-            foreach(var flight in _flights)
+            SortFlights();
+            foreach (var flight in _flights)
             {
-                SortFlights();
-                FlightsListBox.Items.Add($"{flight.DepartureTime}: {flight.Departure} - " +
-                    $"{flight.Destination}");
+                FlightsListBox.Items.Add(GetInfoFlight(flight));
             }
             FlightsListBox.SelectedIndex = 0;
             DepartureTimePicker.MinDate = DateTime.Now;
@@ -63,16 +62,23 @@ namespace FlightsApp
             return _currentFlight;
         }
 
+        private string GetInfoFlight(Flight flight)
+        {
+            return $"{flight.DepartureTime}: {flight.Departure} - " +
+                    $"{flight.Destination}";
+        }
+
         private void SortFlights()
         {
             _flights = _flights.OrderBy(flight => flight.DepartureTime).ToList();
         }
 
-        private void UpdateInfo(Flight currentFlight)
+        private void UpdateInfo(List<Flight> flights)
         {
-            FlightsListBox.Items[FlightsListBox.SelectedIndex] = $"{currentFlight.DepartureTime}: " +
-                $"{currentFlight.Departure} - " +
-                $"{currentFlight.Destination}";
+            for(int i = 0; i < _flights.Count; i++)
+            {
+                FlightsListBox.Items[i] = GetInfoFlight(flights[i]);
+            }
         }
 
         private void ClearInfo()
@@ -108,7 +114,7 @@ namespace FlightsApp
             {
                 _currentFlight.Departure = DepartureTextBox.Text;
                 DepartureTextBox.BackColor = CorrectColor;
-                //UpdateInfo(_flights[FlightsListBox.SelectedIndex]);
+                //UpdateInfo(_flights);
             }
             catch (Exception exception)
             {
@@ -124,7 +130,7 @@ namespace FlightsApp
             {
                 _currentFlight.Destination = DestinationTextBox.Text;
                 DestinationTextBox.BackColor = CorrectColor;
-                //UpdateInfo(_flights[FlightsListBox.SelectedIndex]);
+                //UpdateInfo(_flights);
             }
             catch (Exception exception)
             {
@@ -139,7 +145,7 @@ namespace FlightsApp
             try
             {
                 _currentFlight.DepartureTime = DepartureTimePicker.Value;
-                //UpdateInfo(_flights[FlightsListBox.SelectedIndex]);
+                //UpdateInfo(_flights);
             }
             catch (Exception exception)
             {
@@ -154,7 +160,7 @@ namespace FlightsApp
             {
                 _currentFlight.Duration = Convert.ToInt32(DurationTextBox.Text);
                 DurationTextBox.BackColor = CorrectColor;
-                //UpdateInfo(_flights[FlightsListBox.SelectedIndex]);
+                //UpdateInfo(_flights);
             }
             catch(Exception exception)
             {
@@ -221,13 +227,14 @@ namespace FlightsApp
 
         private void UpdatePickureBox_Click(object sender, EventArgs e)
         {
+            var index = FlightsListBox.SelectedIndex;
             FlightsListBox.Items.Clear();
             SortFlights();
             foreach (var flight in _flights)
             {
-                FlightsListBox.Items.Add($"{flight.DepartureTime}: {flight.Departure} - " +
-                    $"{flight.Destination}");
+                FlightsListBox.Items.Add(GetInfoFlight(flight));
             }
+            FlightsListBox.SelectedIndex = index;
         }
     }
 }
