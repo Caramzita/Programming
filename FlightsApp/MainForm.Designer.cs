@@ -44,11 +44,9 @@ namespace FlightsApp
             this.DepartureTextBox = new System.Windows.Forms.TextBox();
             this.DepartureLabel = new System.Windows.Forms.Label();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.UpdatePickureBox = new System.Windows.Forms.PictureBox();
             this.AddPictureBox = new System.Windows.Forms.PictureBox();
             this.RemovePictureBox = new System.Windows.Forms.PictureBox();
             this.SelectedFlight.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.UpdatePickureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AddPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RemovePictureBox)).BeginInit();
             this.SuspendLayout();
@@ -135,6 +133,7 @@ namespace FlightsApp
             this.DepartureTimePicker.Size = new System.Drawing.Size(198, 22);
             this.DepartureTimePicker.TabIndex = 4;
             this.DepartureTimePicker.ValueChanged += new System.EventHandler(this.DepartureTimePicker_ValueChanged);
+            this.DepartureTimePicker.Leave += new System.EventHandler(this.DepartureTimePicker_Leave);
             // 
             // DestinationTextBox
             // 
@@ -170,17 +169,6 @@ namespace FlightsApp
             this.DepartureLabel.TabIndex = 0;
             this.DepartureLabel.Text = "Departure:";
             // 
-            // UpdatePickureBox
-            // 
-            this.UpdatePickureBox.Image = global::FlightsApp.Properties.Resources.UpdateButton;
-            this.UpdatePickureBox.Location = new System.Drawing.Point(746, 235);
-            this.UpdatePickureBox.Name = "UpdatePickureBox";
-            this.UpdatePickureBox.Size = new System.Drawing.Size(24, 24);
-            this.UpdatePickureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.UpdatePickureBox.TabIndex = 4;
-            this.UpdatePickureBox.TabStop = false;
-            this.UpdatePickureBox.Click += new System.EventHandler(this.UpdatePickureBox_Click);
-            // 
             // AddPictureBox
             // 
             this.AddPictureBox.Image = global::FlightsApp.Properties.Resources.AddButton;
@@ -212,7 +200,6 @@ namespace FlightsApp
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.UpdatePickureBox);
             this.Controls.Add(this.AddPictureBox);
             this.Controls.Add(this.RemovePictureBox);
             this.Controls.Add(this.SelectedFlight);
@@ -220,9 +207,10 @@ namespace FlightsApp
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FlightsApp";
             this.Text = "FlightsApp";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FlightsApp_FormClosing);
+            this.Load += new System.EventHandler(this.FlightsApp_Load);
             this.SelectedFlight.ResumeLayout(false);
             this.SelectedFlight.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.UpdatePickureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AddPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RemovePictureBox)).EndInit();
             this.ResumeLayout(false);
@@ -247,7 +235,6 @@ namespace FlightsApp
         private System.Windows.Forms.PictureBox RemovePictureBox;
         private System.Windows.Forms.PictureBox AddPictureBox;
         private System.Windows.Forms.ToolTip ToolTip;
-        private System.Windows.Forms.PictureBox UpdatePickureBox;
     }
 }
 

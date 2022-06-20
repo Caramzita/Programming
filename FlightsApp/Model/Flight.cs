@@ -2,7 +2,7 @@
 
 namespace FlightsApp
 {
-    class Flight
+    public class Flight
     {
         private string _departure;
 
