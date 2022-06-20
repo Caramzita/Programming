@@ -11,12 +11,12 @@ namespace FlightsApp
     public partial class FlightsApp : Form
     {
         /// <summary>
-        /// Хранит список всех авиаперелетов.
+        /// Хранит список всех перелетов.
         /// </summary>
         private List<Flight> _flights = ProjectSerializer.LoadFromFile();
 
         /// <summary>
-        /// Хранит данные о выбранном авиаперелете.
+        /// Хранит данные о выбранном перелете.
         /// </summary>
         private Flight _currentFlight;
 
@@ -26,21 +26,28 @@ namespace FlightsApp
         }
 
         /// <summary>
-        /// 
+        /// Создает строку со значениями перелета.
         /// </summary>
-        /// <param name="flight"></param>
-        /// <returns></returns>
+        /// <param name="flight">Выбранный перелет.</param>
+        /// <returns>Возвращает строку со значения перелета.</returns>
         private string GetInfoFlight(Flight flight)
         {
             return $"{flight.DepartureTime}: {flight.Departure} - " +
                     $"{flight.Destination}";
         }
 
+        /// <summary>
+        /// Сортирует список перелетов по дате вылета.
+        /// </summary>
         private void SortFlights()
         {
             _flights = _flights.OrderBy(flight => flight.DepartureTime).ToList();
         }
 
+        /// <summary>
+        /// Обновляет данные перелтов в <see cref="FlightsListBox"/> при их изменении.
+        /// </summary>
+        /// <param name="flights">Выбранный перелет.</param>
         private void UpdateInfo(List<Flight> flights)
         {
             for(int i = 0; i < _flights.Count; i++)
@@ -49,6 +56,9 @@ namespace FlightsApp
             }
         }
 
+        /// <summary>
+        /// Очищает TextBox при отсутсвии выбранного перелета.
+        /// </summary>
         private void ClearInfo()
         {
             DepartureTextBox.Clear();

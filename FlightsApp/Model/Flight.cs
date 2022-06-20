@@ -2,20 +2,46 @@
 
 namespace FlightsApp
 {
+    /// <summary>
+    /// Хранит данные о перелете.
+    /// </summary>
     public class Flight
     {
+        /// <summary>
+        /// Хранит точку отправления.
+        /// </summary>
         private string _departure;
 
+        /// <summary>
+        /// Хранит точку прибытия.
+        /// </summary>
         private string _destination;
 
+        /// <summary>
+        /// Хранит время вылета.
+        /// </summary>
         private DateTime _departureTime;
 
+        /// <summary>
+        /// Хранит продолжительность перелета.
+        /// </summary>
         private int _duration;
 
+        /// <summary>
+        /// Создает пустой экземпляр класса <see cref="Flight"/>.
+        /// </summary>
         public Flight()
         {
         }
 
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Flight"/>.
+        /// </summary>
+        /// <param name="departure">Точка отправления.</param>
+        /// <param name="destination">Точка прибытия.</param>
+        /// <param name="departureTime">Время вылета.</param>
+        /// <param name="duration">Продолжительность полета.</param>
+        /// <param name="flightType">Тип перелета.</param>
         public Flight(string departure, 
             string destination, 
             DateTime departureTime, 
@@ -28,7 +54,10 @@ namespace FlightsApp
             Duration = duration;
             FlightType = flightType;
         }
-
+        
+        /// <summary>
+        /// Возвращает и задает точку отправления. Должна содержать только буквы.
+        /// </summary>
         public string Departure
         {
             get
@@ -42,6 +71,9 @@ namespace FlightsApp
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает точку прибытия. Должна содержать только буквы.
+        /// </summary>
         public string Destination
         {
             get
@@ -55,6 +87,9 @@ namespace FlightsApp
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает время вылета. Не должно быть раньше сегодняшнего дня.
+        /// </summary>
         public DateTime DepartureTime
         {
             get
@@ -71,6 +106,9 @@ namespace FlightsApp
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает продолжительность перелета. Должно быть положительным и не больше 1000.
+        /// </summary>
         public int Duration
         {
             get
@@ -87,9 +125,16 @@ namespace FlightsApp
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает тип перелета.
+        /// </summary>
         public string FlightType { get; set; }
 
 
+        /// <summary>
+        /// Проверяет, состоит ли строка только из букв.
+        /// </summary>
+        /// <param name="value">Передаваемая строка.</param>
         private void AssertStringValue(string value)
         {
             for (int i = 0; i < value.Length; i++)

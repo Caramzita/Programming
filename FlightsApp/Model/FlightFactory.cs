@@ -2,12 +2,24 @@
 
 namespace FlightsApp.Model
 {
+    /// <summary>
+    /// Создает случайный объект класса <see cref="Flight"/>
+    /// </summary>
     static class FlightFactory
     {
+        /// <summary>
+        /// Генерирует случайное значение.
+        /// </summary>
         private static Random random = new Random();
 
+        /// <summary>
+        /// Хранит данные из перечисления <see cref="FlightType"/>
+        /// </summary>
         private static string[] _flightType = Enum.GetNames(typeof(FlightType));
 
+        /// <summary>
+        /// Хранит массив городов.
+        /// </summary>
         public static string[] Cities = { "Almaty", "Astana", "Ankara", "Amsterdam", "Antwerp", "Bangkok",
             "Barcelona", "Belgrade", "Berlin", "Brasilia", "Brest", "Budapest", "Washington",
             "Vilnius", "Hamburg", "Dallas", "Delhi", "Dublin", "Geneva", "Yokohama", "Kawasaki", "Cairo",
@@ -15,6 +27,10 @@ namespace FlightsApp.Model
             "Mexico", "Milan", "Minsk", "Nagoya", "New York", "Rome", "San Diego", "Seoul", "San Francisco",
             "Tokyo", "Toronto", "Tbilisi", "Ottawa", "Oslo", "Osaka" };
 
+        /// <summary>
+        /// Создает случайный объект класса <see cref="Flight"/>
+        /// </summary>
+        /// <returns>Возвращает случайный перелет.</returns>
         public static Flight MakeFlights()
         {
             var now = DateTime.Now;

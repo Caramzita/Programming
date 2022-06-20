@@ -6,25 +6,35 @@ using static System.Environment;
 
 namespace FlightsApp.Model
 {
+    /// <summary>
+    /// Выполняет сериализацию и десериализацию.
+    /// </summary>
     public static class ProjectSerializer
     {
+        /// <summary>
+        /// Хранит путь файла сохранения и загрузки.
+        /// </summary>
         private static readonly string appDataFolder = Environment.GetFolderPath(SpecialFolder.ApplicationData) + 
             @"\Zhelnov\FlightApp\";
 
-        public static string Filename { get; set; }
-
+        /// <summary>
+        /// Выполняет сериализацию.
+        /// </summary>
+        /// <param name="flights"></param>
         public static void SaveToFile(List<Flight> flights)
         {
+            //Создаём экземпляр сериализатора
             JsonSerializer serializer = new JsonSerializer();
             serializer.Formatting = Formatting.Indented;
             serializer.NullValueHandling = NullValueHandling.Include;
             serializer.TypeNameHandling = TypeNameHandling.All;
-
+            //Проверка наличия пути сохранения
             String folder = appDataFolder;
             if (!Directory.Exists(folder))
             {
                 Directory.CreateDirectory(folder);
             }
+            //Открываем поток для записи в файл с указанием п
             using (StreamWriter sw = new StreamWriter(appDataFolder + @"text.txt"))
             using (JsonWriter writer = new JsonTextWriter(sw))
 
@@ -33,14 +43,20 @@ namespace FlightsApp.Model
                 serializer.Serialize(writer, flights);
             }
 
-    }
-    public static List<Flight> LoadFromFile()
+        }
+
+        /// <summary>
+        /// Выполняет десериализацию.
+        /// </summary>
+        /// <returns></returns>
+        public static List<Flight> LoadFromFile()
         {
             //Создаём переменную, в которую поместим результат десериализации
             List<Flight> flights = null;
             //Создаём экземпляр сериализатора
             JsonSerializer serializer = new JsonSerializer();
             String folder = appDataFolder;
+            //Проверка наличия пути загрузки.
             if (!Directory.Exists(folder))
             {
                 return new List<Flight>();
