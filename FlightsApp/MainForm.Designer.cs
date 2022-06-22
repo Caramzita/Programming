@@ -86,6 +86,7 @@ namespace FlightsApp
             // 
             // FlightTypeComboBox
             // 
+            this.FlightTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FlightTypeComboBox.FormattingEnabled = true;
             this.FlightTypeComboBox.Location = new System.Drawing.Point(126, 162);
             this.FlightTypeComboBox.Name = "FlightTypeComboBox";
@@ -201,7 +202,7 @@ namespace FlightsApp
             this.RemovePictureBox.MouseLeave += new System.EventHandler(this.RemovePictureBox_MouseLeave);
             this.RemovePictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.RemovePictureBox_MouseMove);
             // 
-            // FlightsApp
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -211,7 +212,7 @@ namespace FlightsApp
             this.Controls.Add(this.SelectedFlight);
             this.Controls.Add(this.FlightsListBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FlightsApp";
+            this.Name = "MainForm";
             this.Text = "FlightsApp";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FlightsApp_FormClosing);
             this.Load += new System.EventHandler(this.FlightsApp_Load);

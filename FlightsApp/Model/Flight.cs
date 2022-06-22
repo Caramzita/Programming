@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FlightsApp
+namespace FlightsApp.Model
 {
     /// <summary>
     /// Хранит данные о перелете.
@@ -117,7 +117,7 @@ namespace FlightsApp
             }
             set
             {
-                if(value < 0 && value > 1000)
+                if(value < 0 || value > 1000)
                 {
                     throw new ArgumentException("Время должно быть положительным и не превышать 1000");
                 }

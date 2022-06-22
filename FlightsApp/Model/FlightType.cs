@@ -3,7 +3,7 @@
     /// <summary>
     /// Хранит перечисления типов перелета.
     /// </summary>
-    enum FlightType
+    public enum FlightType
     {
         Interior,
         International

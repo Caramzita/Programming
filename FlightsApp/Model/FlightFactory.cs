@@ -5,12 +5,12 @@ namespace FlightsApp.Model
     /// <summary>
     /// Создает случайный объект класса <see cref="Flight"/>
     /// </summary>
-    static class FlightFactory
+    public static class FlightFactory
     {
         /// <summary>
         /// Генерирует случайное значение.
         /// </summary>
-        private static Random random = new Random();
+        private static Random _random = new Random();
 
         /// <summary>
         /// Хранит данные из перечисления <see cref="FlightType"/>
@@ -34,12 +34,12 @@ namespace FlightsApp.Model
         public static Flight MakeFlights()
         {
             var now = DateTime.Now;
-            DateTime randomDate = new DateTime(random.Next(now.Year, 2023),
-                random.Next(now.Month, 13), random.Next(now.Day, 31), random.Next(now.Hour, 24),
-                random.Next(now.Minute, 60), 0);
-            var flight = new Flight(Cities[random.Next(0, Cities.Length)],
-                FlightFactory.Cities[random.Next(0, Cities.Length)],
-                randomDate, random.Next(1, 1000), _flightType[random.Next(0, 2)]);
+            DateTime randomDate = new DateTime(_random.Next(now.Year, 2023),
+                _random.Next(now.Month, 13), _random.Next(now.Day, 31), _random.Next(now.Hour, 24),
+                _random.Next(now.Minute, 60), 0);
+            var flight = new Flight(Cities[_random.Next(0, Cities.Length)],
+                FlightFactory.Cities[_random.Next(0, Cities.Length)],
+                randomDate, _random.Next(1, 1000), _flightType[_random.Next(0, 2)]);
             return flight;
         }
     }

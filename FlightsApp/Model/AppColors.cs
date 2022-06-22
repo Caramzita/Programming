@@ -5,7 +5,7 @@ namespace FlightsApp.Model
     /// <summary>
     /// Хранит цвета.
     /// </summary>
-    static class AppColors
+    public static class AppColors
     {
         /// <summary>
         /// Цвет ошибки.

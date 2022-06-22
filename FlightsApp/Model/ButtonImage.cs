@@ -5,7 +5,7 @@ namespace FlightsApp.Model
     /// <summary>
     /// Хранит изображения PictureBox.
     /// </summary>
-    static class ButtonImage
+    public static class ButtonImage
     {
         /// <summary>
         /// Изображения добавления перелетов.

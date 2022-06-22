@@ -96,7 +96,7 @@ namespace FlightsApp
         {
             try
             {
-                if(FlightsListBox.SelectedIndex != -1)
+                if (FlightsListBox.SelectedIndex != -1)
                 {
                     var index = FlightsListBox.SelectedIndex;
                     _currentFlight = _flights[index];
@@ -107,7 +107,11 @@ namespace FlightsApp
                     FlightTypeComboBox.SelectedItem = _currentFlight.FlightType;
                 }
             }
-            catch { }
+            catch (Exception exception)
+            {
+                ToolTip.SetToolTip(FlightsListBox, exception.Message);
+                return;
+            }
         }
 
         private void DepartureTextBox_TextChanged(object sender, EventArgs e)
@@ -184,11 +188,7 @@ namespace FlightsApp
 
         private void FlightTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                _currentFlight.FlightType = (string)FlightTypeComboBox.SelectedItem;
-            }
-            catch { return; }
+            _currentFlight.FlightType = (string)FlightTypeComboBox.SelectedItem;
         }  
 
         private void AddPictureBox_Click(object sender, EventArgs e)
@@ -218,6 +218,12 @@ namespace FlightsApp
                 }
             }
         }
+
+        private void FlightsApp_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ProjectSerializer.SaveToFile(_flights);
+        }
+
         private void AddPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
             AddPictureBox.BackgroundImage = ButtonImage.ActiveAddPicture;
@@ -236,11 +242,6 @@ namespace FlightsApp
         private void RemovePictureBox_MouseLeave(object sender, EventArgs e)
         {
             RemovePictureBox.BackgroundImage = ButtonImage.RemovePicture;
-        }
-
-        private void FlightsApp_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            ProjectSerializer.SaveToFile(_flights);
         }
     }
 }
