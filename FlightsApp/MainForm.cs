@@ -8,7 +8,7 @@ using FlightsApp.Model;
 
 namespace FlightsApp
 {
-    public partial class FlightsApp : Form
+    public partial class MainForm : Form
     {
         /// <summary>
         /// Хранит список всех перелетов.
@@ -20,7 +20,10 @@ namespace FlightsApp
         /// </summary>
         private Flight _currentFlight;
 
-        public FlightsApp()
+        /// <summary>
+        /// Создает экземпляр класса <see cref="MainForm"/>.
+        /// </summary>
+        public MainForm()
         {
             InitializeComponent();
         }

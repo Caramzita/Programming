@@ -16,7 +16,7 @@ namespace FlightsApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FlightsApp());
+            Application.Run(new MainForm());
         }
     }
 }

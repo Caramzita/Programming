@@ -1,7 +1,7 @@
 ﻿
 namespace FlightsApp
 {
-    partial class FlightsApp
+    partial class MainForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -30,7 +30,7 @@ namespace FlightsApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FlightsApp));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.FlightsListBox = new System.Windows.Forms.ListBox();
             this.SelectedFlight = new System.Windows.Forms.GroupBox();
             this.FlightTypeComboBox = new System.Windows.Forms.ComboBox();
@@ -53,6 +53,9 @@ namespace FlightsApp
             // 
             // FlightsListBox
             // 
+            this.FlightsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.FlightsListBox.FormattingEnabled = true;
             this.FlightsListBox.ItemHeight = 16;
             this.FlightsListBox.Location = new System.Drawing.Point(12, 12);
@@ -63,6 +66,7 @@ namespace FlightsApp
             // 
             // SelectedFlight
             // 
+            this.SelectedFlight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SelectedFlight.Controls.Add(this.FlightTypeComboBox);
             this.SelectedFlight.Controls.Add(this.FlightTypeLabel);
             this.SelectedFlight.Controls.Add(this.DurationTextBox);
@@ -171,6 +175,7 @@ namespace FlightsApp
             // 
             // AddPictureBox
             // 
+            this.AddPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.AddPictureBox.Image = global::FlightsApp.Properties.Resources.AddButton;
             this.AddPictureBox.Location = new System.Drawing.Point(484, 235);
             this.AddPictureBox.Name = "AddPictureBox";
@@ -184,6 +189,7 @@ namespace FlightsApp
             // 
             // RemovePictureBox
             // 
+            this.RemovePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.RemovePictureBox.Image = global::FlightsApp.Properties.Resources.RemoveButton;
             this.RemovePictureBox.Location = new System.Drawing.Point(560, 235);
             this.RemovePictureBox.Name = "RemovePictureBox";
