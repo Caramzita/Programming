@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Programming", "Programming\Programming.csproj", "{36E8F201-AD07-4C05-9080-035362D44456}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightsApp", "..\..\FlightsApp\FlightsApp\FlightsApp.csproj", "{10BA3F9E-F123-4A66-926E-EDE600A47D63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightsApp", "..\FlightsApp\FlightsApp\FlightsApp.csproj", "{10BA3F9E-F123-4A66-926E-EDE600A47D63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectOrientedPractics", "ObjectOrientedPractics\ObjectOrientedPractics.csproj", "{BECE94F9-A686-4149-A846-EBE14B778570}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{10BA3F9E-F123-4A66-926E-EDE600A47D63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10BA3F9E-F123-4A66-926E-EDE600A47D63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10BA3F9E-F123-4A66-926E-EDE600A47D63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BECE94F9-A686-4149-A846-EBE14B778570}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BECE94F9-A686-4149-A846-EBE14B778570}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BECE94F9-A686-4149-A846-EBE14B778570}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BECE94F9-A686-4149-A846-EBE14B778570}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
