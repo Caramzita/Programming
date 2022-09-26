@@ -2,6 +2,9 @@
 
 namespace ObjectOrientedPractics.Services
 {
+    /// <summary>
+    /// Хранит цвета.
+    /// </summary>
     static class AppColors
     {
         /// <summary>

@@ -6,7 +6,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит данные о предметах.
     /// </summary>
-    class Item
+    public class Item
     {
         /// <summary>
         /// Уникальный идентификатор для всех объектов данного класса.
@@ -79,6 +79,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает уникальный идентификатор.
+        /// </summary>
         public int Id
         {
             get

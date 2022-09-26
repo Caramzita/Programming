@@ -8,16 +8,28 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class ItemsTab : UserControl
     {
-        private List<Item> _items = new List<Item>();
+        /// <summary>
+        /// Хранит список всех предметов.
+        /// </summary>
+        private List<Item> _items = ProjectSerializer.LoadFromFile();
 
+        /// <summary>
+        /// Хранит данные выбранного предмета.
+        /// </summary>
         private Item _currentItem;
 
+        /// <summary>
+        /// Создает экземпляр <see cref="ItemsTab"/>. 
+        /// </summary>
         public ItemsTab()
         {
             InitializeComponent();
             CheckListCount();
         }
 
+        /// <summary>
+        /// Очищает все поля.
+        /// </summary>
         private void ClearInfo()
         {
             IdTextBox.Clear();
@@ -27,12 +39,18 @@ namespace ObjectOrientedPractics.View.Tabs
             CostTextBox.BackColor = AppColors.CorrectColor;
         }
 
-        private void MakeItem()
+        /// <summary>
+        /// Добавляет предмет в список всех предметов.
+        /// </summary>
+        private void AddItem()
         {
             _items.Add(_currentItem);
             ItemsListBox.SelectedIndex = _items.Count - 1;
         }
 
+        /// <summary>
+        /// Проверяет список предметов, если он пуст, то в поля нельзя вводить значения.
+        /// </summary>
         private void CheckListCount()
         {
             if (_items.Count == 0)
@@ -61,7 +79,10 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             catch
             {
-                ClearInfo();
+                if(_items.Count == 0)
+                {
+                    ClearInfo();
+                }
             }
         }
 
@@ -69,7 +90,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             _currentItem = new Item();
             ItemsListBox.Items.Add($"Item {_currentItem.Id}");
-            MakeItem();
+            AddItem();
             CheckListCount();
         }
 
@@ -96,7 +117,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             _currentItem = ItemFactory.Randomize();
             ItemsListBox.Items.Add($"{_currentItem.Name}");
-            MakeItem();
+            AddItem();
             CheckListCount();
         }
 

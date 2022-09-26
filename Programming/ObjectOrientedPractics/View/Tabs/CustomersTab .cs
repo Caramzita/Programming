@@ -8,16 +8,28 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class CustomersTab : UserControl
     {
+        /// <summary>
+        /// Хранит список всех покупателей.
+        /// </summary>
         private List<Customer> _customers = new List<Customer>();
 
+        /// <summary>
+        /// Хранит данные выбранного покупателя.
+        /// </summary>
         private Customer _currentCustomer;
 
+        /// <summary>
+        /// Создает экземпляр <see cref="CustomersTab"/>. 
+        /// </summary>
         public CustomersTab()
         {
             InitializeComponent();
             CheckListCount();
         }
 
+        /// <summary>
+        /// Очищает все поля.
+        /// </summary>
         private void ClearInfo()
         {
             IdTextBox.Clear();
@@ -25,12 +37,18 @@ namespace ObjectOrientedPractics.View.Tabs
             FullnameTextBox.Clear();
         }
 
-        private void MakeCustomer()
+        /// <summary>
+        /// Добавляет покупателя в список всех покупателей.
+        /// </summary>
+        private void AddCustomer()
         {  
             _customers.Add(_currentCustomer);
             CustomersListBox.SelectedIndex = _customers.Count - 1;
         }
 
+        /// <summary>
+        /// Проверяет список покупателей, если он пуст, то в поля нельзя вводить значения.
+        /// </summary>
         private void CheckListCount()
         {
             if (_customers.Count == 0)
@@ -56,7 +74,10 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             catch
             {
-                ClearInfo();
+                if (_customers.Count == 0)
+                {
+                    ClearInfo();
+                }
             }
         }
 
@@ -64,7 +85,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             _currentCustomer = new Customer();
             CustomersListBox.Items.Add($"Customer {_currentCustomer.Id}");
-            MakeCustomer();
+            AddCustomer();
             CheckListCount();
         }
 
@@ -91,7 +112,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             _currentCustomer = CustomerFactory.Randomize();
             CustomersListBox.Items.Add($"{_currentCustomer.Fullname}");
-            MakeCustomer();
+            AddCustomer();
             CheckListCount();
         }
 

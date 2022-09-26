@@ -1,11 +1,24 @@
 ﻿namespace ObjectOrientedPractics.Services
 {
+    /// <summary>
+    /// Создает уникальный идентификатор.
+    /// </summary>
     static class IdGenerator
     {
+        /// <summary>
+        /// Хранит общее количество данных.
+        /// </summary>
         private static int _allCount;
 
+        /// <summary>
+        /// Уникальный идентификатор.
+        /// </summary>
         private static int _id;
 
+        /// <summary>
+        /// Создает уникальный идентификатор.
+        /// </summary>
+        /// <returns>Уникальный идентификатор.</returns>
         public static int GetNextId()
         {
             _allCount++;
