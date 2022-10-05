@@ -54,6 +54,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает уникальный идентификатор.
+        /// </summary>
         public int Id
         {
             get

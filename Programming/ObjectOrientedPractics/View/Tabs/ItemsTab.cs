@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Хранит список всех предметов.
         /// </summary>
-        private List<Item> _items = ProjectSerializer.LoadFromFile();
+        public List<Item> _items = ProjectSerializer.LoadItemsFromFile();
 
         /// <summary>
         /// Хранит данные выбранного предмета.
@@ -67,6 +67,19 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        private void ItemsTab_Load(object sender, EventArgs e)
+        {
+            for (int i = 0; i < _items.Count; i++)
+            {
+                if(_items[i].Name == "")
+                {
+                    ItemsListBox.Items.Add($"Item {_items[i].Id}");
+                    continue;
+                }
+                ItemsListBox.Items.Add(_items[i].Name);
+            }
+        }
+
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -88,7 +101,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            _currentItem = new Item();
+            _currentItem = new Item("", "", 0);
             ItemsListBox.Items.Add($"Item {_currentItem.Id}");
             AddItem();
             CheckListCount();
@@ -184,6 +197,6 @@ namespace ObjectOrientedPractics.View.Tabs
                 ToolTip.SetToolTip(CostTextBox, exception.Message);
                 return;
             }
-        }
+        }    
     }
 }

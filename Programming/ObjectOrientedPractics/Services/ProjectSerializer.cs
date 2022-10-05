@@ -21,7 +21,12 @@ namespace ObjectOrientedPractics.Services
         /// <summary>
         /// Хранит название файла.
         /// </summary>
-        private static readonly string _userdata = @"userdata.json";
+        private static readonly string _itemsdata = @"itemsData.json";
+
+        /// <summary>
+        /// Хранит название файла.
+        /// </summary>
+        private static readonly string _customersdata = @"customersData.json";
 
         /// <summary>
         /// Выполняет сериализацию.
@@ -43,7 +48,7 @@ namespace ObjectOrientedPractics.Services
             }
 
             // Открываем поток для записи в файл с указанием п
-            using (StreamWriter sw = new StreamWriter(_appDataFolder + _userdata))
+            using (StreamWriter sw = new StreamWriter(_appDataFolder + _itemsdata))
             using (JsonWriter writer = new JsonTextWriter(sw))
 
             {
@@ -54,10 +59,40 @@ namespace ObjectOrientedPractics.Services
         }
 
         /// <summary>
+        /// Выполняет сериализацию.
+        /// </summary>
+        /// <param name="customers"></param>
+        public static void SaveToFile(List<Customer> customers)
+        {
+            // Создаём экземпляр сериализатора
+            JsonSerializer serializer = new JsonSerializer();
+            serializer.Formatting = Formatting.Indented;
+            serializer.NullValueHandling = NullValueHandling.Include;
+            serializer.TypeNameHandling = TypeNameHandling.All;
+
+            // Проверка наличия пути сохранения
+            String folder = _appDataFolder;
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+
+            // Открываем поток для записи в файл с указанием п
+            using (StreamWriter sw = new StreamWriter(_appDataFolder + _customersdata))
+            using (JsonWriter writer = new JsonTextWriter(sw))
+
+            {
+                // Вызываем десериализацию и явно преобразуем результат в тип данных
+                serializer.Serialize(writer, customers);
+            }
+
+        }
+
+        /// <summary>
         /// Выполняет десериализацию.
         /// </summary>
         /// <returns></returns>
-        public static List<Item> LoadFromFile()
+        public static List<Item> LoadItemsFromFile()
         {
             // Создаём переменную, в которую поместим результат десериализации
             List<Item> items = null;
@@ -73,13 +108,42 @@ namespace ObjectOrientedPractics.Services
             }
 
             // Открываем поток для чтения из файла с указанием пути
-            using (StreamReader sr = new StreamReader(_appDataFolder + _userdata))
+            using (StreamReader sr = new StreamReader(_appDataFolder + _itemsdata))
             using (JsonReader reader = new JsonTextReader(sr))
             {
                 // Вызываем десериализацию и явно преобразуем результат в целевой тип данных
                 items = serializer.Deserialize<List<Item>>(reader);
             }
             return items;
+        }
+
+        /// <summary>
+        /// Выполняет десериализацию.
+        /// </summary>
+        /// <returns></returns>
+        public static List<Customer> LoadCustomersFromFile()
+        {
+            // Создаём переменную, в которую поместим результат десериализации
+            List<Customer> customers = null;
+
+            // Создаём экземпляр сериализатора
+            JsonSerializer serializer = new JsonSerializer();
+            String folder = _appDataFolder;
+
+            // Проверка наличия пути загрузки.
+            if (!Directory.Exists(folder))
+            {
+                return new List<Customer>();
+            }
+
+            // Открываем поток для чтения из файла с указанием пути
+            using (StreamReader sr = new StreamReader(_appDataFolder + _customersdata))
+            using (JsonReader reader = new JsonTextReader(sr))
+            {
+                // Вызываем десериализацию и явно преобразуем результат в целевой тип данных
+                customers = serializer.Deserialize<List<Customer>>(reader);
+            }
+            return customers;
         }
     }
 }

@@ -49,10 +49,9 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             this.CustomersLabel.AutoSize = true;
             this.CustomersLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CustomersLabel.Location = new System.Drawing.Point(3, 3);
-            this.CustomersLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.CustomersLabel.Location = new System.Drawing.Point(3, 0);
             this.CustomersLabel.Name = "CustomersLabel";
-            this.CustomersLabel.Size = new System.Drawing.Size(65, 13);
+            this.CustomersLabel.Size = new System.Drawing.Size(84, 17);
             this.CustomersLabel.TabIndex = 0;
             this.CustomersLabel.Text = "Customers";
             // 
@@ -61,20 +60,21 @@ namespace ObjectOrientedPractics.View.Tabs
             this.CustomersListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.CustomersListBox.FormattingEnabled = true;
+            this.CustomersListBox.ItemHeight = 16;
             this.CustomersListBox.Location = new System.Drawing.Point(5, 20);
-            this.CustomersListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CustomersListBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CustomersListBox.Name = "CustomersListBox";
-            this.CustomersListBox.Size = new System.Drawing.Size(235, 329);
+            this.CustomersListBox.Size = new System.Drawing.Size(316, 404);
             this.CustomersListBox.TabIndex = 1;
             this.CustomersListBox.SelectedIndexChanged += new System.EventHandler(this.CustomersListBox_SelectedIndexChanged);
             // 
             // AddButton
             // 
             this.AddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddButton.Location = new System.Drawing.Point(5, 354);
-            this.AddButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddButton.Location = new System.Drawing.Point(5, 428);
+            this.AddButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(116, 37);
+            this.AddButton.Size = new System.Drawing.Size(155, 42);
             this.AddButton.TabIndex = 2;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
@@ -83,10 +83,10 @@ namespace ObjectOrientedPractics.View.Tabs
             // RemoveButton
             // 
             this.RemoveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.RemoveButton.Location = new System.Drawing.Point(125, 353);
-            this.RemoveButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RemoveButton.Location = new System.Drawing.Point(166, 428);
+            this.RemoveButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(114, 37);
+            this.RemoveButton.Size = new System.Drawing.Size(155, 42);
             this.RemoveButton.TabIndex = 3;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = true;
@@ -95,10 +95,10 @@ namespace ObjectOrientedPractics.View.Tabs
             // RandomizeButton
             // 
             this.RandomizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.RandomizeButton.Location = new System.Drawing.Point(5, 396);
-            this.RandomizeButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RandomizeButton.Location = new System.Drawing.Point(6, 474);
+            this.RandomizeButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RandomizeButton.Name = "RandomizeButton";
-            this.RandomizeButton.Size = new System.Drawing.Size(234, 26);
+            this.RandomizeButton.Size = new System.Drawing.Size(315, 37);
             this.RandomizeButton.TabIndex = 4;
             this.RandomizeButton.Text = "Randomize";
             this.RandomizeButton.UseVisualStyleBackColor = true;
@@ -108,58 +108,54 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             this.SelectedItemLabel.AutoSize = true;
             this.SelectedItemLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SelectedItemLabel.Location = new System.Drawing.Point(244, 3);
-            this.SelectedItemLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.SelectedItemLabel.Location = new System.Drawing.Point(328, 0);
             this.SelectedItemLabel.Name = "SelectedItemLabel";
-            this.SelectedItemLabel.Size = new System.Drawing.Size(85, 13);
+            this.SelectedItemLabel.Size = new System.Drawing.Size(106, 17);
             this.SelectedItemLabel.TabIndex = 5;
             this.SelectedItemLabel.Text = "Selected Item";
             // 
             // IdLabel
             // 
             this.IdLabel.AutoSize = true;
-            this.IdLabel.Location = new System.Drawing.Point(244, 20);
-            this.IdLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.IdLabel.Location = new System.Drawing.Point(328, 27);
             this.IdLabel.Name = "IdLabel";
-            this.IdLabel.Size = new System.Drawing.Size(24, 13);
+            this.IdLabel.Size = new System.Drawing.Size(29, 17);
             this.IdLabel.TabIndex = 6;
             this.IdLabel.Text = "ID: ";
             // 
             // FullnameLabel
             // 
             this.FullnameLabel.AutoSize = true;
-            this.FullnameLabel.Location = new System.Drawing.Point(244, 47);
-            this.FullnameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.FullnameLabel.Location = new System.Drawing.Point(325, 58);
             this.FullnameLabel.Name = "FullnameLabel";
-            this.FullnameLabel.Size = new System.Drawing.Size(57, 13);
+            this.FullnameLabel.Size = new System.Drawing.Size(75, 17);
             this.FullnameLabel.TabIndex = 7;
             this.FullnameLabel.Text = "Full Name:";
             // 
             // AddressLabel
             // 
             this.AddressLabel.AutoSize = true;
-            this.AddressLabel.Location = new System.Drawing.Point(244, 76);
-            this.AddressLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.AddressLabel.Location = new System.Drawing.Point(325, 94);
             this.AddressLabel.Name = "AddressLabel";
-            this.AddressLabel.Size = new System.Drawing.Size(48, 13);
+            this.AddressLabel.Size = new System.Drawing.Size(64, 17);
             this.AddressLabel.TabIndex = 8;
             this.AddressLabel.Text = "Address:";
             // 
             // IdTextBox
             // 
-            this.IdTextBox.Location = new System.Drawing.Point(308, 20);
-            this.IdTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.IdTextBox.Location = new System.Drawing.Point(411, 25);
+            this.IdTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.IdTextBox.Name = "IdTextBox";
             this.IdTextBox.ReadOnly = true;
-            this.IdTextBox.Size = new System.Drawing.Size(220, 20);
+            this.IdTextBox.Size = new System.Drawing.Size(187, 22);
             this.IdTextBox.TabIndex = 9;
             // 
             // FullnameTextBox
             // 
-            this.FullnameTextBox.Location = new System.Drawing.Point(308, 47);
-            this.FullnameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FullnameTextBox.Location = new System.Drawing.Point(411, 58);
+            this.FullnameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.FullnameTextBox.Name = "FullnameTextBox";
-            this.FullnameTextBox.Size = new System.Drawing.Size(220, 20);
+            this.FullnameTextBox.Size = new System.Drawing.Size(187, 22);
             this.FullnameTextBox.TabIndex = 10;
             this.FullnameTextBox.TextChanged += new System.EventHandler(this.FullnameTextBox_TextChanged);
             this.FullnameTextBox.Leave += new System.EventHandler(this.FullnameTextBox_Leave);
@@ -169,17 +165,17 @@ namespace ObjectOrientedPractics.View.Tabs
             this.AddressTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddressTextBox.Location = new System.Drawing.Point(308, 76);
-            this.AddressTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddressTextBox.Location = new System.Drawing.Point(411, 94);
+            this.AddressTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddressTextBox.Multiline = true;
             this.AddressTextBox.Name = "AddressTextBox";
-            this.AddressTextBox.Size = new System.Drawing.Size(284, 123);
+            this.AddressTextBox.Size = new System.Drawing.Size(382, 151);
             this.AddressTextBox.TabIndex = 11;
             this.AddressTextBox.TextChanged += new System.EventHandler(this.AddressTextBox_TextChanged);
             // 
             // CustomersTab
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.AddressTextBox);
             this.Controls.Add(this.FullnameTextBox);
@@ -193,9 +189,10 @@ namespace ObjectOrientedPractics.View.Tabs
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.CustomersListBox);
             this.Controls.Add(this.CustomersLabel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "CustomersTab";
-            this.Size = new System.Drawing.Size(596, 426);
+            this.Size = new System.Drawing.Size(800, 525);
+            this.Load += new System.EventHandler(this.CustomersTab_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

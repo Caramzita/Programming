@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Хранит список всех покупателей.
         /// </summary>
-        private List<Customer> _customers = new List<Customer>();
+        public List<Customer> _customers = ProjectSerializer.LoadCustomersFromFile();
 
         /// <summary>
         /// Хранит данные выбранного покупателя.
@@ -63,6 +63,20 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+
+        private void CustomersTab_Load(object sender, EventArgs e)
+        {
+            for (int i = 0; i < _customers.Count; i++)
+            {
+                if (_customers[i].Fullname == "")
+                {
+                    CustomersListBox.Items.Add($"Customer {_customers[i].Id}");
+                    continue;
+                }
+                CustomersListBox.Items.Add(_customers[i].Fullname);
+            }
+        }
+
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -83,7 +97,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            _currentCustomer = new Customer();
+            _currentCustomer = new Customer("", "");
             CustomersListBox.Items.Add($"Customer {_currentCustomer.Id}");
             AddCustomer();
             CheckListCount();
