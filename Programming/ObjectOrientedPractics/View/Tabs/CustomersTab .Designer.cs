@@ -40,7 +40,7 @@ namespace ObjectOrientedPractics.View.Tabs
             this.FullnameLabel = new System.Windows.Forms.Label();
             this.AddressLabel = new System.Windows.Forms.Label();
             this.IdTextBox = new System.Windows.Forms.TextBox();
-            this.FullnameTextBox = new System.Windows.Forms.TextBox();
+            this.FullNameTextBox = new System.Windows.Forms.TextBox();
             this.AddressTextBox = new System.Windows.Forms.TextBox();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
@@ -150,15 +150,15 @@ namespace ObjectOrientedPractics.View.Tabs
             this.IdTextBox.Size = new System.Drawing.Size(187, 22);
             this.IdTextBox.TabIndex = 9;
             // 
-            // FullnameTextBox
+            // FullNameTextBox
             // 
-            this.FullnameTextBox.Location = new System.Drawing.Point(411, 58);
-            this.FullnameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.FullnameTextBox.Name = "FullnameTextBox";
-            this.FullnameTextBox.Size = new System.Drawing.Size(187, 22);
-            this.FullnameTextBox.TabIndex = 10;
-            this.FullnameTextBox.TextChanged += new System.EventHandler(this.FullnameTextBox_TextChanged);
-            this.FullnameTextBox.Leave += new System.EventHandler(this.FullnameTextBox_Leave);
+            this.FullNameTextBox.Location = new System.Drawing.Point(411, 58);
+            this.FullNameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.FullNameTextBox.Name = "FullNameTextBox";
+            this.FullNameTextBox.Size = new System.Drawing.Size(187, 22);
+            this.FullNameTextBox.TabIndex = 10;
+            this.FullNameTextBox.TextChanged += new System.EventHandler(this.FullNameTextBox_TextChanged);
+            this.FullNameTextBox.Leave += new System.EventHandler(this.FullNameTextBox_Leave);
             // 
             // AddressTextBox
             // 
@@ -178,7 +178,7 @@ namespace ObjectOrientedPractics.View.Tabs
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.AddressTextBox);
-            this.Controls.Add(this.FullnameTextBox);
+            this.Controls.Add(this.FullNameTextBox);
             this.Controls.Add(this.IdTextBox);
             this.Controls.Add(this.AddressLabel);
             this.Controls.Add(this.FullnameLabel);
@@ -210,7 +210,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private System.Windows.Forms.Label FullnameLabel;
         private System.Windows.Forms.Label AddressLabel;
         private System.Windows.Forms.TextBox IdTextBox;
-        private System.Windows.Forms.TextBox FullnameTextBox;
+        private System.Windows.Forms.TextBox FullNameTextBox;
         private System.Windows.Forms.TextBox AddressTextBox;
         private System.Windows.Forms.ToolTip ToolTip;
     }

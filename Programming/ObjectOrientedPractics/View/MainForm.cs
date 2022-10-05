@@ -16,8 +16,8 @@ namespace ObjectOrientedPractics
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-           ProjectSerializer.SaveToFile(ItemsTab._items);
-           ProjectSerializer.SaveToFile(CustomersTab._customers);
+           ProjectSerializer.SaveItems(ItemsTab._items);
+           ProjectSerializer.SaveCustomers(CustomersTab._customers);
         }
     }
 }

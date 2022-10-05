@@ -32,7 +32,7 @@ namespace ObjectOrientedPractics.Services
         /// Выполняет сериализацию.
         /// </summary>
         /// <param name="items"></param>
-        public static void SaveToFile(List<Item> items)
+        public static void SaveItems(List<Item> items)
         {
             // Создаём экземпляр сериализатора
             JsonSerializer serializer = new JsonSerializer();
@@ -62,7 +62,7 @@ namespace ObjectOrientedPractics.Services
         /// Выполняет сериализацию.
         /// </summary>
         /// <param name="customers"></param>
-        public static void SaveToFile(List<Customer> customers)
+        public static void SaveCustomers(List<Customer> customers)
         {
             // Создаём экземпляр сериализатора
             JsonSerializer serializer = new JsonSerializer();

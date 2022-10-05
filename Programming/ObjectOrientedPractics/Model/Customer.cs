@@ -25,7 +25,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает и задает полное имя покупателя. Должно быть не больше 200 символов.
         /// </summary>
-        public string Fullname
+        public string FullName
         {
             get
             {
@@ -33,7 +33,7 @@ namespace ObjectOrientedPractics.Model
             }
             set
             {
-                ValueValidator.AssertStringOnLength(value, 200, nameof(Fullname));
+                ValueValidator.AssertStringOnLength(value, 200, nameof(FullName));
                 _fullname = value;
             }
         }
@@ -80,7 +80,7 @@ namespace ObjectOrientedPractics.Model
         /// <param name="address">Адресс доставки покупателя. Не больше 500 символов.</param>
         public Customer(string fullname, string address)
         {
-            Fullname = fullname;
+            FullName = fullname;
             Address = address;
             _id = IdGenerator.GetNextId();
         }

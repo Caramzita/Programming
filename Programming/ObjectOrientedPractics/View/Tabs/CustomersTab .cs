@@ -34,7 +34,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             IdTextBox.Clear();
             AddressTextBox.Clear();
-            FullnameTextBox.Clear();
+            FullNameTextBox.Clear();
         }
 
         /// <summary>
@@ -53,12 +53,12 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (_customers.Count == 0)
             {
-                FullnameTextBox.ReadOnly = true;
+                FullNameTextBox.ReadOnly = true;
                 AddressTextBox.ReadOnly = true;
             }
             else
             {
-                FullnameTextBox.ReadOnly = false;
+                FullNameTextBox.ReadOnly = false;
                 AddressTextBox.ReadOnly = false;
             }
         }
@@ -68,12 +68,12 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             for (int i = 0; i < _customers.Count; i++)
             {
-                if (_customers[i].Fullname == "")
+                if (_customers[i].FullName == "")
                 {
                     CustomersListBox.Items.Add($"Customer {_customers[i].Id}");
                     continue;
                 }
-                CustomersListBox.Items.Add(_customers[i].Fullname);
+                CustomersListBox.Items.Add(_customers[i].FullName);
             }
         }
 
@@ -83,7 +83,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _currentCustomer = _customers[CustomersListBox.SelectedIndex];
                 IdTextBox.Text = _currentCustomer.Id.ToString();
-                FullnameTextBox.Text = _currentCustomer.Fullname;
+                FullNameTextBox.Text = _currentCustomer.FullName;
                 AddressTextBox.Text = _currentCustomer.Address;
             }
             catch
@@ -125,36 +125,36 @@ namespace ObjectOrientedPractics.View.Tabs
         private void RandomizeButton_Click(object sender, EventArgs e)
         {
             _currentCustomer = CustomerFactory.Randomize();
-            CustomersListBox.Items.Add($"{_currentCustomer.Fullname}");
+            CustomersListBox.Items.Add($"{_currentCustomer.FullName}");
             AddCustomer();
             CheckListCount();
         }
 
-        private void FullnameTextBox_TextChanged(object sender, EventArgs e)
+        private void FullNameTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                _currentCustomer.Fullname = FullnameTextBox.Text;
-                ToolTip.SetToolTip(FullnameTextBox, "");
-                FullnameTextBox.BackColor = AppColors.CorrectColor;
+                _currentCustomer.FullName = FullNameTextBox.Text;
+                ToolTip.SetToolTip(FullNameTextBox, "");
+                FullNameTextBox.BackColor = AppColors.CorrectColor;
             }
             catch (Exception exception)
             {
-                FullnameTextBox.BackColor = AppColors.ErrorColor;
-                ToolTip.SetToolTip(FullnameTextBox, exception.Message);
+                FullNameTextBox.BackColor = AppColors.ErrorColor;
+                ToolTip.SetToolTip(FullNameTextBox, exception.Message);
                 return;
             }
         }
 
-        private void FullnameTextBox_Leave(object sender, EventArgs e)
+        private void FullNameTextBox_Leave(object sender, EventArgs e)
         {
             try
             {
                 int index = CustomersListBox.SelectedIndex;
-                string changedFullname = FullnameTextBox.Text;
+                string changedFullname = FullNameTextBox.Text;
                 CustomersListBox.Items.RemoveAt(index);
                 CustomersListBox.Items.Insert(index, $"{changedFullname}");
-                FullnameTextBox.Text = changedFullname;
+                FullNameTextBox.Text = changedFullname;
                 CustomersListBox.SelectedIndex = index;
             }
             catch 

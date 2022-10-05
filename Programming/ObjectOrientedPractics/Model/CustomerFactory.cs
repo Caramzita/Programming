@@ -5,7 +5,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Создает случайного покупателя класса <see cref="Customer"/>.
     /// </summary>
-    public class CustomerFactory
+    public static class CustomerFactory
     {
         /// <summary>
         /// Генерирует случайное значение.
@@ -15,7 +15,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Хранит массив имен.
         /// </summary>
-        private static string[] _fullname = { "Борисюк Виктор Семенович", "Кручинкин Михаил Феоктистович", "Бобылёва Настасья Викторовна",
+        private static string[] _fullName = { "Борисюк Виктор Семенович", "Кручинкин Михаил Феоктистович", "Бобылёва Настасья Викторовна",
             "Кошелева Кира Ефимовна", "Яхимович Константин Ефимович", "Багров Игнатий Васильевич", "Шабалина Ника Акимовна", 
             "Щеголяева Татьяна Васильевна", "Седельникова Нонна Герасимовна", "Богоносцева Мария Кирилловна", "Онипченко Лариса Дмитриевна",
             "Ячикова Лариса Кузьминовна", "Левченко Юрий Михаилович", "Андреюшкина Ольга Павловна", "Ямщикова Светлана Константиновна" };
@@ -37,7 +37,7 @@ namespace ObjectOrientedPractics.Model
         /// <returns>Возвращает прямоугольник класса <see cref="Customer"/></returns>
         public static Customer Randomize()
         {
-            Customer customer = new Customer(_fullname[_random.Next(_fullname.Length)], _address[_random.Next(_address.Length)]);
+            Customer customer = new Customer(_fullName[_random.Next(_fullName.Length)], _address[_random.Next(_address.Length)]);
 
             return customer;
         }
