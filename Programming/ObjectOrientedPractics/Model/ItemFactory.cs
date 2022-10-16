@@ -36,8 +36,14 @@ namespace ObjectOrientedPractics.Model
                 "предлагает пользователям возможность насладиться невероятным уровнем качества звука. ",
             "Высочайшая производительность в самой маленькой консоли Xbox." };
 
+        /// <summary>
+        /// Хранит словарь предметов.
+        /// </summary>
         private static Dictionary<string, string> _items = new Dictionary<string, string>();
 
+        /// <summary>
+        /// Добавляет значения в словарь.
+        /// </summary>
         public static void AddElemetsInDictionart()
         {
             for (int i = 0; i < _names.Length; i++)
