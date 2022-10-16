@@ -69,6 +69,8 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void ItemsTab_Load(object sender, EventArgs e)
         {
+            ItemFactory.AddElemetsInDictionart();
+
             for (int i = 0; i < _items.Count; i++)
             {
                 if(_items[i].Name == "")

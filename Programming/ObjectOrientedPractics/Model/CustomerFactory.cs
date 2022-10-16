@@ -36,7 +36,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <returns>Возвращает прямоугольник класса <see cref="Customer"/></returns>
         public static Customer Randomize()
-        {
+        {         
             Customer customer = new Customer(_fullName[_random.Next(_fullName.Length)], _address[_random.Next(_address.Length)]);
 
             return customer;
