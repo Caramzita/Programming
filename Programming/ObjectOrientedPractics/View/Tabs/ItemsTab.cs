@@ -27,6 +27,18 @@ namespace ObjectOrientedPractics.View.Tabs
             CheckListCount();
         }
 
+        public List<Item> Items
+        {
+            get
+            {
+                return _items;
+            }
+            set
+            {
+                _items = value;
+            }
+        }
+
         /// <summary>
         /// Очищает все поля.
         /// </summary>
@@ -80,6 +92,13 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
                 ItemsListBox.Items.Add(_items[i].Name);
             }
+
+            foreach(var category in Enum.GetValues(typeof(Category)))
+            {
+                CategoryComboBox.Items.Add(category);
+            }
+
+            CategoryComboBox.SelectedIndex = -1;
         }
 
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -91,6 +110,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 NameTextBox.Text = _currentItem.Name;
                 InfoTextBox.Text = _currentItem.Info;
                 CostTextBox.Text = _currentItem.Cost.ToString();
+                CategoryComboBox.SelectedItem = (Category)_currentItem.Category;
             }
             catch
             {
@@ -103,7 +123,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            _currentItem = new Item("", "", 0);
+            _currentItem = new Item();
             ItemsListBox.Items.Add($"Item {_currentItem.Id}");
             AddItem();
             CheckListCount();
@@ -199,6 +219,19 @@ namespace ObjectOrientedPractics.View.Tabs
                 ToolTip.SetToolTip(CostTextBox, exception.Message);
                 return;
             }
-        }    
+        }
+
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentItem.Category = (Category)CategoryComboBox.SelectedItem;
+            }
+            catch( Exception exception)
+            {
+                ToolTip.SetToolTip(CostTextBox, exception.Message);
+                return;
+            }
+        }
     }
 }

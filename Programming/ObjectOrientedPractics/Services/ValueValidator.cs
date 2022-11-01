@@ -20,5 +20,13 @@ namespace ObjectOrientedPractics.Services
                 throw new ArgumentException($"{propertyName} должен быть меньше {maxLength} символов");
             }
         }
+
+        public static void AssertIntOnLength(int value, int minLength, int maxLength, string propertyName)
+        {
+            if (minLength > value || value > maxLength)
+            {
+                throw new ArgumentException($"{propertyName} должен быть шестизначным!");
+            }
+        }
     }
 }

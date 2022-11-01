@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
 using System.Collections.Generic;
+using ObjectOrientedPractics.View.Controls;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -27,13 +28,24 @@ namespace ObjectOrientedPractics.View.Tabs
             CheckListCount();
         }
 
+        public List<Customer> Customers
+        {
+            get
+            {
+                return _customers;
+            }
+            set
+            {
+                _customers = value;
+            }
+        }
+
         /// <summary>
         /// Очищает все поля.
         /// </summary>
         private void ClearInfo()
         {
             IdTextBox.Clear();
-            AddressTextBox.Clear();
             FullNameTextBox.Clear();
         }
 
@@ -54,12 +66,10 @@ namespace ObjectOrientedPractics.View.Tabs
             if (_customers.Count == 0)
             {
                 FullNameTextBox.ReadOnly = true;
-                AddressTextBox.ReadOnly = true;
             }
             else
             {
                 FullNameTextBox.ReadOnly = false;
-                AddressTextBox.ReadOnly = false;
             }
         }
 
@@ -84,12 +94,14 @@ namespace ObjectOrientedPractics.View.Tabs
                 _currentCustomer = _customers[CustomersListBox.SelectedIndex];
                 IdTextBox.Text = _currentCustomer.Id.ToString();
                 FullNameTextBox.Text = _currentCustomer.FullName;
-                AddressTextBox.Text = _currentCustomer.Address;
+                AddressControl.Address = _currentCustomer.Address;
+                AddressControl.UpdateTextBox();
             }
             catch
             {
                 if (_customers.Count == 0)
                 {
+                    AddressControl.ClearTextBox();
                     ClearInfo();
                 }
             }
@@ -97,7 +109,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            _currentCustomer = new Customer("", "");
+            _currentCustomer = new Customer();
             CustomersListBox.Items.Add($"Customer {_currentCustomer.Id}");
             AddCustomer();
             CheckListCount();
@@ -160,22 +172,6 @@ namespace ObjectOrientedPractics.View.Tabs
             catch 
             {
                 ClearInfo();
-            }
-        }
-
-        private void AddressTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                _currentCustomer.Address = AddressTextBox.Text;
-                ToolTip.SetToolTip(AddressTextBox, "");
-                AddressTextBox.BackColor = AppColors.CorrectColor;
-            }
-            catch (Exception exception)
-            {
-                AddressTextBox.BackColor = AppColors.ErrorColor;
-                ToolTip.SetToolTip(AddressTextBox, exception.Message);
-                return;
             }
         }
     }

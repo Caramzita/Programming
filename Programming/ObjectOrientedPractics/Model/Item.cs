@@ -29,6 +29,11 @@ namespace ObjectOrientedPractics.Model
         private double _cost;
 
         /// <summary>
+        /// Задает и возвращает категорию предмета.
+        /// </summary>
+        public Category Category { get; set; }
+
+        /// <summary>
         /// Возвращает и задает имя предмета. Не должно превышать 200 символов.
         /// </summary>
         public string Name
@@ -96,7 +101,11 @@ namespace ObjectOrientedPractics.Model
         public Item()
         {
             _id = IdGenerator.GetNextId();
-        }
+            Name = "";
+            Info = "";
+            Cost = 0;
+            Category = 0;
+        }   
 
         /// <summary>
         /// Создает экземпляр класса <see cref="Item"/>.
@@ -104,11 +113,13 @@ namespace ObjectOrientedPractics.Model
         /// <param name="name">Имя предмета. Не больше 200 символов.</param>
         /// <param name="info">Информация о предмете. Не больше 1000 символов.</param>
         /// <param name="cost">Цена предмета. Должна быть больше 0 и меньше 100 000</param>
-        public Item(string name, string info, double cost)
+        /// <param name="category">Категория товара></param>
+        public Item(string name, string info, double cost, Category category)
         {
             Name = name;
             Info = info;
             Cost = cost;
+            Category = category;
             _id = IdGenerator.GetNextId();
         }
     }

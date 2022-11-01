@@ -60,7 +60,11 @@ namespace ObjectOrientedPractics.Model
         {
             var random = _random.Next(_names.Length);
 
-            Item item = new Item(_names[random], _items[_names[random]], _random.Next(0, 100000));
+            Category category = (Category)Enum.GetValues(typeof(Category)).GetValue(_random.Next(1, 11));
+
+            Item item = new Item(_names[random], _items[_names[random]], _random.Next(100000), category);
+
+            item.Category = category;
 
             return item;
         }
