@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using ObjectOrientedPractics.Model;
@@ -21,18 +20,13 @@ namespace ObjectOrientedPractics.Services
         /// <summary>
         /// Хранит название файла.
         /// </summary>
-        private static readonly string _itemsdata = @"itemsData.json";
-
-        /// <summary>
-        /// Хранит название файла.
-        /// </summary>
-        private static readonly string _customersdata = @"customersData.json";
+        private static readonly string _storedata = @"storeData.json";
 
         /// <summary>
         /// Выполняет сериализацию.
         /// </summary>
-        /// <param name="items"></param>
-        public static void SaveItems(List<Item> items)
+        /// <param name="store"></param>
+        public static void SaveData(Store store)
         {
             // Создаём экземпляр сериализатора
             JsonSerializer serializer = new JsonSerializer();
@@ -48,42 +42,12 @@ namespace ObjectOrientedPractics.Services
             }
 
             // Открываем поток для записи в файл с указанием п
-            using (StreamWriter sw = new StreamWriter(_appDataFolder + _itemsdata))
+            using (StreamWriter sw = new StreamWriter(_appDataFolder + _storedata))
             using (JsonWriter writer = new JsonTextWriter(sw))
 
             {
                 // Вызываем десериализацию и явно преобразуем результат в тип данных
-                serializer.Serialize(writer, items);
-            }
-
-        }
-
-        /// <summary>
-        /// Выполняет сериализацию.
-        /// </summary>
-        /// <param name="customers"></param>
-        public static void SaveCustomers(List<Customer> customers)
-        {
-            // Создаём экземпляр сериализатора
-            JsonSerializer serializer = new JsonSerializer();
-            serializer.Formatting = Formatting.Indented;
-            serializer.NullValueHandling = NullValueHandling.Include;
-            serializer.TypeNameHandling = TypeNameHandling.All;
-
-            // Проверка наличия пути сохранения
-            String folder = _appDataFolder;
-            if (!Directory.Exists(folder))
-            {
-                Directory.CreateDirectory(folder);
-            }
-
-            // Открываем поток для записи в файл с указанием п
-            using (StreamWriter sw = new StreamWriter(_appDataFolder + _customersdata))
-            using (JsonWriter writer = new JsonTextWriter(sw))
-
-            {
-                // Вызываем десериализацию и явно преобразуем результат в тип данных
-                serializer.Serialize(writer, customers);
+                serializer.Serialize(writer, store);
             }
 
         }
@@ -91,11 +55,11 @@ namespace ObjectOrientedPractics.Services
         /// <summary>
         /// Выполняет десериализацию.
         /// </summary>
-        /// <returns></returns>
-        public static List<Item> LoadItemsFromFile()
+        /// <returns>Возвращает данные класса <see cref="Store"/>.</returns>
+        public static Store LoadDataFromFile()
         {
             // Создаём переменную, в которую поместим результат десериализации
-            List<Item> items = null;
+            Store store = null;
 
             // Создаём экземпляр сериализатора
             JsonSerializer serializer = new JsonSerializer();
@@ -104,46 +68,17 @@ namespace ObjectOrientedPractics.Services
             // Проверка наличия пути загрузки.
             if (!Directory.Exists(folder))
             {
-                return new List<Item>();
+                return new Store();
             }
 
             // Открываем поток для чтения из файла с указанием пути
-            using (StreamReader sr = new StreamReader(_appDataFolder + _itemsdata))
+            using (StreamReader sr = new StreamReader(_appDataFolder + _storedata))
             using (JsonReader reader = new JsonTextReader(sr))
             {
                 // Вызываем десериализацию и явно преобразуем результат в целевой тип данных
-                items = serializer.Deserialize<List<Item>>(reader);
+                store = serializer.Deserialize<Store>(reader);
             }
-            return items;
-        }
-
-        /// <summary>
-        /// Выполняет десериализацию.
-        /// </summary>
-        /// <returns></returns>
-        public static List<Customer> LoadCustomersFromFile()
-        {
-            // Создаём переменную, в которую поместим результат десериализации
-            List<Customer> customers = null;
-
-            // Создаём экземпляр сериализатора
-            JsonSerializer serializer = new JsonSerializer();
-            String folder = _appDataFolder;
-
-            // Проверка наличия пути загрузки.
-            if (!Directory.Exists(folder))
-            {
-                return new List<Customer>();
-            }
-
-            // Открываем поток для чтения из файла с указанием пути
-            using (StreamReader sr = new StreamReader(_appDataFolder + _customersdata))
-            using (JsonReader reader = new JsonTextReader(sr))
-            {
-                // Вызываем десериализацию и явно преобразуем результат в целевой тип данных
-                customers = serializer.Deserialize<List<Customer>>(reader);
-            }
-            return customers;
+            return store;
         }
     }
 }

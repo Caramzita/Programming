@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Хранит список всех предметов.
         /// </summary>
-        public List<Item> _items = ProjectSerializer.LoadItemsFromFile();
+        private List<Item> _items;
 
         /// <summary>
         /// Хранит данные выбранного предмета.
@@ -19,14 +19,8 @@ namespace ObjectOrientedPractics.View.Tabs
         private Item _currentItem;
 
         /// <summary>
-        /// Создает экземпляр <see cref="ItemsTab"/>. 
+        /// Возвращает и задает список предметов класса <see cref="Item"/>.
         /// </summary>
-        public ItemsTab()
-        {
-            InitializeComponent();
-            CheckListCount();
-        }
-
         public List<Item> Items
         {
             get
@@ -37,6 +31,13 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _items = value;
             }
+        }
+
+
+        public ItemsTab()
+        {
+            InitializeComponent();
+            CheckListCount();
         }
 
         /// <summary>
@@ -61,21 +62,24 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Проверяет список предметов, если он пуст, то в поля нельзя вводить значения.
+        /// Проверяет <see cref="ItemsListBox"/>, если он пуст или элемент списка не выбран, то в поля нельзя вводить значения.
         /// </summary>
         private void CheckListCount()
         {
-            if (_items.Count == 0)
+            if (ItemsListBox.Items.Count == 0 || ItemsListBox.SelectedIndex == -1)
             {
                 CostTextBox.ReadOnly = true;
                 NameTextBox.ReadOnly = true;
                 InfoTextBox.ReadOnly = true;
+                CategoryComboBox.Text = "";
+                CategoryComboBox.Enabled = false;
             }
             else
             {
                 CostTextBox.ReadOnly = false;
                 NameTextBox.ReadOnly = false;
                 InfoTextBox.ReadOnly = false;
+                CategoryComboBox.Enabled = true;
             }
         }
 
@@ -111,6 +115,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 InfoTextBox.Text = _currentItem.Info;
                 CostTextBox.Text = _currentItem.Cost.ToString();
                 CategoryComboBox.SelectedItem = (Category)_currentItem.Category;
+                CheckListCount();
             }
             catch
             {

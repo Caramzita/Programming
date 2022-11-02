@@ -10,9 +10,9 @@ namespace ObjectOrientedPractics.Services
         /// <summary>
         /// Проверяет строку на допустимую длину.
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="maxLength"></param>
-        /// <param name="propertyName"></param>
+        /// <param name="value">входное значение.</param>
+        /// <param name="maxLength">максимальная длина.</param>
+        /// <param name="propertyName">имя объекта.</param>
         public static void AssertStringOnLength(string value, int maxLength, string propertyName)
         {
             if(value.Length > maxLength)
@@ -21,6 +21,13 @@ namespace ObjectOrientedPractics.Services
             }
         }
 
+        /// <summary>
+        /// Проверяет число на значимость.
+        /// </summary>
+        /// <param name="value">входное значение.</param>
+        /// <param name="minLength">минимальная длина.</param>
+        /// <param name="maxLength">максимальная длина.</param>
+        /// <param name="propertyName">имя объекта.</param>
         public static void AssertIntOnLength(int value, int minLength, int maxLength, string propertyName)
         {
             if (minLength > value || value > maxLength)

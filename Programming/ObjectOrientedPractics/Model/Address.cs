@@ -3,40 +3,43 @@ using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Хранит данные адресса.
+    /// </summary>
     public class Address
     {
         /// <summary>
-        /// 
+        /// Хранит почтовый индекс.
         /// </summary>
         private int _index;
 
         /// <summary>
-        /// 
+        /// Хранит страну покупателя.
         /// </summary>
         private string _country;
 
         /// <summary>
-        /// 
+        /// Хранит город покупателя.
         /// </summary>
         private string _city;
 
         /// <summary>
-        /// 
+        /// Хранит улицу покупателя.
         /// </summary>
         private string _street;
 
         /// <summary>
-        /// 
+        /// Хранит строение покупателя.
         /// </summary>
         private string _building;
 
         /// <summary>
-        /// 
+        /// Хранит номер квартиры покупателя.
         /// </summary>
         private string _apartment;
 
         /// <summary>
-        /// 
+        /// Возвращает и задает почтовый индекс покупателя.
         /// </summary>
         public int Index
         {
@@ -52,7 +55,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// 
+        /// Возвращает и задает страну проживания покупателя.
         /// </summary>
         public string Country
         {
@@ -68,7 +71,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// 
+        /// Возвращает и задает город покупателя.
         /// </summary>
         public string City
         {
@@ -84,7 +87,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// 
+        /// Возвращает и задает улицу покупателя.
         /// </summary>
         public string Street
         {
@@ -100,7 +103,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// 
+        /// Возвращает и задает строение покупателя.
         /// </summary>
         public string Building
         {
@@ -116,7 +119,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// 
+        /// Возвращает и задает номер квартиры покупателя.
         /// </summary>
         public string Apartment
         {
@@ -132,7 +135,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// 
+        /// Создает пустой экземпляр класса <see cref="Address"/>.
         /// </summary>
         public Address()
         {
@@ -145,14 +148,14 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// 
+        /// Создает экземпляр класса <see cref="Address"/>.
         /// </summary>
-        /// <param name="index"></param>
-        /// <param name="country"></param>
-        /// <param name="city"></param>
-        /// <param name="street"></param>
-        /// <param name="building"></param>
-        /// <param name="apartment"></param>
+        /// <param name="index">почтовый индекс покупателя.</param>
+        /// <param name="country">страна проживания.</param>
+        /// <param name="city">город покупателя.</param>
+        /// <param name="street">улица покупателя.</param>
+        /// <param name="building">строение покупателя.</param>
+        /// <param name="apartment">номер квартиры покупателя.</param>
         public Address(int index, string country, string city, string street, string building, string apartment)
         {
             Index = index;

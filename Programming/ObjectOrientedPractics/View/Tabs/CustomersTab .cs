@@ -12,7 +12,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Хранит список всех покупателей.
         /// </summary>
-        public List<Customer> _customers = ProjectSerializer.LoadCustomersFromFile();
+        private List<Customer> _customers;
 
         /// <summary>
         /// Хранит данные выбранного покупателя.
@@ -20,14 +20,8 @@ namespace ObjectOrientedPractics.View.Tabs
         private Customer _currentCustomer;
 
         /// <summary>
-        /// Создает экземпляр <see cref="CustomersTab"/>. 
+        /// Возвращает и задает список покупателей класса <see cref="Customer"/>.
         /// </summary>
-        public CustomersTab()
-        {
-            InitializeComponent();
-            CheckListCount();
-        }
-
         public List<Customer> Customers
         {
             get
@@ -38,6 +32,15 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _customers = value;
             }
+        }
+
+        /// <summary>
+        /// Создает экземпляр 
+        /// </summary>
+        public CustomersTab()
+        {
+            InitializeComponent();
+            CheckListCount();
         }
 
         /// <summary>
@@ -59,17 +62,19 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Проверяет список покупателей, если он пуст, то в поля нельзя вводить значения.
+        /// Проверяет <see cref="CustomersListBox"/>, если он пуст или элемент списка не выбран, то в поля нельзя вводить значения.
         /// </summary>
         private void CheckListCount()
         {
-            if (_customers.Count == 0)
+            if (CustomersListBox.Items.Count == 0 || CustomersListBox.SelectedIndex == -1)
             {
                 FullNameTextBox.ReadOnly = true;
+                AddressControl.Enabled = false;
             }
             else
             {
                 FullNameTextBox.ReadOnly = false;
+                AddressControl.Enabled = true;
             }
         }
 
@@ -96,6 +101,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 FullNameTextBox.Text = _currentCustomer.FullName;
                 AddressControl.Address = _currentCustomer.Address;
                 AddressControl.UpdateTextBox();
+                CheckListCount();
             }
             catch
             {

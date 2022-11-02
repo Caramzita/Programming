@@ -55,7 +55,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Создает случайный предмет класса <see cref="Item"/>.
         /// </summary>
-        /// <returns>Возвращает предмет класса <see cref="Item"/></returns>
+        /// <returns>Возвращает предмет класса <see cref="Item"/>.</returns>
         public static Item Randomize()
         {
             var random = _random.Next(_names.Length);
@@ -63,8 +63,6 @@ namespace ObjectOrientedPractics.Model
             Category category = (Category)Enum.GetValues(typeof(Category)).GetValue(_random.Next(1, 11));
 
             Item item = new Item(_names[random], _items[_names[random]], _random.Next(100000), category);
-
-            item.Category = category;
 
             return item;
         }

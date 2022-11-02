@@ -166,7 +166,7 @@ namespace ObjectOrientedPractics.View.Tabs
             this.NameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.NameTextBox.Multiline = true;
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(341, 119);
+            this.NameTextBox.Size = new System.Drawing.Size(365, 119);
             this.NameTextBox.TabIndex = 10;
             this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             this.NameTextBox.Leave += new System.EventHandler(this.NameTextBox_Leave);
@@ -193,7 +193,7 @@ namespace ObjectOrientedPractics.View.Tabs
             this.InfoTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.InfoTextBox.Multiline = true;
             this.InfoTextBox.Name = "InfoTextBox";
-            this.InfoTextBox.Size = new System.Drawing.Size(341, 154);
+            this.InfoTextBox.Size = new System.Drawing.Size(365, 154);
             this.InfoTextBox.TabIndex = 12;
             this.InfoTextBox.TextChanged += new System.EventHandler(this.InfoTextBox_TextChanged);
             // 
@@ -251,7 +251,7 @@ namespace ObjectOrientedPractics.View.Tabs
             this.Controls.Add(this.ItemsLabel);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ItemsTab";
-            this.Size = new System.Drawing.Size(600, 427);
+            this.Size = new System.Drawing.Size(624, 427);
             this.Load += new System.EventHandler(this.ItemsTab_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

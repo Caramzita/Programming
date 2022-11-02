@@ -7,22 +7,24 @@ namespace ObjectOrientedPractics
 {
     public partial class MainForm : Form
     {
-        private Store _store = new Store();
+        /// <summary>
+        /// Хранит данные класса <see cref="Store"/>.
+        /// </summary>
+        private Store _store = ProjectSerializer.LoadDataFromFile();
 
         /// <summary>
-        /// Создает экземпляр <see cref="MainForm"/>.
+        /// Создает экземпляр 
         /// </summary>
         public MainForm()
         {
             InitializeComponent();
-            ItemsTab.Items = _store.Items;
-            CustomersTab.Customers = _store.Customers;
+            //ItemsTab.Items = _store.Items;
+            //CustomersTab.Customers = _store.Customers;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-           //ProjectSerializer.SaveItems(ItemsTab._items);
-           //ProjectSerializer.SaveCustomers(CustomersTab._customers);
+            ProjectSerializer.SaveData(_store);
         }
     }
 }

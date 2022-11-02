@@ -7,8 +7,14 @@ namespace ObjectOrientedPractics.View.Controls
 {
     public partial class AddressControl : UserControl
     {
+        /// <summary>
+        /// Хранит данные адресса класса <see cref="Address"/>.
+        /// </summary>
         private Address _address;
 
+        /// <summary>
+        /// Возвращает и задает адресс класса <see cref="Address"/>.
+        /// </summary>
         public Address Address
         {
             get
@@ -20,14 +26,22 @@ namespace ObjectOrientedPractics.View.Controls
                 _address = value;
             }
         }
+
+        /// <summary>
+        /// Создает экземпляр <see cref="AddressControl"/>.
+        /// </summary>
         public AddressControl()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Очищает все <see cref="TextBox"/> адресса.
+        /// </summary>
         public void ClearTextBox()
         {
             IndexTextBox.Clear();
+            IndexTextBox.BackColor = AppColors.CorrectColor;
             CountryTextBox.Clear();
             CityTextBox.Clear();
             StreetTextBox.Clear();
@@ -35,6 +49,9 @@ namespace ObjectOrientedPractics.View.Controls
             ApartmentTextBox.Clear();
         }
 
+        /// <summary>
+        /// Обновляет данные об адрессе, иначе очищает поля.
+        /// </summary>
         public void UpdateTextBox()
         {
             try
