@@ -33,7 +33,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-
+        /// <summary>
+        /// Создает экземпляр класса <see cref="ItemsTab"/>.
+        /// </summary>
         public ItemsTab()
         {
             InitializeComponent();
@@ -89,7 +91,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
             for (int i = 0; i < _items.Count; i++)
             {
-                if(_items[i].Name == "")
+                if (_items[i].Name == "")
                 {
                     ItemsListBox.Items.Add($"Item {_items[i].Id}");
                     continue;
@@ -97,7 +99,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 ItemsListBox.Items.Add(_items[i].Name);
             }
 
-            foreach(var category in Enum.GetValues(typeof(Category)))
+            foreach (var category in Enum.GetValues(typeof(Category)))
             {
                 CategoryComboBox.Items.Add(category);
             }
@@ -119,7 +121,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             catch
             {
-                if(_items.Count == 0)
+                if (_items.Count == 0)
                 {
                     ClearInfo();
                 }
@@ -137,10 +139,10 @@ namespace ObjectOrientedPractics.View.Tabs
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             int lastIndex = ItemsListBox.SelectedIndex;
-            if(lastIndex >= 0 && _items.Count != 0)
+            if (lastIndex >= 0 && _items.Count != 0)
             {
                 _items.RemoveAt(lastIndex);
-                if(ItemsListBox.SelectedIndex == 0 && _items.Count >= 1)
+                if (ItemsListBox.SelectedIndex == 0 && _items.Count >= 1)
                 {
                     ItemsListBox.SelectedIndex = lastIndex + 1;
                 }
@@ -169,7 +171,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 ToolTip.SetToolTip(NameTextBox, "");
                 NameTextBox.BackColor = AppColors.CorrectColor;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 NameTextBox.BackColor = AppColors.ErrorColor;
                 ToolTip.SetToolTip(NameTextBox, exception.Message);
@@ -232,7 +234,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _currentItem.Category = (Category)CategoryComboBox.SelectedItem;
             }
-            catch( Exception exception)
+            catch (Exception exception)
             {
                 ToolTip.SetToolTip(CostTextBox, exception.Message);
                 return;

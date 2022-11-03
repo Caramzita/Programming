@@ -18,8 +18,8 @@ namespace ObjectOrientedPractics
         public MainForm()
         {
             InitializeComponent();
-            //ItemsTab.Items = _store.Items;
-            //CustomersTab.Customers = _store.Customers;
+            ItemsTab.Items = _store.Items;
+            CustomersTab.Customers = _store.Customers;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

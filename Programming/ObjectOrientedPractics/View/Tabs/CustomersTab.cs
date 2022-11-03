@@ -35,7 +35,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Создает экземпляр 
+        /// Создает экземпляр класса <see cref="CustomersTab"/>.
         /// </summary>
         public CustomersTab()
         {
@@ -56,7 +56,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// Добавляет покупателя в список всех покупателей.
         /// </summary>
         private void AddCustomer()
-        {  
+        {
             _customers.Add(_currentCustomer);
             CustomersListBox.SelectedIndex = _customers.Count - 1;
         }
@@ -137,7 +137,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
                 CustomersListBox.Items.RemoveAt(lastIndex);
             }
-                CheckListCount();
+            CheckListCount();
         }
 
         private void RandomizeButton_Click(object sender, EventArgs e)
@@ -175,7 +175,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 FullNameTextBox.Text = changedFullname;
                 CustomersListBox.SelectedIndex = index;
             }
-            catch 
+            catch
             {
                 ClearInfo();
             }
