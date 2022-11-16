@@ -81,6 +81,10 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void CustomersTab_Load(object sender, EventArgs e)
         {
+            if(_customers == null)
+            {
+                return;
+            }
             for (int i = 0; i < _customers.Count; i++)
             {
                 if (_customers[i].FullName == "")

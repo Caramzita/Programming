@@ -13,7 +13,7 @@ namespace ObjectOrientedPractics
         private Store _store = ProjectSerializer.LoadDataFromFile();
 
         /// <summary>
-        /// Создает экземпляр 
+        /// Создает экземпляр <see cref="MainForm"/>.
         /// </summary>
         public MainForm()
         {

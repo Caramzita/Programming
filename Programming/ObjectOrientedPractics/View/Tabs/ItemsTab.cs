@@ -39,7 +39,7 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemsTab()
         {
             InitializeComponent();
-            CheckListCount();
+            CheckListCount();    
         }
 
         /// <summary>
@@ -87,8 +87,10 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void ItemsTab_Load(object sender, EventArgs e)
         {
-            ItemFactory.AddElemetsInDictionart();
-
+            if (_items == null)
+            {
+                return;
+            }
             for (int i = 0; i < _items.Count; i++)
             {
                 if (_items[i].Name == "")

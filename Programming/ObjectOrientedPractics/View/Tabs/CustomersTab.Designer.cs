@@ -46,8 +46,10 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // FullNameTextBox
             // 
+            this.FullNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.FullNameTextBox.Location = new System.Drawing.Point(308, 49);
-            this.FullNameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.FullNameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.FullNameTextBox.Name = "FullNameTextBox";
             this.FullNameTextBox.Size = new System.Drawing.Size(141, 20);
             this.FullNameTextBox.TabIndex = 21;
@@ -56,8 +58,10 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // IdTextBox
             // 
+            this.IdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.IdTextBox.Location = new System.Drawing.Point(308, 22);
-            this.IdTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.IdTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.IdTextBox.Name = "IdTextBox";
             this.IdTextBox.ReadOnly = true;
             this.IdTextBox.Size = new System.Drawing.Size(141, 20);
@@ -98,7 +102,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             this.RandomizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RandomizeButton.Location = new System.Drawing.Point(3, 387);
-            this.RandomizeButton.Margin = new System.Windows.Forms.Padding(2);
+            this.RandomizeButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RandomizeButton.Name = "RandomizeButton";
             this.RandomizeButton.Size = new System.Drawing.Size(238, 30);
             this.RandomizeButton.TabIndex = 16;
@@ -110,7 +114,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             this.RemoveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RemoveButton.Location = new System.Drawing.Point(125, 349);
-            this.RemoveButton.Margin = new System.Windows.Forms.Padding(2);
+            this.RemoveButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RemoveButton.Name = "RemoveButton";
             this.RemoveButton.Size = new System.Drawing.Size(116, 34);
             this.RemoveButton.TabIndex = 15;
@@ -122,7 +126,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             this.AddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.AddButton.Location = new System.Drawing.Point(3, 349);
-            this.AddButton.Margin = new System.Windows.Forms.Padding(2);
+            this.AddButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(116, 34);
             this.AddButton.TabIndex = 14;
@@ -136,7 +140,7 @@ namespace ObjectOrientedPractics.View.Tabs
             | System.Windows.Forms.AnchorStyles.Left)));
             this.CustomersListBox.FormattingEnabled = true;
             this.CustomersListBox.Location = new System.Drawing.Point(3, 18);
-            this.CustomersListBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CustomersListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CustomersListBox.Name = "CustomersListBox";
             this.CustomersListBox.Size = new System.Drawing.Size(238, 329);
             this.CustomersListBox.TabIndex = 13;
@@ -156,6 +160,9 @@ namespace ObjectOrientedPractics.View.Tabs
             // AddressControl
             // 
             this.AddressControl.Address = null;
+            this.AddressControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.AddressControl.Location = new System.Drawing.Point(243, 81);
             this.AddressControl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AddressControl.Name = "AddressControl";
@@ -177,9 +184,9 @@ namespace ObjectOrientedPractics.View.Tabs
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.CustomersListBox);
             this.Controls.Add(this.CustomersLabel);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "CustomersTab";
-            this.Size = new System.Drawing.Size(624, 427);
+            this.Size = new System.Drawing.Size(616, 427);
             this.Load += new System.EventHandler(this.CustomersTab_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

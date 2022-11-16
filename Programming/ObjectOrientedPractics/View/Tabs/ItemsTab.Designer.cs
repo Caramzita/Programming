@@ -51,6 +51,9 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // InfoTextBox
             // 
+            this.InfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.InfoTextBox.Location = new System.Drawing.Point(244, 267);
             this.InfoTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.InfoTextBox.Multiline = true;
@@ -71,6 +74,8 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // NameTextBox
             // 
+            this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.NameTextBox.Location = new System.Drawing.Point(244, 126);
             this.NameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.NameTextBox.Multiline = true;
@@ -92,6 +97,8 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // CategoryComboBox
             // 
+            this.CategoryComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CategoryComboBox.FormattingEnabled = true;
             this.CategoryComboBox.Location = new System.Drawing.Point(308, 78);
             this.CategoryComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -102,6 +109,8 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // CostTextBox
             // 
+            this.CostTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CostTextBox.Location = new System.Drawing.Point(308, 49);
             this.CostTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CostTextBox.Name = "CostTextBox";
@@ -111,6 +120,8 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // IdTextBox
             // 
+            this.IdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.IdTextBox.Location = new System.Drawing.Point(308, 22);
             this.IdTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.IdTextBox.Name = "IdTextBox";
@@ -160,6 +171,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // RandomizeButton
             // 
+            this.RandomizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RandomizeButton.Location = new System.Drawing.Point(3, 387);
             this.RandomizeButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RandomizeButton.Name = "RandomizeButton";
@@ -171,6 +183,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // RemoveButton
             // 
+            this.RemoveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RemoveButton.Location = new System.Drawing.Point(125, 349);
             this.RemoveButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RemoveButton.Name = "RemoveButton";
@@ -182,6 +195,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // AddButton
             // 
+            this.AddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.AddButton.Location = new System.Drawing.Point(3, 349);
             this.AddButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AddButton.Name = "AddButton";
@@ -193,6 +207,8 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // ItemsListBox
             // 
+            this.ItemsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.ItemsListBox.FormattingEnabled = true;
             this.ItemsListBox.Location = new System.Drawing.Point(3, 18);
             this.ItemsListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -234,7 +250,7 @@ namespace ObjectOrientedPractics.View.Tabs
             this.Controls.Add(this.ItemsLabel);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ItemsTab";
-            this.Size = new System.Drawing.Size(624, 427);
+            this.Size = new System.Drawing.Size(616, 427);
             this.Load += new System.EventHandler(this.ItemsTab_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -7,7 +7,7 @@ namespace ObjectOrientedPractics.Model
     /// Создает случайный предмет класса <see cref="Item"/>.
     /// </summary>
     static public class ItemFactory
-    {
+    { 
         /// <summary>
         /// Генерирует случайное значение.
         /// </summary>
@@ -37,22 +37,6 @@ namespace ObjectOrientedPractics.Model
             "Высочайшая производительность в самой маленькой консоли Xbox." };
 
         /// <summary>
-        /// Хранит словарь предметов.
-        /// </summary>
-        private static Dictionary<string, string> _items = new Dictionary<string, string>();
-
-        /// <summary>
-        /// Добавляет значения в словарь.
-        /// </summary>
-        public static void AddElemetsInDictionart()
-        {
-            for (int i = 0; i < _names.Length; i++)
-            {
-                _items.Add(_names[i], _info[i]);
-            }
-        }
-
-        /// <summary>
         /// Создает случайный предмет класса <see cref="Item"/>.
         /// </summary>
         /// <returns>Возвращает предмет класса <see cref="Item"/>.</returns>
@@ -62,7 +46,7 @@ namespace ObjectOrientedPractics.Model
 
             Category category = (Category)Enum.GetValues(typeof(Category)).GetValue(_random.Next(1, 11));
 
-            Item item = new Item(_names[random], _items[_names[random]], _random.Next(100000), category);
+            Item item = new Item(_names[random], _info[random], _random.Next(100000), category);
 
             return item;
         }
