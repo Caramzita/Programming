@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractics.Services;
+using System.Collections.Generic;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -10,7 +11,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Уникальный идентификатор для всех объектов данного класса.
         /// </summary>
-        private readonly int _id;
+        private readonly int _id = IdGenerator.GetNextId();
 
         /// <summary>
         /// Хранит полное имя покупателя
@@ -21,6 +22,43 @@ namespace ObjectOrientedPractics.Model
         /// Хранит адресс доставки покупателя.
         /// </summary>
         private Address _address;
+
+        /// <summary>
+        /// Хранит корзину предметов покупателя.
+        /// </summary>
+        private Cart _cart;
+
+        /// <summary>
+        /// Хранит список заказов.
+        /// </summary>
+        private List<Order> _orders;
+
+        /// <summary>
+        /// Возвращает и задает корзину покупателя.
+        /// </summary>
+        public Cart Cart
+        {
+            get
+            {
+                return _cart;
+            }
+            set
+            {
+                _cart = value;
+            }
+        }
+
+        public List<Order> Orders
+        {
+            get
+            {
+                return _orders;
+            }
+            set
+            {
+                _orders = value;
+            }
+        }
 
         /// <summary>
         /// Возвращает и задает полное имя покупателя. Должно быть не больше 200 символов.
@@ -69,9 +107,10 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public Customer()
         {
-            FullName = "";
+            FullName = "Customer";
             Address = new Address();
-            _id = IdGenerator.GetNextId();
+            Cart = new Cart();
+            Orders = new List<Order>();
         }
 
         /// <summary>
@@ -83,7 +122,8 @@ namespace ObjectOrientedPractics.Model
         {
             FullName = fullname;
             Address = address;
-            _id = IdGenerator.GetNextId();
+            Cart = new Cart();
+            Orders = new List<Order>();
         }
     }
 }

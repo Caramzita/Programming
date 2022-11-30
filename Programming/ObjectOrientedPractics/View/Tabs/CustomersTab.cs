@@ -87,7 +87,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             for (int i = 0; i < _customers.Count; i++)
             {
-                if (_customers[i].FullName == "")
+                if (_customers[i].FullName == "Customer")
                 {
                     CustomersListBox.Items.Add($"Customer {_customers[i].Id}");
                     continue;
