@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -54,7 +55,6 @@ namespace ObjectOrientedPractics.Model
                 return _amount;
             }
         }
-
         public Cart()
         {
             Items = new List<Item>();

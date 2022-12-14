@@ -111,7 +111,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 if (_customers.Count == 0)
                 {
-                    AddressControl.ClearTextBox();
+                    AddressControl.ClearAllTextBox();
                     ClearInfo();
                 }
             }

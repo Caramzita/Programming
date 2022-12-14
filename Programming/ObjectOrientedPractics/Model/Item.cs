@@ -1,5 +1,6 @@
 ﻿using System;
 using ObjectOrientedPractics.Services;
+using Newtonsoft.Json;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -11,7 +12,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Уникальный идентификатор для всех объектов данного класса.
         /// </summary>
-        private readonly int _id;
+        private readonly int _id = IdGenerator.GetNextId();
 
         /// <summary>
         /// хранит имя предмета.
@@ -97,15 +98,14 @@ namespace ObjectOrientedPractics.Model
 
         /// <summary>
         /// Создает пустой экземпляр класса <see cref="Item"/>.
-        /// </summary>
+        /// </summary>   
         public Item()
         {
-            _id = IdGenerator.GetNextId();
             Name = "";
             Info = "";
             Cost = 0;
             Category = 0;
-        }   
+        }
 
         /// <summary>
         /// Создает экземпляр класса <see cref="Item"/>.
@@ -120,7 +120,16 @@ namespace ObjectOrientedPractics.Model
             Info = info;
             Cost = cost;
             Category = category;
-            _id = IdGenerator.GetNextId();
+        }
+
+        [JsonConstructor]
+        public Item(string name, string info, double cost, Category category, int id)
+        {
+            _id = id;
+            Name = name;
+            Info = info;
+            Cost = cost;
+            Category = category;
         }
     }
 }

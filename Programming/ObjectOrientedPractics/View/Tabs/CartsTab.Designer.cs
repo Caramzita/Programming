@@ -64,7 +64,6 @@ namespace ObjectOrientedPractics.View.Tabs
             this.ItemsListBox.Name = "ItemsListBox";
             this.ItemsListBox.Size = new System.Drawing.Size(313, 436);
             this.ItemsListBox.TabIndex = 1;
-            this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             // 
             // AddButton
             // 
@@ -121,7 +120,6 @@ namespace ObjectOrientedPractics.View.Tabs
             this.CartListBox.Name = "CartListBox";
             this.CartListBox.Size = new System.Drawing.Size(467, 244);
             this.CartListBox.TabIndex = 6;
-            this.CartListBox.SelectedIndexChanged += new System.EventHandler(this.CartListBox_SelectedIndexChanged);
             // 
             // AmountLabel
             // 
@@ -137,13 +135,14 @@ namespace ObjectOrientedPractics.View.Tabs
             // Amount
             // 
             this.Amount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Amount.AutoSize = true;
             this.Amount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Amount.Location = new System.Drawing.Point(666, 379);
+            this.Amount.Location = new System.Drawing.Point(543, 379);
             this.Amount.Name = "Amount";
-            this.Amount.Size = new System.Drawing.Size(119, 29);
+            this.Amount.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Amount.Size = new System.Drawing.Size(245, 29);
             this.Amount.TabIndex = 8;
             this.Amount.Text = "4 990,90";
+            this.Amount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // CreateOrderButton
             // 

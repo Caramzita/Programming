@@ -38,7 +38,7 @@ namespace ObjectOrientedPractics.View.Controls
         /// <summary>
         /// Очищает все <see cref="TextBox"/> адресса.
         /// </summary>
-        public void ClearTextBox()
+        public void ClearAllTextBox()
         {
             IndexTextBox.Clear();
             IndexTextBox.BackColor = AppColors.CorrectColor;
@@ -65,7 +65,7 @@ namespace ObjectOrientedPractics.View.Controls
             }
             catch
             {
-                ClearTextBox();
+                ClearAllTextBox();
             }
         }
 

@@ -39,7 +39,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        void UpdateAmount(Cart cart)
+        void UpdateAmount()
         {
             Amount.Text = null;
             Amount.Text = _selectedCustomerCart.Amount.ToString();
@@ -65,6 +65,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         public void RefreshData()
         {
+            CustomersComboBox.SelectedIndex = -1;
             CustomersComboBox.Items.Clear();
             ItemsListBox.Items.Clear();
 
@@ -86,6 +87,13 @@ namespace ObjectOrientedPractics.View.Tabs
                     continue;
                 }
                 CustomersComboBox.Items.Add($"{_customers[i].FullName}");
+            }
+
+            CustomersComboBox.SelectedIndex = -1;
+
+            if (_selectedCustomer != null)
+            {
+                Amount.Text = _selectedCustomer.Cart.Amount.ToString();
             }
         }
 
@@ -120,18 +128,19 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
                 CustomersComboBox.Items.Add($"{_customers[i].FullName}");
             }
+            CustomersComboBox.SelectedIndex = -1;
 
             CheckSelectedCustomer();
-        }
-
-        private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void CustomersComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             CartListBox.Items.Clear();
+
+            if(CustomersComboBox.SelectedIndex == -1) 
+            {
+                return;
+            }
 
             _selectedCustomerCart = _customers[CustomersComboBox.SelectedIndex].Cart;
 
@@ -139,12 +148,26 @@ namespace ObjectOrientedPractics.View.Tabs
 
             int count = _customers[CustomersComboBox.SelectedIndex].Cart.Items.Count;
 
-            for (int i = 0; i < count; i++)
+            for (int i = count - 1; i >= 0; i--)
             {
+                if (!_items.Contains(_customers[CustomersComboBox.SelectedIndex].Cart.Items[i]))
+                {
+                    _selectedCustomerCart.Items.RemoveAt(i);
+                }
+            }
+
+            for (int i = 0; i < _selectedCustomerCart.Items.Count; i++)
+            {
+                if (_selectedCustomerCart.Items[i].Name == "")
+                {
+                    CartListBox.Items.Add($"Item {_selectedCustomerCart.Items[i].Id}");
+                    continue;
+                }
+
                 CartListBox.Items.Add($"{_selectedCustomerCart.Items[i].Name}");
             }
 
-            UpdateAmount(_selectedCustomerCart);
+            UpdateAmount();
             CheckSelectedCustomer();
         }
 
@@ -164,7 +187,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CartListBox.Items.Add($"{_items[ItemsListBox.SelectedIndex].Name}");
             }
-            UpdateAmount(_selectedCustomerCart);
+            UpdateAmount();
         }
 
         private void RemoveItemButton_Click(object sender, EventArgs e)
@@ -190,7 +213,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 CartListBox.Items.RemoveAt(currentIndex);
             }
 
-            UpdateAmount(_selectedCustomerCart);
+            UpdateAmount();
         }
 
         private void ClearCartButton_Click(object sender, EventArgs e)
@@ -202,19 +225,15 @@ namespace ObjectOrientedPractics.View.Tabs
 
             CartListBox.Items.Clear();
             _selectedCustomerCart.Items.Clear();
-            Amount.Text = "";
+            Amount.Text = "0";
         }
 
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
-            Order order = new Order(_selectedCustomerCart.Items, _selectedCustomer.Address);
+            Order order = new Order(_selectedCustomerCart.Items, _selectedCustomer.Address, _selectedCustomer.FullName);
             _selectedCustomer.Orders.Add(order);
+            _selectedCustomerCart.Items = new List<Item>();
             CartListBox.Items.Clear();
-        }
-
-        private void CartListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

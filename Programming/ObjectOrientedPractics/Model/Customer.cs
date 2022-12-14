@@ -1,5 +1,6 @@
 ﻿using ObjectOrientedPractics.Services;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -11,7 +12,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Уникальный идентификатор для всех объектов данного класса.
         /// </summary>
-        private readonly int _id = IdGenerator.GetNextId();
+        private static int _id = IdGenerator.GetNextId();
 
         /// <summary>
         /// Хранит полное имя покупателя
@@ -124,6 +125,16 @@ namespace ObjectOrientedPractics.Model
             Address = address;
             Cart = new Cart();
             Orders = new List<Order>();
+        }
+
+        [JsonConstructor]
+        public Customer(string fullname, Address address, Cart cart, List<Order> order, int id)
+        {
+            _id = id;
+            FullName = fullname;
+            Address = address;
+            Cart = cart;
+            Orders = order;
         }
     }
 }
