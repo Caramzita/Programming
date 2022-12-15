@@ -7,6 +7,9 @@ using ObjectOrientedPractics.View.Controls;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Хранит данные о всех покупателях.
+    /// </summary>
     public partial class CustomersTab : UserControl
     {
         /// <summary>

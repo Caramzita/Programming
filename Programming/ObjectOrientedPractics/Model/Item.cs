@@ -122,6 +122,14 @@ namespace ObjectOrientedPractics.Model
             Category = category;
         }
 
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Item"/>.
+        /// </summary>
+        /// <param name="name">Имя предмета. Не больше 200 символов.</param>
+        /// <param name="info">Информация о предмете. Не больше 1000 символов.</param>
+        /// <param name="cost">Цена предмета. Должна быть больше 0 и меньше 100 000</param>
+        /// <param name="category">Категория товара></param>
+        /// <param name="id">Уникальный идентификатор.</param>
         [JsonConstructor]
         public Item(string name, string info, double cost, Category category, int id)
         {

@@ -5,16 +5,34 @@ using ObjectOrientedPractics.Model;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    ///  Хранит данные о корзине покупателя.
+    /// </summary>
     public partial class CartsTab : UserControl
     {
+        /// <summary>
+        /// Хранит список всех предметов.
+        /// </summary>
         private List<Item> _items;
 
+        /// <summary>
+        /// Хранит список всех покупателей.
+        /// </summary>
         private List<Customer> _customers;
 
+        /// <summary>
+        /// Хранит корзину выбранного покупателя.
+        /// </summary>
         private Cart _selectedCustomerCart;
 
+        /// <summary>
+        /// Хранит выбранного покупателя.
+        /// </summary>
         private Customer _selectedCustomer;
-
+        
+        /// <summary>
+        /// Возвращает и задает список предметов.
+        /// </summary>
         public List<Item> Items
         {
             get
@@ -27,6 +45,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает список покупателей.
+        /// </summary>
         public List<Customer> Customers
         {
             get
@@ -39,12 +60,18 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обновляет цену товаров в корзине.
+        /// </summary>
         void UpdateAmount()
         {
             Amount.Text = null;
             Amount.Text = _selectedCustomerCart.Amount.ToString();
         }
 
+        /// <summary>
+        /// Проверяет, если пользователь не выбран, то отключаются кнопки.
+        /// </summary>
         void CheckSelectedCustomer()
         {
             if(_selectedCustomerCart == null)
@@ -63,6 +90,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обновляет все данные на вкладке.
+        /// </summary>
         public void RefreshData()
         {
             CustomersComboBox.SelectedIndex = -1;
@@ -97,6 +127,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Создает экземпляр класса <see cref="CartsTab"/>.
+        /// </summary>
         public CartsTab()
         {
             InitializeComponent();
@@ -234,6 +267,7 @@ namespace ObjectOrientedPractics.View.Tabs
             _selectedCustomer.Orders.Add(order);
             _selectedCustomerCart.Items = new List<Item>();
             CartListBox.Items.Clear();
+            Amount.Text = "0.0";
         }
     }
 }

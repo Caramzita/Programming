@@ -12,7 +12,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Уникальный идентификатор для всех объектов данного класса.
         /// </summary>
-        private static int _id = IdGenerator.GetNextId();
+        private readonly int _id = IdGenerator.GetNextId();
 
         /// <summary>
         /// Хранит полное имя покупателя
@@ -49,6 +49,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает список заказов.
+        /// </summary>
         public List<Order> Orders
         {
             get
@@ -127,6 +130,14 @@ namespace ObjectOrientedPractics.Model
             Orders = new List<Order>();
         }
 
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Customer"/>.
+        /// </summary>
+        /// <param name="fullname">Полное имя покупателя.</param>
+        /// <param name="address">Адрес доставки.</param>
+        /// <param name="cart">Корзина покупателя.</param>
+        /// <param name="order">Заказ покупателя.</param>
+        /// <param name="id">Уникальный идентификатор заказа.</param>
         [JsonConstructor]
         public Customer(string fullname, Address address, Cart cart, List<Order> order, int id)
         {

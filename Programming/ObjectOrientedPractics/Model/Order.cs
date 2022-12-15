@@ -5,6 +5,9 @@ using Newtonsoft.Json;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Хранит данные о заказе покупателя.
+    /// </summary>
     public class Order
     {
         /// <summary>
@@ -12,16 +15,34 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private readonly int _id;
 
+        /// <summary>
+        /// Хранит дату создания заказа.
+        /// </summary>
         private readonly DateTime _orderDate = DateTime.Now;
 
+        /// <summary>
+        /// Хранит адрес доставки.
+        /// </summary>
         private Address _address;
 
+        /// <summary>
+        /// Хранит список товаров в заказе.
+        /// </summary>
         private List<Item> _items;
 
+        /// <summary>
+        /// Хранит текущую цену товаров в заказе.
+        /// </summary>
         private double _amount = 0.0;
 
+        /// <summary>
+        /// Хранит статус заказа.
+        /// </summary>
         private OrderStatus _orderStatus;
 
+        /// <summary>
+        /// Возвращает уникальный идентификатор.
+        /// </summary>
         public int Id
         {
             get
@@ -30,6 +51,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает дату создания заказа.
+        /// </summary>
         public DateTime OrderDate
         {
             get
@@ -38,6 +62,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает 
+        /// </summary>
         public Address Address
         {
             get
@@ -50,6 +77,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public List<Item> Items
         {
             get
@@ -62,6 +92,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public double Amount
         {
             get
@@ -79,6 +112,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public OrderStatus OrderStatus
         {
             get
@@ -91,15 +127,17 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string FullName { get; set; }
 
-        public Order()
-        {
-            _id = IdGenerator.GetNextId();
-            Items = new List<Item>();
-            Address = new Address();
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        /// <param name="address"></param>
+        /// <param name="fullName"></param>
         public Order(List<Item> items, Address address, string fullName)
         {
             _id = IdGenerator.GetNextId();

@@ -6,6 +6,9 @@ using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Хранит данные о всех предметах.
+    /// </summary>
     public partial class ItemsTab : UserControl
     {
         /// <summary>
