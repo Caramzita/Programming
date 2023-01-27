@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Properties;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -26,6 +28,11 @@ namespace ObjectOrientedPractics.View.Tabs
         private Order _currentOrder;
 
         /// <summary>
+        /// Хранит данные о выбранном приоритетном заказе.
+        /// </summary>
+        private PriorityOrder _currentPriorityOrder;
+
+        /// <summary>
         /// Возвращает и задает список всех покупателей.
         /// </summary>
         public List<Customer> Customers
@@ -37,6 +44,34 @@ namespace ObjectOrientedPractics.View.Tabs
             set
             {
                 _customers = value;
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и задает выбранный заказ. Проверяет на приоритетность.
+        /// </summary>
+        public Order SelectedOrder
+        {
+            get
+            {
+                return _currentOrder;
+            }
+            set
+            {
+                if (_currentOrder is PriorityOrder)
+                {
+                    PriorityPanel.Visible = true;
+                    _currentPriorityOrder = (PriorityOrder)value;
+                    DeliveryTimeComboBox.SelectedItem = _currentPriorityOrder.DesiredTime;
+                    DeliveryDatePicker.MinDate = DateTime.Now;
+                    DeliveryDatePicker.Value = _currentPriorityOrder.DesiredDate;
+                }
+                else
+                {
+                    PriorityPanel.Visible = false;
+                    _currentPriorityOrder = null;
+                    _currentOrder = value;
+                }
             }
         }
 
@@ -68,6 +103,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CreatedTextBox.Clear();
             StatusComboBox.SelectedIndex = -1;
             OrderItemsListBox.Items.Clear();
+            PriorityPanel.Visible = false;
             Amount.Text = "0.0";
 
             if(_orders.Count == 0)
@@ -86,6 +122,15 @@ namespace ObjectOrientedPractics.View.Tabs
                     $"{_orders[i].Address.Street}, {_orders[i].Address.Building}, " +
                     $"{_orders[i].Address.Apartment}, {_orders[i].Address.Index}";
                 DataGridView.Rows[i].Cells["AmountColumn"].Value = _orders[i].Amount;
+
+                if (_orders[i] is PriorityOrder)
+                {
+                    DataGridView.Rows[i].Cells["IsPriority"].Value = Resources.star;
+                }
+                else
+                {
+                    DataGridView.Rows[i].Cells["IsPriority"].Value = Resources.empty;
+                }
             }
         }
 
@@ -109,7 +154,12 @@ namespace ObjectOrientedPractics.View.Tabs
                 StatusComboBox.Items.Add(status);
             }
 
-            StatusComboBox.Enabled = false;
+            foreach(string interval in PriorityOrder.TimeIntervals)
+            {
+                DeliveryTimeComboBox.Items.Add(interval);
+            }
+
+            StatusComboBox.Enabled = false;       
 
             AddressControl.AddressIsReadOnly();
         }
@@ -148,6 +198,8 @@ namespace ObjectOrientedPractics.View.Tabs
                 OrderItemsListBox.Items.Add($"{_currentOrder.Items[i].Name}");
             }
 
+            SelectedOrder = _currentOrder;
+
             Amount.Text = _currentOrder.Amount.ToString();
         }
 
@@ -157,8 +209,19 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 return;
             }
+
             DataGridView.Rows[DataGridView.CurrentRow.Index].Cells["OrderStatusColumn"].Value = StatusComboBox.SelectedItem;
             _currentOrder.OrderStatus = (OrderStatus)StatusComboBox.SelectedItem;
+        }
+
+        private void DeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _currentPriorityOrder.DesiredTime = DeliveryTimeComboBox.SelectedItem.ToString();
+        }
+
+        private void DeliveryDatePicker_ValueChanged(object sender, EventArgs e)
+        {
+            _currentPriorityOrder.DesiredDate = DeliveryDatePicker.Value;
         }
     }
 }

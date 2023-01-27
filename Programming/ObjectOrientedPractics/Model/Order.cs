@@ -1,7 +1,6 @@
 ﻿using System;
 using ObjectOrientedPractics.Services;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -78,7 +77,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// 
+        /// Возвращает и задает список предметов.
         /// </summary>
         public List<Item> Items
         {
@@ -93,7 +92,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// 
+        /// Возвращает итоговую цену товаров.
         /// </summary>
         public double Amount
         {
@@ -113,7 +112,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// 
+        /// Возвращает и задает статус заказа.
         /// </summary>
         public OrderStatus OrderStatus
         {
@@ -128,16 +127,16 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// 
+        /// Возвращает и задает полное имя покупателя.
         /// </summary>
         public string FullName { get; set; }
 
         /// <summary>
-        /// 
+        /// Создает экземпляр класса <see cref="Order"/>.
         /// </summary>
-        /// <param name="items"></param>
-        /// <param name="address"></param>
-        /// <param name="fullName"></param>
+        /// <param name="items">Список предметов.</param>
+        /// <param name="address">Адрес доставки.</param>
+        /// <param name="fullName">Полное имя покупателя.</param>
         public Order(List<Item> items, Address address, string fullName)
         {
             _id = IdGenerator.GetNextId();

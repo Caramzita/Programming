@@ -63,6 +63,7 @@ namespace ObjectOrientedPractics.Services
 
             // Создаём экземпляр сериализатора
             JsonSerializer serializer = new JsonSerializer();
+            serializer.TypeNameHandling = TypeNameHandling.All;
             String folder = _appDataFolder;
 
             // Проверка наличия пути загрузки.

@@ -263,8 +263,18 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
-            Order order = new Order(_selectedCustomerCart.Items, _selectedCustomer.Address, _selectedCustomer.FullName);
-            _selectedCustomer.Orders.Add(order);
+            if (_selectedCustomer.IsPriority)
+            {
+                PriorityOrder order = new PriorityOrder(_selectedCustomerCart.Items, _selectedCustomer.Address, _selectedCustomer.FullName,
+                    DateTime.Now.AddDays(5), PriorityOrder.TimeIntervals[0]);
+                _selectedCustomer.Orders.Add(order);
+            }
+            else
+            {
+                Order order = new Order(_selectedCustomerCart.Items, _selectedCustomer.Address, _selectedCustomer.FullName);
+                _selectedCustomer.Orders.Add(order);
+            }
+
             _selectedCustomerCart.Items = new List<Item>();
             CartListBox.Items.Clear();
             Amount.Text = "0.0";

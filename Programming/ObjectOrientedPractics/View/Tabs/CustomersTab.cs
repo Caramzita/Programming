@@ -73,11 +73,13 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 FullNameTextBox.ReadOnly = true;
                 AddressControl.Enabled = false;
+                PriorityCheckBox.Enabled= false;
             }
             else
             {
                 FullNameTextBox.ReadOnly = false;
                 AddressControl.Enabled = true;
+                PriorityCheckBox.Enabled = true;
             }
         }
 
@@ -107,6 +109,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 IdTextBox.Text = _currentCustomer.Id.ToString();
                 FullNameTextBox.Text = _currentCustomer.FullName;
                 AddressControl.Address = _currentCustomer.Address;
+                PriorityCheckBox.Checked = _currentCustomer.IsPriority;
                 AddressControl.UpdateTextBox();
                 CheckListCount();
             }
@@ -186,6 +189,11 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 ClearInfo();
             }
+        }
+
+        private void PriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            _currentCustomer.IsPriority = PriorityCheckBox.Checked;
         }
     }
 }
