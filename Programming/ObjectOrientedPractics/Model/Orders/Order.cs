@@ -2,7 +2,7 @@
 using ObjectOrientedPractics.Services;
 using System.Collections.Generic;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     /// <summary>
     /// Хранит данные о заказе покупателя.
@@ -123,6 +123,16 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 _orderStatus = value;
+            }
+        }
+
+        public double DiscountAmount { get; set; }
+
+        public double Total
+        {
+            get
+            {
+                return Amount - DiscountAmount;
             }
         }
 

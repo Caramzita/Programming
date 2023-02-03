@@ -2,6 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Enums;
 using static System.Environment;
 
 namespace ObjectOrientedPractics.Services

@@ -1,7 +1,8 @@
 ﻿using ObjectOrientedPractics.Services;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using System.Web;
+using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Model.Discounts;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -107,6 +108,8 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        public List<IDiscount> Discounts { get; set; }
+
         /// <summary>
         /// Возвращает и задает является ли заказ приоритетным.
         /// </summary>
@@ -122,6 +125,7 @@ namespace ObjectOrientedPractics.Model
             Cart = new Cart();
             Orders = new List<Order>();
             IsPriority= false;
+            Discounts = new List<IDiscount> { new PointsDiscount() };
         }
 
         /// <summary>
@@ -136,6 +140,7 @@ namespace ObjectOrientedPractics.Model
             Cart = new Cart();
             Orders = new List<Order>();
             IsPriority = false;
+            Discounts = new List<IDiscount>{ new PointsDiscount() };
         }
 
         /// <summary>
@@ -147,7 +152,7 @@ namespace ObjectOrientedPractics.Model
         /// <param name="order">Заказ покупателя.</param>
         /// <param name="id">Уникальный идентификатор заказа.</param>
         [JsonConstructor]
-        public Customer(string fullname, Address address, Cart cart, List<Order> order, int id, bool isPriority)
+        public Customer(string fullname, Address address, Cart cart, List<Order> order, int id, bool isPriority, List<IDiscount> discounts)
         {
             _id = id;
             FullName = fullname;
@@ -155,6 +160,7 @@ namespace ObjectOrientedPractics.Model
             Cart = cart;
             Orders = order;
             IsPriority = isPriority;
+            Discounts = discounts;
         }
     }
 }
