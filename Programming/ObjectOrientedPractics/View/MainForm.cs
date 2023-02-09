@@ -10,16 +10,32 @@ namespace ObjectOrientedPractics
         /// <summary>
         /// Хранит данные класса <see cref="Store"/>.
         /// </summary>
-        private Store _store = ProjectSerializer.LoadDataFromFile();
+        private readonly Store _store = ProjectSerializer.LoadDataFromFile();
 
         /// <summary>
-        /// Создает экземпляр <see cref="MainForm"/>.
+        /// Создает экземпляр клааса <see cref="MainForm"/>.
         /// </summary>
         public MainForm()
         {
             InitializeComponent();
             ItemsTab.Items = _store.Items;
             CustomersTab.Customers = _store.Customers;
+            CartsTab.Items = _store.Items;      
+            CartsTab.Customers = _store.Customers;
+            OrdersTab.Customers = _store.Customers;
+        }
+        
+        private void TabControl_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            if (TabControl.SelectedIndex == 2)
+            {
+                CartsTab.RefreshData();
+            }
+
+            if(TabControl.SelectedIndex == 3)
+            {
+                OrdersTab.RefreshData();
+            }
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

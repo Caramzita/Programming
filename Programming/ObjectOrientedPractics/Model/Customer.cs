@@ -1,4 +1,8 @@
 ﻿using ObjectOrientedPractics.Services;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Model.Discounts;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -10,7 +14,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Уникальный идентификатор для всех объектов данного класса.
         /// </summary>
-        private readonly int _id;
+        private readonly int _id = IdGenerator.GetNextId();
 
         /// <summary>
         /// Хранит полное имя покупателя
@@ -21,6 +25,46 @@ namespace ObjectOrientedPractics.Model
         /// Хранит адресс доставки покупателя.
         /// </summary>
         private Address _address;
+
+        /// <summary>
+        /// Хранит корзину предметов покупателя.
+        /// </summary>
+        private Cart _cart;
+
+        /// <summary>
+        /// Хранит список заказов.
+        /// </summary>
+        private List<Order> _orders;
+
+        /// <summary>
+        /// Возвращает и задает корзину покупателя.
+        /// </summary>
+        public Cart Cart
+        {
+            get
+            {
+                return _cart;
+            }
+            set
+            {
+                _cart = value;
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и задает список заказов.
+        /// </summary>
+        public List<Order> Orders
+        {
+            get
+            {
+                return _orders;
+            }
+            set
+            {
+                _orders = value;
+            }
+        }
 
         /// <summary>
         /// Возвращает и задает полное имя покупателя. Должно быть не больше 200 символов.
@@ -64,14 +108,24 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        public List<IDiscount> Discounts { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает является ли заказ приоритетным.
+        /// </summary>
+        public bool IsPriority { get; set; }
+
         /// <summary>
         /// Создает пустой экземпляр класса <see cref="Customer"/>.
         /// </summary>
         public Customer()
         {
-            FullName = "";
+            FullName = "Customer";
             Address = new Address();
-            _id = IdGenerator.GetNextId();
+            Cart = new Cart();
+            Orders = new List<Order>();
+            IsPriority= false;
+            Discounts = new List<IDiscount> { new PointsDiscount() };
         }
 
         /// <summary>
@@ -83,7 +137,30 @@ namespace ObjectOrientedPractics.Model
         {
             FullName = fullname;
             Address = address;
-            _id = IdGenerator.GetNextId();
+            Cart = new Cart();
+            Orders = new List<Order>();
+            IsPriority = false;
+            Discounts = new List<IDiscount>{ new PointsDiscount() };
+        }
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Customer"/>.
+        /// </summary>
+        /// <param name="fullname">Полное имя покупателя.</param>
+        /// <param name="address">Адрес доставки.</param>
+        /// <param name="cart">Корзина покупателя.</param>
+        /// <param name="order">Заказ покупателя.</param>
+        /// <param name="id">Уникальный идентификатор заказа.</param>
+        [JsonConstructor]
+        public Customer(string fullname, Address address, Cart cart, List<Order> order, int id, bool isPriority, List<IDiscount> discounts)
+        {
+            _id = id;
+            FullName = fullname;
+            Address = address;
+            Cart = cart;
+            Orders = order;
+            IsPriority = isPriority;
+            Discounts = discounts;
         }
     }
 }

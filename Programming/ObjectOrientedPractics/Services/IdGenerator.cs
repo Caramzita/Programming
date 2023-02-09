@@ -13,7 +13,7 @@
         /// <summary>
         /// Уникальный идентификатор.
         /// </summary>
-        private static int _id;
+        private static int _id = 1;
 
         /// <summary>
         /// Создает уникальный идентификатор.

@@ -42,6 +42,11 @@ namespace ObjectOrientedPractics.View.Tabs
             this.CustomersLabel = new System.Windows.Forms.Label();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.AddressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
+            this.PriorityCheckBox = new System.Windows.Forms.CheckBox();
+            this.DiscountsLabel = new System.Windows.Forms.Label();
+            this.DiscountsListBox = new System.Windows.Forms.ListBox();
+            this.RemoveDiscountButton = new System.Windows.Forms.Button();
+            this.AddDiscountButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // FullNameTextBox
@@ -49,7 +54,7 @@ namespace ObjectOrientedPractics.View.Tabs
             this.FullNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FullNameTextBox.Location = new System.Drawing.Point(308, 49);
-            this.FullNameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FullNameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.FullNameTextBox.Name = "FullNameTextBox";
             this.FullNameTextBox.Size = new System.Drawing.Size(141, 20);
             this.FullNameTextBox.TabIndex = 21;
@@ -61,7 +66,7 @@ namespace ObjectOrientedPractics.View.Tabs
             this.IdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IdTextBox.Location = new System.Drawing.Point(308, 22);
-            this.IdTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.IdTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.IdTextBox.Name = "IdTextBox";
             this.IdTextBox.ReadOnly = true;
             this.IdTextBox.Size = new System.Drawing.Size(141, 20);
@@ -102,7 +107,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             this.RandomizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RandomizeButton.Location = new System.Drawing.Point(3, 387);
-            this.RandomizeButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RandomizeButton.Margin = new System.Windows.Forms.Padding(2);
             this.RandomizeButton.Name = "RandomizeButton";
             this.RandomizeButton.Size = new System.Drawing.Size(238, 30);
             this.RandomizeButton.TabIndex = 16;
@@ -114,7 +119,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             this.RemoveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RemoveButton.Location = new System.Drawing.Point(125, 349);
-            this.RemoveButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RemoveButton.Margin = new System.Windows.Forms.Padding(2);
             this.RemoveButton.Name = "RemoveButton";
             this.RemoveButton.Size = new System.Drawing.Size(116, 34);
             this.RemoveButton.TabIndex = 15;
@@ -126,7 +131,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             this.AddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.AddButton.Location = new System.Drawing.Point(3, 349);
-            this.AddButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddButton.Margin = new System.Windows.Forms.Padding(2);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(116, 34);
             this.AddButton.TabIndex = 14;
@@ -140,7 +145,7 @@ namespace ObjectOrientedPractics.View.Tabs
             | System.Windows.Forms.AnchorStyles.Left)));
             this.CustomersListBox.FormattingEnabled = true;
             this.CustomersListBox.Location = new System.Drawing.Point(3, 18);
-            this.CustomersListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CustomersListBox.Margin = new System.Windows.Forms.Padding(2);
             this.CustomersListBox.Name = "CustomersListBox";
             this.CustomersListBox.Size = new System.Drawing.Size(238, 329);
             this.CustomersListBox.TabIndex = 13;
@@ -163,16 +168,75 @@ namespace ObjectOrientedPractics.View.Tabs
             this.AddressControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddressControl.Location = new System.Drawing.Point(243, 81);
-            this.AddressControl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddressControl.Location = new System.Drawing.Point(245, 96);
+            this.AddressControl.Margin = new System.Windows.Forms.Padding(2);
             this.AddressControl.Name = "AddressControl";
             this.AddressControl.Size = new System.Drawing.Size(379, 152);
             this.AddressControl.TabIndex = 22;
+            // 
+            // PriorityCheckBox
+            // 
+            this.PriorityCheckBox.AutoSize = true;
+            this.PriorityCheckBox.Location = new System.Drawing.Point(308, 74);
+            this.PriorityCheckBox.Name = "PriorityCheckBox";
+            this.PriorityCheckBox.Size = new System.Drawing.Size(67, 17);
+            this.PriorityCheckBox.TabIndex = 23;
+            this.PriorityCheckBox.Text = "is Priority";
+            this.PriorityCheckBox.UseVisualStyleBackColor = true;
+            this.PriorityCheckBox.CheckedChanged += new System.EventHandler(this.PriorityCheckBox_CheckedChanged);
+            // 
+            // DiscountsLabel
+            // 
+            this.DiscountsLabel.AutoSize = true;
+            this.DiscountsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DiscountsLabel.Location = new System.Drawing.Point(248, 254);
+            this.DiscountsLabel.Name = "DiscountsLabel";
+            this.DiscountsLabel.Size = new System.Drawing.Size(63, 13);
+            this.DiscountsLabel.TabIndex = 24;
+            this.DiscountsLabel.Text = "Discounts";
+            // 
+            // DiscountsListBox
+            // 
+            this.DiscountsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DiscountsListBox.FormattingEnabled = true;
+            this.DiscountsListBox.Location = new System.Drawing.Point(251, 271);
+            this.DiscountsListBox.Name = "DiscountsListBox";
+            this.DiscountsListBox.Size = new System.Drawing.Size(362, 108);
+            this.DiscountsListBox.TabIndex = 25;
+            // 
+            // RemoveDiscountButton
+            // 
+            this.RemoveDiscountButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemoveDiscountButton.Location = new System.Drawing.Point(532, 385);
+            this.RemoveDiscountButton.Name = "RemoveDiscountButton";
+            this.RemoveDiscountButton.Size = new System.Drawing.Size(81, 32);
+            this.RemoveDiscountButton.TabIndex = 26;
+            this.RemoveDiscountButton.Text = "Remove";
+            this.RemoveDiscountButton.UseVisualStyleBackColor = true;
+            this.RemoveDiscountButton.Click += new System.EventHandler(this.RemoveDiscountButton_Click);
+            // 
+            // AddDiscountButton
+            // 
+            this.AddDiscountButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddDiscountButton.Location = new System.Drawing.Point(445, 385);
+            this.AddDiscountButton.Name = "AddDiscountButton";
+            this.AddDiscountButton.Size = new System.Drawing.Size(81, 32);
+            this.AddDiscountButton.TabIndex = 27;
+            this.AddDiscountButton.Text = "Add";
+            this.AddDiscountButton.UseVisualStyleBackColor = true;
+            this.AddDiscountButton.Click += new System.EventHandler(this.AddDiscountButton_Click);
             // 
             // CustomersTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.AddDiscountButton);
+            this.Controls.Add(this.RemoveDiscountButton);
+            this.Controls.Add(this.DiscountsListBox);
+            this.Controls.Add(this.DiscountsLabel);
+            this.Controls.Add(this.PriorityCheckBox);
             this.Controls.Add(this.AddressControl);
             this.Controls.Add(this.FullNameTextBox);
             this.Controls.Add(this.IdTextBox);
@@ -184,7 +248,7 @@ namespace ObjectOrientedPractics.View.Tabs
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.CustomersListBox);
             this.Controls.Add(this.CustomersLabel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CustomersTab";
             this.Size = new System.Drawing.Size(616, 427);
             this.Load += new System.EventHandler(this.CustomersTab_Load);
@@ -207,5 +271,10 @@ namespace ObjectOrientedPractics.View.Tabs
         private System.Windows.Forms.ListBox CustomersListBox;
         private System.Windows.Forms.Label CustomersLabel;
         private System.Windows.Forms.ToolTip ToolTip;
+        private System.Windows.Forms.CheckBox PriorityCheckBox;
+        private System.Windows.Forms.Label DiscountsLabel;
+        private System.Windows.Forms.ListBox DiscountsListBox;
+        private System.Windows.Forms.Button RemoveDiscountButton;
+        private System.Windows.Forms.Button AddDiscountButton;
     }
 }

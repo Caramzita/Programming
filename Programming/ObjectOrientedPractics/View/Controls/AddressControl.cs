@@ -5,6 +5,9 @@ using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.View.Controls
 {
+    /// <summary>
+    /// Хранит данные о адресе доставки покупателя.
+    /// </summary>
     public partial class AddressControl : UserControl
     {
         /// <summary>
@@ -38,7 +41,7 @@ namespace ObjectOrientedPractics.View.Controls
         /// <summary>
         /// Очищает все <see cref="TextBox"/> адресса.
         /// </summary>
-        public void ClearTextBox()
+        public void ClearAllTextBox()
         {
             IndexTextBox.Clear();
             IndexTextBox.BackColor = AppColors.CorrectColor;
@@ -47,6 +50,19 @@ namespace ObjectOrientedPractics.View.Controls
             StreetTextBox.Clear();
             BuildingTextBox.Clear();
             ApartmentTextBox.Clear();
+        }
+
+        /// <summary>
+        /// Делает все поля доступными только для чтения.
+        /// </summary>
+        public void AddressIsReadOnly()
+        {
+            IndexTextBox.ReadOnly = true;
+            CountryTextBox.ReadOnly = true;
+            CityTextBox.ReadOnly = true;
+            StreetTextBox.ReadOnly = true;
+            BuildingTextBox.ReadOnly = true;
+            ApartmentTextBox.ReadOnly = true;
         }
 
         /// <summary>
@@ -65,7 +81,7 @@ namespace ObjectOrientedPractics.View.Controls
             }
             catch
             {
-                ClearTextBox();
+                ClearAllTextBox();
             }
         }
 

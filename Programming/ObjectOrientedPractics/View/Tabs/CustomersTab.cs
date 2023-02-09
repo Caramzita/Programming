@@ -4,9 +4,13 @@ using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
 using System.Collections.Generic;
 using ObjectOrientedPractics.View.Controls;
+using ObjectOrientedPractics.Model.Discounts;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Хранит данные о всех покупателях.
+    /// </summary>
     public partial class CustomersTab : UserControl
     {
         /// <summary>
@@ -70,11 +74,13 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 FullNameTextBox.ReadOnly = true;
                 AddressControl.Enabled = false;
+                PriorityCheckBox.Enabled= false;
             }
             else
             {
                 FullNameTextBox.ReadOnly = false;
                 AddressControl.Enabled = true;
+                PriorityCheckBox.Enabled = true;
             }
         }
 
@@ -87,7 +93,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             for (int i = 0; i < _customers.Count; i++)
             {
-                if (_customers[i].FullName == "")
+                if (_customers[i].FullName == "Customer")
                 {
                     CustomersListBox.Items.Add($"Customer {_customers[i].Id}");
                     continue;
@@ -104,14 +110,22 @@ namespace ObjectOrientedPractics.View.Tabs
                 IdTextBox.Text = _currentCustomer.Id.ToString();
                 FullNameTextBox.Text = _currentCustomer.FullName;
                 AddressControl.Address = _currentCustomer.Address;
+                PriorityCheckBox.Checked = _currentCustomer.IsPriority;
                 AddressControl.UpdateTextBox();
+                DiscountsListBox.Items.Clear();
+
+                foreach (var discount in _currentCustomer.Discounts)
+                {
+                    DiscountsListBox.Items.Add(discount.Info);
+                }
+
                 CheckListCount();
             }
             catch
             {
                 if (_customers.Count == 0)
                 {
-                    AddressControl.ClearTextBox();
+                    AddressControl.ClearAllTextBox();
                     ClearInfo();
                 }
             }
@@ -183,6 +197,38 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 ClearInfo();
             }
+        }
+
+        private void PriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            _currentCustomer.IsPriority = PriorityCheckBox.Checked;
+        }
+
+        private void AddDiscountButton_Click(object sender, EventArgs e)
+        {
+            AddDiscountForm addDiscountForm = new AddDiscountForm();
+            addDiscountForm.ShowDialog();
+
+            if(addDiscountForm.DialogResult == DialogResult.OK)
+            {
+                _currentCustomer.Discounts.Add(new PercentDiscount(addDiscountForm.SelectedCategory));
+                DiscountsListBox.Items.Add(_currentCustomer.Discounts[_currentCustomer.Discounts.Count - 1].Info);
+            }         
+        }
+
+        private void RemoveDiscountButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DiscountsListBox.SelectedIndex == 0)
+                {
+                    return;
+                }
+
+                _currentCustomer.Discounts.RemoveAt(DiscountsListBox.SelectedIndex);
+                DiscountsListBox.Items.RemoveAt(DiscountsListBox.SelectedIndex);
+            }
+            catch { };
         }
     }
 }

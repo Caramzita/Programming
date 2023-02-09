@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ObjectOrientedPractics.Model.Enums;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -46,7 +47,9 @@ namespace ObjectOrientedPractics.Model
 
             Category category = (Category)Enum.GetValues(typeof(Category)).GetValue(_random.Next(1, 11));
 
-            Item item = new Item(_names[random], _info[random], _random.Next(100000), category);
+            double randomDouble = Math.Round(_random.NextDouble() * 100000, 2, MidpointRounding.ToEven);
+
+            Item item = new Item(_names[random], _info[random], randomDouble, category);
 
             return item;
         }

@@ -102,7 +102,7 @@ namespace ObjectOrientedPractics.View.Controls
             this.IndexTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IndexTextBox.Location = new System.Drawing.Point(65, 32);
-            this.IndexTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.IndexTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.IndexTextBox.Name = "IndexTextBox";
             this.IndexTextBox.Size = new System.Drawing.Size(101, 20);
             this.IndexTextBox.TabIndex = 5;
@@ -111,7 +111,7 @@ namespace ObjectOrientedPractics.View.Controls
             // CountryTextBox
             // 
             this.CountryTextBox.Location = new System.Drawing.Point(65, 58);
-            this.CountryTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CountryTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.CountryTextBox.Name = "CountryTextBox";
             this.CountryTextBox.Size = new System.Drawing.Size(143, 20);
             this.CountryTextBox.TabIndex = 6;
@@ -122,7 +122,7 @@ namespace ObjectOrientedPractics.View.Controls
             this.StreetTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.StreetTextBox.Location = new System.Drawing.Point(65, 85);
-            this.StreetTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.StreetTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.StreetTextBox.Name = "StreetTextBox";
             this.StreetTextBox.Size = new System.Drawing.Size(299, 20);
             this.StreetTextBox.TabIndex = 7;
@@ -131,7 +131,7 @@ namespace ObjectOrientedPractics.View.Controls
             // BuildingTextBox
             // 
             this.BuildingTextBox.Location = new System.Drawing.Point(65, 117);
-            this.BuildingTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BuildingTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.BuildingTextBox.Name = "BuildingTextBox";
             this.BuildingTextBox.Size = new System.Drawing.Size(101, 20);
             this.BuildingTextBox.TabIndex = 8;
@@ -154,7 +154,7 @@ namespace ObjectOrientedPractics.View.Controls
             this.CityTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CityTextBox.Location = new System.Drawing.Point(242, 56);
-            this.CityTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CityTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.CityTextBox.Name = "CityTextBox";
             this.CityTextBox.Size = new System.Drawing.Size(122, 20);
             this.CityTextBox.TabIndex = 10;
@@ -177,7 +177,7 @@ namespace ObjectOrientedPractics.View.Controls
             this.ApartmentTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ApartmentTextBox.Location = new System.Drawing.Point(242, 117);
-            this.ApartmentTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ApartmentTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.ApartmentTextBox.Name = "ApartmentTextBox";
             this.ApartmentTextBox.Size = new System.Drawing.Size(122, 20);
             this.ApartmentTextBox.TabIndex = 12;
@@ -200,7 +200,7 @@ namespace ObjectOrientedPractics.View.Controls
             this.Controls.Add(this.CountryLabel);
             this.Controls.Add(this.IndexLabel);
             this.Controls.Add(this.AddressLabel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AddressControl";
             this.Size = new System.Drawing.Size(379, 152);
             this.ResumeLayout(false);

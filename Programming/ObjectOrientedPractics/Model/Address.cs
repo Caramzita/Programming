@@ -6,7 +6,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит данные адресса.
     /// </summary>
-    public class Address
+    public class Address : ICloneable
     {
         /// <summary>
         /// Хранит почтовый индекс.
@@ -135,6 +135,34 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
+        /// <inheritdoc />
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public override bool Equals(object other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            if (!(other is Address))
+            {
+                return false;
+            }
+
+            if (object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            Address address = (Address)other;
+
+            return (this.Street == address.Street && this.City == address.City && this.Apartment == address.Apartment);
+
+        }
+
+        /// <summary>
         /// Создает пустой экземпляр класса <see cref="Address"/>.
         /// </summary>
         public Address()
@@ -164,6 +192,15 @@ namespace ObjectOrientedPractics.Model
             Street = street;
             Building = building;
             Apartment = apartment;
+        }
+
+        /// <summary>
+        /// Создает клон.
+        /// </summary>
+        /// <returns>Возвращает клон объекта.</returns>
+        public object Clone()
+        {
+            return new Address(this.Index, this.Country, this.City, this.Street, this.Building, this.Apartment);
         }
     }
 }

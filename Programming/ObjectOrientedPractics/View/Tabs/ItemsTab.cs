@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
+using ObjectOrientedPractics.Model.Enums;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Хранит данные о всех предметах.
+    /// </summary>
     public partial class ItemsTab : UserControl
     {
         /// <summary>
