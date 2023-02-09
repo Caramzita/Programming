@@ -9,14 +9,29 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class DiscoundTab : UserControl
     {
-        PointsDiscount pointsDiscount = new PointsDiscount();
+        /// <summary>
+        /// Хранит накопительную скидку.
+        /// </summary>
+        private readonly PointsDiscount _pointsDiscount = new PointsDiscount();
 
-        PercentDiscount percentDiscount = new PercentDiscount(Category.Clothes);
+        /// <summary>
+        /// Хранит процентную скидку.
+        /// </summary>
+        private readonly PercentDiscount _percentDiscount = new PercentDiscount(Category.None);
             
-        private List<Item> items = new List<Item>();
+        /// <summary>
+        /// Хранит список товаров.
+        /// </summary>
+        private readonly List<Item> items = new List<Item>();
 
+        /// <summary>
+        /// Хранит итоговую стоимость.
+        /// </summary>
         private double totalAmount = 0;
 
+        /// <summary>
+        /// Создает экзмепляр класса <see cref="DiscoundTab"/>.
+        /// </summary>
         public DiscoundTab()
         {
             InitializeComponent();
@@ -24,8 +39,8 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void DiscoundTab_Load(object sender, EventArgs e)
         {
-            InfoLabel.Text = pointsDiscount.Info;
-            InfoPercent.Text = percentDiscount.Info;
+            InfoLabel.Text = _pointsDiscount.Info;
+            InfoPercent.Text = _percentDiscount.Info;
             Discount.Text = "0";
 
             for (int i = 0; i < 10; i++)
@@ -40,37 +55,37 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void CalculateButton_Click(object sender, EventArgs e)
         {
-            Discount.Text = pointsDiscount.Calculate(items).ToString();
+            Discount.Text = _pointsDiscount.Calculate(items).ToString();
         }
 
         private void ApplyButton_Click(object sender, EventArgs e)
         {
-            pointsDiscount.Apply(items);
-            InfoLabel.Text = pointsDiscount.Info;
+            _pointsDiscount.Apply(items);
+            InfoLabel.Text = _pointsDiscount.Info;
         }
 
         private void UpdateButton_Click(object sender, EventArgs e)
         {
-            pointsDiscount.Update(items);
-            InfoLabel.Text = pointsDiscount.Info;
+            _pointsDiscount.Update(items);
+            InfoLabel.Text = _pointsDiscount.Info;
             Discount.Text = "0";
         }
 
         private void CalculatePercent_Click(object sender, EventArgs e)
         {
-            PercentDiscount.Text = percentDiscount.Calculate(items).ToString();
+            PercentDiscount.Text = _percentDiscount.Calculate(items).ToString();
         }
 
         private void ApplyPercent_Click(object sender, EventArgs e)
         {
-            percentDiscount.Apply(items);
-            InfoPercent.Text = percentDiscount.Info;
+            _percentDiscount.Apply(items);
+            InfoPercent.Text = _percentDiscount.Info;
         }
 
         private void UpdatePercent_Click(object sender, EventArgs e)
         {
-            percentDiscount.Update(items);
-            InfoPercent.Text = percentDiscount.Info;
+            _percentDiscount.Update(items);
+            InfoPercent.Text = _percentDiscount.Info;
             PercentDiscount.Text = "0";
         }
     }

@@ -114,7 +114,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 AddressControl.UpdateTextBox();
                 DiscountsListBox.Items.Clear();
 
-                foreach(var discount in _currentCustomer.Discounts)
+                foreach (var discount in _currentCustomer.Discounts)
                 {
                     DiscountsListBox.Items.Add(discount.Info);
                 }

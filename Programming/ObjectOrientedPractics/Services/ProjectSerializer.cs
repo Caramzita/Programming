@@ -2,7 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 using ObjectOrientedPractics.Model;
-using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Model.Discounts;
 using static System.Environment;
 
 namespace ObjectOrientedPractics.Services
@@ -30,10 +30,12 @@ namespace ObjectOrientedPractics.Services
         public static void SaveData(Store store)
         {
             // Создаём экземпляр сериализатора
-            JsonSerializer serializer = new JsonSerializer();
-            serializer.Formatting = Formatting.Indented;
-            serializer.NullValueHandling = NullValueHandling.Include;
-            serializer.TypeNameHandling = TypeNameHandling.All;
+            JsonSerializer serializer = new JsonSerializer
+            {
+                Formatting = Formatting.Indented,
+                NullValueHandling = NullValueHandling.Include,
+                TypeNameHandling = TypeNameHandling.All
+            };
 
             // Проверка наличия пути сохранения
             String folder = _appDataFolder;
@@ -63,8 +65,13 @@ namespace ObjectOrientedPractics.Services
             Store store = null;
 
             // Создаём экземпляр сериализатора
-            JsonSerializer serializer = new JsonSerializer();
-            serializer.TypeNameHandling = TypeNameHandling.All;
+            JsonSerializer serializer = new JsonSerializer
+            {
+                Formatting = Formatting.Indented,
+                NullValueHandling = NullValueHandling.Include,
+                TypeNameHandling = TypeNameHandling.All
+            };
+
             String folder = _appDataFolder;
 
             // Проверка наличия пути загрузки.
@@ -80,6 +87,7 @@ namespace ObjectOrientedPractics.Services
                 // Вызываем десериализацию и явно преобразуем результат в целевой тип данных
                 store = serializer.Deserialize<Store>(reader);
             }
+
             return store;
         }
     }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Properties;
@@ -21,7 +20,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Хранит список всех заказов.
         /// </summary>
-        private List<Order> _orders = new List<Order>();
+        private readonly List<Order> _orders = new List<Order>();
 
         /// <summary>
         /// Хранит данные о выбранном заказе.
@@ -51,7 +50,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Возвращает и задает выбранный заказ. Проверяет на приоритетность.
         /// </summary>
-        public Order SelectedOrder
+        public Order CheckPriority
         {
             get
             {
@@ -123,6 +122,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     $"{_orders[i].Address.Street}, {_orders[i].Address.Building}, " +
                     $"{_orders[i].Address.Apartment}, {_orders[i].Address.Index}";
                 DataGridView.Rows[i].Cells["AmountColumn"].Value = _orders[i].Amount;
+                DataGridView.Rows[i].Cells["TotalColumn"].Value = _orders[i].Total;
 
                 if (_orders[i] is PriorityOrder)
                 {
@@ -199,8 +199,9 @@ namespace ObjectOrientedPractics.View.Tabs
                 OrderItemsListBox.Items.Add($"{_currentOrder.Items[i].Name}");
             }
 
-            SelectedOrder = _currentOrder;
+            CheckPriority = _currentOrder;
 
+            Total.Text = _currentOrder.Total.ToString();
             Amount.Text = _currentOrder.Amount.ToString();
         }
 

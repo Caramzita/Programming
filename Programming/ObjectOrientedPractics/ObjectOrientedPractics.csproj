@@ -177,10 +177,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\star.png" />
+    <None Include="Resources\empty.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\empty.bmp" />
+    <None Include="Resources\icons8-star-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

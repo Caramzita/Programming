@@ -1,6 +1,7 @@
 ﻿using System;
 using ObjectOrientedPractics.Services;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace ObjectOrientedPractics.Model.Orders
 {
@@ -126,8 +127,14 @@ namespace ObjectOrientedPractics.Model.Orders
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает размер примененной скидки.
+        /// </summary>
         public double DiscountAmount { get; set; }
 
+        /// <summary>
+        /// Возвращает конечную стоимость заказа.
+        /// </summary>
         public double Total
         {
             get
@@ -154,6 +161,24 @@ namespace ObjectOrientedPractics.Model.Orders
             Address = address;
             FullName = fullName;
             OrderStatus = OrderStatus.New;
+        }
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Order"/>.
+        /// </summary>
+        /// <param name="items">Список предметов.</param>
+        /// <param name="address">Адрес доставки.</param>
+        /// <param name="fullName">Полное имя покупателя.</param>
+        /// <param name="orderDate">Дата создания заказа.</param>
+        [JsonConstructor]
+        public Order(List<Item> items, Address address, string fullName, DateTime orderDate)
+        {
+            _id = IdGenerator.GetNextId();
+            Items = items;
+            Address = address;
+            FullName = fullName;
+            OrderStatus = OrderStatus.New;
+            _orderDate = orderDate;
         }
     }
 }

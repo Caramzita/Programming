@@ -154,7 +154,7 @@
             this.OrdersTab.Location = new System.Drawing.Point(0, 0);
             this.OrdersTab.Margin = new System.Windows.Forms.Padding(2);
             this.OrdersTab.Name = "OrdersTab";
-            this.OrdersTab.SelectedOrder = null;
+            this.OrdersTab.CheckPriority = null;
             this.OrdersTab.Size = new System.Drawing.Size(712, 515);
             this.OrdersTab.TabIndex = 0;
             // 

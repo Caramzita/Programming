@@ -14,6 +14,9 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private List<Item> _items;
 
+        /// <summary>
+        /// Хранит общую стоимость корзины.
+        /// </summary>
         private double _amount = 0.0;
 
         /// <summary>
@@ -62,6 +65,16 @@ namespace ObjectOrientedPractics.Model
         public Cart()
         {
             Items = new List<Item>();
+        }
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Cart"/>.
+        /// </summary>
+        /// <param name="items">Список предметов.</param>
+        [JsonConstructor]
+        public Cart(List<Item> items)
+        {
+            Items = items;
         }
     }
 }

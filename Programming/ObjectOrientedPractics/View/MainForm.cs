@@ -10,10 +10,10 @@ namespace ObjectOrientedPractics
         /// <summary>
         /// Хранит данные класса <see cref="Store"/>.
         /// </summary>
-        private Store _store = ProjectSerializer.LoadDataFromFile();
+        private readonly Store _store = ProjectSerializer.LoadDataFromFile();
 
         /// <summary>
-        /// Создает экземпляр <see cref="MainForm"/>.
+        /// Создает экземпляр клааса <see cref="MainForm"/>.
         /// </summary>
         public MainForm()
         {
