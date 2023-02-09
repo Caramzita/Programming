@@ -24,7 +24,7 @@ namespace ObjectOrientedPractics
             CartsTab.Customers = _store.Customers;
             OrdersTab.Customers = _store.Customers;
         }
-
+        
         private void TabControl_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             if (TabControl.SelectedIndex == 2)

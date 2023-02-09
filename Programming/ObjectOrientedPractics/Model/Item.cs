@@ -8,7 +8,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит данные о предметах.
     /// </summary>
-    public class Item
+    public class Item : ICloneable, IComparable
     {
         /// <summary>
         /// Уникальный идентификатор для всех объектов данного класса.
@@ -98,6 +98,59 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
+        /// <inheritdoc />
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public override bool Equals(object other)
+        {
+            if(other == null)
+            {
+                return false;
+            }
+
+            if(!(other is Item))
+            {
+                return false;
+            }
+
+            if (object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+            
+            Item item = (Item)other;
+
+            return ((this.Name == item.Name) && (this.Info == item.Info));
+
+        }
+
+        /// <summary>
+        /// <inheritdoc />
+        /// </summary>
+        /// <param name="obj">Объект.</param>
+        /// <returns>Возвращает число обозначающее сравнение</returns>
+        /// <exception cref="ArgumentException">Объект не Item</exception>
+        public int CompareTo(object obj)
+        {
+            if (obj == null)
+            {
+                return 1;
+            }
+
+            Item otherItem = obj as Item;
+
+            if (otherItem != null)
+            {
+                return this.Cost.CompareTo(otherItem.Cost);
+            }
+            else
+            {
+                throw new ArgumentException("Объект не Item");
+            }
+        }
+
+        /// <summary>
         /// Создает пустой экземпляр класса <see cref="Item"/>.
         /// </summary>   
         public Item()
@@ -121,6 +174,15 @@ namespace ObjectOrientedPractics.Model
             Info = info;
             Cost = cost;
             Category = category;
+        }
+
+        /// <summary>
+        /// Создает клон.
+        /// </summary>
+        /// <returns>Возвращает клон объекта.</returns>
+        public object Clone()
+        {
+            return new Item(this.Name, this.Info, this.Cost, this.Category);
         }
 
         /// <summary>

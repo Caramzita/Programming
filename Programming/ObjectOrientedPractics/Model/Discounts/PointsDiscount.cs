@@ -7,7 +7,7 @@ namespace ObjectOrientedPractics.Model.Discounts
     /// <summary>
     /// Хранит данные о накопительной скидке.
     /// </summary>
-    public class PointsDiscount : IDiscount
+    public class PointsDiscount : IDiscount, IComparable
     {
         /// <summary>
         /// Хранит количество накопленных баллов.
@@ -101,7 +101,32 @@ namespace ObjectOrientedPractics.Model.Discounts
         public void Update(List<Item> items)
         {
             _points += (int)Math.Round(_totalAmount * 0.1);
-        }   
+        }
+
+        /// <summary>
+        /// <inheritdoc />
+        /// </summary>
+        /// <param name="obj">Объект.</param>
+        /// <returns>Возвращает число обозначающее сравнение</returns>
+        /// <exception cref="ArgumentException">Объект не PointsDiscount</exception>
+        public int CompareTo(object obj)
+        {
+            if (obj == null)
+            {
+                return 1;
+            }
+
+            PointsDiscount otherPointDiscount = obj as PointsDiscount;
+
+            if (otherPointDiscount != null)
+            {
+                return this.Points.CompareTo(otherPointDiscount.Points);
+            }
+            else
+            {
+                throw new ArgumentException("Объект не PointsDiscount");
+            }
+        }
 
         /// <summary>
         /// Создает пустой экземпляр класса <see cref="PointsDiscount"/>.

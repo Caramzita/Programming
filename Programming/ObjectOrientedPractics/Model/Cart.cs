@@ -7,7 +7,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит данные о корзине покупателя.
     /// </summary>
-    public class Cart
+    public class Cart : ICloneable
     {
         /// <summary>
         /// Хранит список предметов.
@@ -60,11 +60,48 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
+        /// <inheritdoc />
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public override bool Equals(object other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            if (!(other is Cart))
+            {
+                return false;
+            }
+
+            if (object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            Cart cart = (Cart)other;
+
+            return (this.Items == cart.Items && this.Amount == cart.Amount);
+
+        }
+
+        /// <summary>
         /// Создает экземпляр класса <see cref="Cart"/>.
         /// </summary>
         public Cart()
         {
             Items = new List<Item>();
+        }
+
+        /// <summary>
+        /// Создает клон.
+        /// </summary>
+        /// <returns>Возвращает клон объекта.</returns>
+        public object Clone()
+        {
+            return new Cart();
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ObjectOrientedPractics.Model.Enums;
 using Newtonsoft.Json;
 
@@ -7,7 +8,7 @@ namespace ObjectOrientedPractics.Model.Discounts
     /// <summary>
     /// Хранит данные о процентной скидке.
     /// </summary>
-    public class PercentDiscount : IDiscount
+    public class PercentDiscount : IDiscount, IComparable
     {
         /// <summary>
         /// Хранит категорию товара, на которую предоставляется скидка.
@@ -118,6 +119,31 @@ namespace ObjectOrientedPractics.Model.Discounts
             if(_currentDiscount == 0)
             {
                 _currentDiscount = 0.01;
+            }
+        }
+
+        /// <summary>
+        /// <inheritdoc />
+        /// </summary>
+        /// <param name="obj">Объект.</param>
+        /// <returns>Возвращает число обозначающее сравнение</returns>
+        /// <exception cref="ArgumentException">Объект не PercentDiscount</exception>
+        public int CompareTo(object obj)
+        {
+            if (obj == null)
+            {
+                return 1;
+            }
+
+            PercentDiscount otherPercentDiscount = obj as PercentDiscount;
+
+            if (otherPercentDiscount != null)
+            {
+                return this.CurrentDiscount.CompareTo(otherPercentDiscount.CurrentDiscount);
+            }
+            else
+            {
+                throw new ArgumentException("Объект не PercentDiscount");
             }
         }
 
