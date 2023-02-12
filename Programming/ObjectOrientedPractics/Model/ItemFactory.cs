@@ -17,7 +17,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Хранит массив названий.
         /// </summary>
-        private static string[] _names = { "Ноутбук ASUS ExpertBook", "Apple iPhone 11", "Ноутбук MSI GF76 Katana", 
+        private static string[] _names = { "Ноутбук ASUS ExpertBook", "Смартфон Apple iPhone 11", "Ноутбук MSI GF76 Katana", 
             "Робот-пылесос Xiaomi Mi Robot Vacuum", "Смартфон realme 9 Pro", "Игровая консоль Microsoft Xbox Series X", 
             "Смартфон Apple iPhone 13", "Игровая консоль PlayStation 5", "Игровая консоль Microsoft Xbox Series S" };
 
