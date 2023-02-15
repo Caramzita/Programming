@@ -1,5 +1,5 @@
 ﻿using ObjectOrientedPractics.Services;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using ObjectOrientedPractics.Model.Orders;
 using ObjectOrientedPractics.Model.Discounts;
@@ -34,7 +34,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Хранит список заказов.
         /// </summary>
-        private List<Order> _orders;
+        private ObservableCollection<Order> _orders;
 
         /// <summary>
         /// Возвращает и задает корзину покупателя.
@@ -54,7 +54,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает и задает список заказов.
         /// </summary>
-        public List<Order> Orders
+        public ObservableCollection<Order> Orders
         {
             get
             {
@@ -108,7 +108,10 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
-        public List<IDiscount> Discounts { get; set; }
+        /// <summary>
+        /// Возвращает и задает список скидок.
+        /// </summary>
+        public ObservableCollection<IDiscount> Discounts { get; set; }
 
         /// <summary>
         /// Возвращает и задает является ли заказ приоритетным.
@@ -123,9 +126,9 @@ namespace ObjectOrientedPractics.Model
             FullName = "Customer";
             Address = new Address();
             Cart = new Cart();
-            Orders = new List<Order>();
+            Orders = new ObservableCollection<Order>();
             IsPriority= false;
-            Discounts = new List<IDiscount> { new PointsDiscount() };
+            Discounts = new ObservableCollection<IDiscount> { new PointsDiscount() };
         }
 
         /// <summary>
@@ -138,9 +141,9 @@ namespace ObjectOrientedPractics.Model
             FullName = fullname;
             Address = address;
             Cart = new Cart();
-            Orders = new List<Order>();
+            Orders = new ObservableCollection<Order>();
             IsPriority = false;
-            Discounts = new List<IDiscount>{ new PointsDiscount() };
+            Discounts = new ObservableCollection<IDiscount>{ new PointsDiscount() };
         }
 
         /// <summary>
@@ -152,7 +155,8 @@ namespace ObjectOrientedPractics.Model
         /// <param name="order">Заказ покупателя.</param>
         /// <param name="id">Уникальный идентификатор заказа.</param>
         [JsonConstructor]
-        public Customer(string fullname, Address address, Cart cart, List<Order> order, int id, bool isPriority, List<IDiscount> discounts)
+        public Customer(string fullname, Address address, Cart cart, ObservableCollection<Order> order, int id, bool isPriority,
+            ObservableCollection<IDiscount> discounts)
         {
             _id = id;
             FullName = fullname;

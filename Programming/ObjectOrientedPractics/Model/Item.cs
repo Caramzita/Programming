@@ -10,6 +10,12 @@ namespace ObjectOrientedPractics.Model
     /// </summary>
     public class Item : ICloneable, IComparable
     {
+        public event EventHandler<EventArgs> NameChanged;
+
+        public event EventHandler<EventArgs> CostChanged;
+
+        public event EventHandler<EventArgs> InfoChanged;
+
         /// <summary>
         /// Уникальный идентификатор для всех объектов данного класса.
         /// </summary>
@@ -47,7 +53,12 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
-                _name = value;
+
+                if (_name != value)
+                {
+                    _name = value;
+                    NameChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 
@@ -63,7 +74,12 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 ValueValidator.AssertStringOnLength(value, 1000, nameof(Info));
-                _info = value;
+
+                if (_info != value)
+                {
+                    _info = value;
+                    InfoChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 
@@ -82,7 +98,12 @@ namespace ObjectOrientedPractics.Model
                 {
                     throw new ArgumentException("Цена должна быть больше 0 и меньше 100 000");
                 }
-                _cost = value;
+
+                if(_cost != value)
+                {
+                    _cost = value;
+                    CostChanged?.Invoke(this, EventArgs.Empty);
+                }             
             }
         }
 
@@ -148,7 +169,7 @@ namespace ObjectOrientedPractics.Model
             {
                 throw new ArgumentException("Объект не Item");
             }
-        }
+        }      
 
         /// <summary>
         /// Создает пустой экземпляр класса <see cref="Item"/>.

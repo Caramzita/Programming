@@ -50,6 +50,9 @@
             this.PriorityTabPage.SuspendLayout();
             this.DiscountTabPage.SuspendLayout();
             this.SuspendLayout();
+            this.ItemsTab.ItemsChanged += ItemsTab_Changed;
+            this.CartsTab.OrderCreated += OrderTab_CreatedOrder;
+            this.CustomersTab.CustomersChanged += CustomerTab_Changed;
             // 
             // TabControl
             // 
@@ -66,7 +69,6 @@
             this.TabControl.SelectedIndex = 0;
             this.TabControl.Size = new System.Drawing.Size(720, 541);
             this.TabControl.TabIndex = 0;
-            this.TabControl.SelectedIndexChanged += new System.EventHandler(this.TabControl_SelectedIndexChanged);
             // 
             // ItemsPage
             // 

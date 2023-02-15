@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 
 namespace ObjectOrientedPractics.Model.Orders
@@ -64,7 +65,8 @@ namespace ObjectOrientedPractics.Model.Orders
         /// <param name="fullName">Полное имя покупателя.</param>
         /// <param name="desiredDate">Желаемая дата доставки.</param>
         /// <param name="desiredTime">Желаемое время доставки.</param>
-        public PriorityOrder(List<Item> items, Address address, string fullName, DateTime desiredDate, string desiredTime) : base(items, address, fullName)
+        public PriorityOrder(ObservableCollection<Item> items, Address address, string fullName, 
+            DateTime desiredDate, string desiredTime) : base(items, address, fullName)
         {
             DesiredDate = desiredDate;
             DesiredTime = desiredTime;
@@ -80,7 +82,8 @@ namespace ObjectOrientedPractics.Model.Orders
         /// <param name="desiredTime">Желаемое время доставки.</param>
         /// <param name="id"></param>
         [JsonConstructor]
-        public PriorityOrder(List<Item> items, Address address, string fullName, DateTime desiredDate, string desiredTime, int id) : base(items, address, fullName)
+        public PriorityOrder(ObservableCollection<Item> items, Address address, string fullName, 
+            DateTime desiredDate, string desiredTime, int id) : base(items, address, fullName)
         {
             Items = items;
             Address = address;

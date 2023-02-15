@@ -1,6 +1,6 @@
 ﻿using System;
 using ObjectOrientedPractics.Services;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 
 namespace ObjectOrientedPractics.Model.Orders
@@ -28,7 +28,7 @@ namespace ObjectOrientedPractics.Model.Orders
         /// <summary>
         /// Хранит список товаров в заказе.
         /// </summary>
-        private List<Item> _items;
+        private ObservableCollection<Item> _items;
 
         /// <summary>
         /// Хранит текущую цену товаров в заказе.
@@ -80,7 +80,7 @@ namespace ObjectOrientedPractics.Model.Orders
         /// <summary>
         /// Возвращает и задает список предметов.
         /// </summary>
-        public List<Item> Items
+        public ObservableCollection<Item> Items
         {
             get
             {
@@ -154,7 +154,7 @@ namespace ObjectOrientedPractics.Model.Orders
         /// <param name="items">Список предметов.</param>
         /// <param name="address">Адрес доставки.</param>
         /// <param name="fullName">Полное имя покупателя.</param>
-        public Order(List<Item> items, Address address, string fullName)
+        public Order(ObservableCollection<Item> items, Address address, string fullName)
         {
             _id = IdGenerator.GetNextId();
             Items = items;
@@ -171,7 +171,7 @@ namespace ObjectOrientedPractics.Model.Orders
         /// <param name="fullName">Полное имя покупателя.</param>
         /// <param name="orderDate">Дата создания заказа.</param>
         [JsonConstructor]
-        public Order(List<Item> items, Address address, string fullName, DateTime orderDate)
+        public Order(ObservableCollection<Item> items, Address address, string fullName, DateTime orderDate)
         {
             _id = IdGenerator.GetNextId();
             Items = items;

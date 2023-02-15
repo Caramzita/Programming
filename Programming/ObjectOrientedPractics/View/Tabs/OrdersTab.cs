@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Properties;
@@ -15,12 +15,12 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Хранит список всех покупателей.
         /// </summary>
-        private List<Customer> _customers;
+        private ObservableCollection<Customer> _customers;
 
         /// <summary>
         /// Хранит список всех заказов.
         /// </summary>
-        private readonly List<Order> _orders = new List<Order>();
+        private readonly ObservableCollection<Order> _orders = new ObservableCollection<Order>();
 
         /// <summary>
         /// Хранит данные о выбранном заказе.
@@ -35,7 +35,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Возвращает и задает список всех покупателей.
         /// </summary>
-        public List<Customer> Customers
+        public ObservableCollection<Customer> Customers
         {
             get
             {
@@ -88,7 +88,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 {
                     _orders.Add(_customers[i].Orders[j]);
                 }
-            }
+            }         
 
             UpdateOrders();
         }

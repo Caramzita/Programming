@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 
 namespace ObjectOrientedPractics.Model
@@ -12,7 +12,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Хранит список предметов.
         /// </summary>
-        private List<Item> _items;
+        private ObservableCollection<Item> _items;
 
         /// <summary>
         /// Хранит общую стоимость корзины.
@@ -22,7 +22,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает и задает список предметов.
         /// </summary>
-        public List<Item> Items
+        public ObservableCollection<Item> Items
         {
             get
             {
@@ -92,7 +92,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public Cart()
         {
-            Items = new List<Item>();
+            Items = new ObservableCollection<Item>();
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="items">Список предметов.</param>
         [JsonConstructor]
-        public Cart(List<Item> items)
+        public Cart(ObservableCollection<Item> items)
         {
             Items = items;
         }

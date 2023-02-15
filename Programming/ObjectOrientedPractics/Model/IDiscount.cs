@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -8,8 +8,8 @@ namespace ObjectOrientedPractics.Model
     public interface IDiscount
     {
         string Info { get; }
-        double Calculate(List<Item> items);
-        double Apply(List<Item> items);
-        void Update(List<Item> items);
+        double Calculate(ObservableCollection<Item> items);
+        double Apply(ObservableCollection<Item> items);
+        void Update(ObservableCollection<Item> items);
     }
 }
