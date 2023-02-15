@@ -1,4 +1,6 @@
-﻿namespace ObjectOrientedPractics.Services
+﻿using System;
+
+namespace ObjectOrientedPractics.Services
 {
     /// <summary>
     /// Создает уникальный идентификатор.
@@ -8,12 +10,12 @@
         /// <summary>
         /// Хранит общее количество данных.
         /// </summary>
-        private static int _allCount;
+        private static int _allCount = 0;
 
         /// <summary>
         /// Уникальный идентификатор.
         /// </summary>
-        private static int _id = 1;
+        private static int _id;
 
         /// <summary>
         /// Создает уникальный идентификатор.

@@ -23,6 +23,11 @@ namespace ObjectOrientedPractics.View.Tabs
         private Item _currentItem;
 
         /// <summary>
+        /// Хранит список отображаемых предметов.
+        /// </summary>
+        private List<Item> _displayedItems = new List<Item>();
+
+        /// <summary>
         /// Возвращает и задает список предметов класса <see cref="Item"/>.
         /// </summary>
         public List<Item> Items
@@ -56,6 +61,7 @@ namespace ObjectOrientedPractics.View.Tabs
             InfoTextBox.Clear();
             CostTextBox.Clear();
             CostTextBox.BackColor = AppColors.CorrectColor;
+            CategoryComboBox.Text = "";
         }
 
         /// <summary>
@@ -63,8 +69,17 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void AddItem()
         {
+            if(_items.Count == _displayedItems.Count)
+            {
+                _items.Add(_currentItem);
+                _displayedItems = _items;
+                ItemsListBox.SelectedIndex = _items.Count - 1;
+                return;
+            }
+
             _items.Add(_currentItem);
-            ItemsListBox.SelectedIndex = _items.Count - 1;
+            _displayedItems.Add(_currentItem);
+            ItemsListBox.SelectedIndex = _displayedItems.Count - 1;
         }
 
         /// <summary>
@@ -95,6 +110,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 return;
             }
+
             for (int i = 0; i < _items.Count; i++)
             {
                 if (_items[i].Name == "")
@@ -102,6 +118,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     ItemsListBox.Items.Add($"Item {_items[i].Id}");
                     continue;
                 }
+
                 ItemsListBox.Items.Add(_items[i].Name);
             }
 
@@ -110,14 +127,18 @@ namespace ObjectOrientedPractics.View.Tabs
                 CategoryComboBox.Items.Add(category);
             }
 
+            _displayedItems = _items;
+
+            OrderByComboBox.SelectedIndex = 0;
             CategoryComboBox.SelectedIndex = -1;
         }
 
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
-            {
-                _currentItem = _items[ItemsListBox.SelectedIndex];
+            {        
+                var index = ItemsListBox.SelectedIndex;
+                _currentItem = _items[_items.IndexOf(_displayedItems[index])];
                 IdTextBox.Text = _currentItem.Id.ToString();
                 NameTextBox.Text = _currentItem.Name;
                 InfoTextBox.Text = _currentItem.Info;
@@ -137,28 +158,41 @@ namespace ObjectOrientedPractics.View.Tabs
         private void AddButton_Click(object sender, EventArgs e)
         {
             _currentItem = new Item();
-            ItemsListBox.Items.Add($"Item {_currentItem.Id}");
+            ItemsListBox.Items.Add($"Предмет {_currentItem.Id}");
             AddItem();
             CheckListCount();
+            
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            int lastIndex = ItemsListBox.SelectedIndex;
-            if (lastIndex >= 0 && _items.Count != 0)
+            try
             {
-                _items.RemoveAt(lastIndex);
-                if (ItemsListBox.SelectedIndex == 0 && _items.Count >= 1)
+                int lastIndex = ItemsListBox.SelectedIndex;
+
+                if (lastIndex >= 0 && _displayedItems.Count != 0)
                 {
-                    ItemsListBox.SelectedIndex = lastIndex + 1;
+                    var selectedItem = _displayedItems[lastIndex];
+                    _displayedItems.RemoveAt(lastIndex);
+                    _items.Remove(selectedItem);
+                    ItemsListBox.Items.RemoveAt(lastIndex);
+
+                    if (ItemsListBox.SelectedIndex == 0 && _displayedItems.Count >= 1)
+                    {
+                        ItemsListBox.SelectedIndex = lastIndex + 1;
+                    }
+                    else
+                    {
+                        ItemsListBox.SelectedIndex = lastIndex - 1;
+                    }
                 }
-                else
-                {
-                    ItemsListBox.SelectedIndex = lastIndex - 1;
-                }
-                ItemsListBox.Items.RemoveAt(lastIndex);
             }
-            CheckListCount();
+            catch
+            {
+                ClearInfo();
+            }
+
+            CheckListCount();   
         }
 
         private void RandomizeButton_Click(object sender, EventArgs e)
@@ -245,6 +279,71 @@ namespace ObjectOrientedPractics.View.Tabs
                 ToolTip.SetToolTip(CostTextBox, exception.Message);
                 return;
             }
+        }
+
+        private void FindTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ItemsListBox.Items.Clear();
+
+            string search = FindTextBox.Text;
+
+            _displayedItems = DataTools.SortBy(_items, item => item.Name.Contains(search, 
+                StringComparison.CurrentCultureIgnoreCase));
+
+            foreach (Item item in _displayedItems)
+            {
+                ItemsListBox.Items.Add($"{item.Name}");
+            }
+
+            if (search == "")
+            {
+                _displayedItems = _items;  
+            }
+
+            if(_displayedItems.IndexOf(_currentItem) > -1)
+            {
+                ItemsListBox.SelectedIndex = _displayedItems.IndexOf(_currentItem);
+            }
+            else if(_displayedItems.Count == 0)
+            {
+                _currentItem = new Item();
+                ClearInfo();
+            }
+        }
+
+        private void OrderByComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var index = ItemsListBox.SelectedIndex;
+
+            if(index == -1)
+            {
+                return;
+            }
+
+            var selectedItem = _displayedItems[index];
+
+            ItemsListBox.Items.Clear();         
+
+            switch (OrderByComboBox.SelectedIndex)
+            {
+                case 0:
+                    _displayedItems.Sort((item1, item2) => String.Compare(item1.Name.Split(' ')[0], 
+                        item2.Name.Split(' ')[0]));
+                    break;
+                case 1:
+                    _displayedItems.Sort((item1, item2) => item2.Cost.CompareTo(item1.Cost));
+                    break;
+                case 2:
+                    _displayedItems.Sort((item1, item2) => item1.Cost.CompareTo(item2.Cost));
+                    break;
+            }
+
+            foreach (Item item in _displayedItems)
+            {
+                ItemsListBox.Items.Add($"{item.Name}");
+            }
+
+            ItemsListBox.SelectedIndex = _displayedItems.IndexOf(selectedItem);
         }
     }
 }

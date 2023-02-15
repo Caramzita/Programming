@@ -121,7 +121,7 @@ namespace ObjectOrientedPractics.Model
             
             Item item = (Item)other;
 
-            return ((this.Name == item.Name) && (this.Info == item.Info));
+            return (this.Name == item.Name && this.Info == item.Info && this.Id == item.Id);
 
         }
 
@@ -155,7 +155,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>   
         public Item()
         {
-            Name = "";
+            Name = $"Предмет {this.Id}";
             Info = "";
             Cost = 0;
             Category = 0;
