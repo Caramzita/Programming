@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using ObjectOrientedPractics.Model;
 
 namespace ObjectOrientedPractics.Services
@@ -7,17 +7,57 @@ namespace ObjectOrientedPractics.Services
     /// <summary>
     /// Хранит методы сортировки.
     /// </summary>
-    internal static class DataTools
+    public static class DataTools
     {
+        public delegate bool Compare(Item item1, Item item2);
+
+        /// <summary>
+        /// Сравнивает два имени предмета по алфавиту.
+        /// </summary>
+        /// <param name="item1">Предмет 1.</param>
+        /// <param name="item2">Предмет 2.</param>
+        /// <returns>Возвращает true, если item1 предшествует item2.</returns>
+        public static bool CompareByName(Item item1, Item item2)
+        {
+            if (String.Compare(item1.Name.Split(' ')[0], item2.Name.Split(' ')[0]) < 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Сравнивает два предмета по цене. Сравнивает по возрастанию.
+        /// </summary>
+        /// <param name="item1">Предмет 1.</param>
+        /// <param name="item2">Предмет 2.</param>
+        /// <returns>Возвращает true, если item1 меньше item2.</returns>
+        public static bool CompareByCostAscending(Item item1, Item item2)
+        {
+            return item1.Cost < item2.Cost;
+        }
+
+        /// <summary>
+        /// Сравнивает два предмета по цене. Сравнивает по убыванию.
+        /// </summary>
+        /// <param name="item1">Предмет 1.</param>
+        /// <param name="item2">Предмет 2.</param>
+        /// <returns>Возвращает true, если item1 больше item2.</returns>
+        public static bool CompareByCostDescending(Item item1, Item item2)
+        {
+            return item1.Cost > item2.Cost;
+        }
+
         /// <summary>
         /// Сортирует список предметов по указанному признаку.
         /// </summary>
         /// <param name="items">Список предметов.</param>
         /// <param name="action">Признак сортировки.</param>
         /// <returns></returns>
-        public static List<Item> SortBy(List<Item> items, Predicate<Item> action)
+        public static ObservableCollection<Item> SortBy(ObservableCollection<Item> items, Predicate<Item> action)
         {
-            List<Item> sortedItems = new List<Item>();
+            ObservableCollection<Item> sortedItems = new ObservableCollection<Item>();
 
             foreach (Item item in items)
             {
@@ -31,18 +71,19 @@ namespace ObjectOrientedPractics.Services
         }
 
         /// <summary>
-        /// Сортирует предметы по указанному списку.
+        ///  Сортирует список по принципу, который передадут в делегате compare.
         /// </summary>
         /// <param name="items">Список предметов.</param>
-        /// <param name="setting">Признак сортировки.</param>
-        /// <returns></returns>
-        public static List<Item> OrderBy(List<Item> items, Func<object, object, bool> setting)
+        /// <param name="compare">Принцип сортировки.</param>
+        /// <returns>Возвращает отсортированный список.</returns>
+        public static ObservableCollection<Item> OrderBy(ObservableCollection<Item> items, 
+            Compare compare)
         {
             for(int i = 0; i < items.Count; i++)
             {
-                for(int j = 1; j < items.Count; j++)
+                for(int j = 0; j < items.Count; j++)
                 {
-                    if(setting(items[i], items[j]))
+                    if(compare(items[i], items[j]))
                     {
                         var temp = items[i];
                         items[i] = items[j];
@@ -54,6 +95,13 @@ namespace ObjectOrientedPractics.Services
             return items;
         }
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="toCheck"></param>
+        /// <param name="comp"></param>
+        /// <returns></returns>
         public static bool Contains(this string source, string toCheck, StringComparison comp)
         {
             return source != null && toCheck != null && source.IndexOf(toCheck, comp) >= 0;

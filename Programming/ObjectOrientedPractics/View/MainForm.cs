@@ -2,6 +2,8 @@
 using ObjectOrientedPractics.View.Tabs;
 using ObjectOrientedPractics.Services;
 using ObjectOrientedPractics.Model;
+using System.Collections.Specialized;
+using System;
 
 namespace ObjectOrientedPractics
 {
@@ -22,19 +24,46 @@ namespace ObjectOrientedPractics
             CustomersTab.Customers = _store.Customers;
             CartsTab.Items = _store.Items;      
             CartsTab.Customers = _store.Customers;
-            OrdersTab.Customers = _store.Customers;
+            OrdersTab.Customers = _store.Customers;     
         }
-        
-        private void TabControl_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-            if (TabControl.SelectedIndex == 2)
-            {
-                CartsTab.RefreshData();
-            }
 
-            if(TabControl.SelectedIndex == 3)
+        private void ItemsTab_Changed(object sender, EventArgs e)
+        {
+            CartsTab.RefreshData();           
+            OrdersTab.RefreshData();
+        }
+
+        private void CustomerTab_Changed(object sender, EventArgs e)
+        {
+            CartsTab.RefreshData();
+            OrdersTab.RefreshData();
+        }
+
+        private void OrderTab_CreatedOrder(object sender, EventArgs e)
+        {
+            OrdersTab.RefreshData();
+        }
+
+        public void Store_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
             {
-                OrdersTab.RefreshData();
+                case NotifyCollectionChangedAction.Add: // если добавление
+                    if (e.NewItems?[0] is Store)
+                        CartsTab.RefreshData();
+                        OrdersTab.RefreshData();
+                    break;
+                case NotifyCollectionChangedAction.Remove: // если удаление
+                    if (e.OldItems?[0] is Store)
+                        CartsTab.RefreshData();
+                        OrdersTab.RefreshData();
+                    break;
+                case NotifyCollectionChangedAction.Replace: // если замена
+                    if ((e.NewItems?[0] is Store) &&
+                        (e.OldItems?[0] is Store))
+                        CartsTab.RefreshData();
+                        OrdersTab.RefreshData();
+                    break;
             }
         }
 

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -10,17 +10,17 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Хранит список предметов класса <see cref="Item"/>.
         /// </summary>
-        private List<Item> _items;
+        private ObservableCollection<Item> _items;
 
         /// <summary>
         /// Хранит список покупателей класса <see cref="Customer"/>.
         /// </summary>
-        private List<Customer> _customers;
+        private ObservableCollection<Customer> _customers;
 
         /// <summary>
         /// Возвращает и задает список предметов.
         /// </summary>
-        public List<Item> Items
+        public ObservableCollection<Item> Items
         {
             get
             {
@@ -35,7 +35,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает и задает список покупателей.
         /// </summary>
-        public List<Customer> Customers
+        public ObservableCollection<Customer> Customers
         {
             get
             {
@@ -52,8 +52,8 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public Store()
         {
-            Items = new List<Item>();
-            Customers = new List<Customer>();
+            Items = new ObservableCollection<Item>();
+            Customers = new ObservableCollection<Customer>();
         }
     }
 }

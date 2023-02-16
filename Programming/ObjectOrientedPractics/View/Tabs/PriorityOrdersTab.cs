@@ -1,6 +1,6 @@
 ﻿using ObjectOrientedPractics.Model;
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model.Orders;
 
@@ -77,7 +77,10 @@ namespace ObjectOrientedPractics.View.Tabs
 
                 Amount.Text = _customer.Cart.Amount.ToString();  
             }
-            catch { }
+            catch 
+            {
+                return;
+            }
 
             if (_priorityOrder.Items.Count == 0)
             {
@@ -88,7 +91,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void ClearButton_Click(object sender, EventArgs e)
         {
             Amount.Text = "0";
-            _customer.Cart.Items = new List<Item>();
+            _customer.Cart.Items = new ObservableCollection<Item>();
             _priorityOrder.Items = _customer.Cart.Items;
             OrderItemsListBox.Items.Clear();
         }

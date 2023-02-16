@@ -1,6 +1,6 @@
 ﻿using ObjectOrientedPractics.Model;
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model.Discounts;
 using ObjectOrientedPractics.Model.Enums;
@@ -22,7 +22,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Хранит список товаров.
         /// </summary>
-        private readonly List<Item> items = new List<Item>();
+        private readonly ObservableCollection<Item> items = new ObservableCollection<Item>();
 
         /// <summary>
         /// Хранит итоговую стоимость.

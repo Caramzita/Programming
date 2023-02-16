@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Model.Orders;
@@ -11,15 +11,18 @@ namespace ObjectOrientedPractics.View.Tabs
     /// </summary>
     public partial class CartsTab : UserControl
     {
+
+        public event EventHandler<EventArgs> OrderCreated;
+
         /// <summary>
         /// Хранит список всех предметов.
         /// </summary>
-        private List<Item> _items;
+        private ObservableCollection<Item> _items;
 
         /// <summary>
         /// Хранит список всех покупателей.
         /// </summary>
-        private List<Customer> _customers;
+        private ObservableCollection<Customer> _customers;
 
         /// <summary>
         /// Хранит корзину выбранного покупателя.
@@ -29,12 +32,12 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Хранит выбранного покупателя.
         /// </summary>
-        private Customer _selectedCustomer;
+        private Customer _selectedCustomer;     
         
         /// <summary>
         /// Возвращает и задает список предметов.
         /// </summary>
-        public List<Item> Items
+        public ObservableCollection<Item> Items
         {
             get
             {
@@ -49,7 +52,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Возвращает и задает список покупателей.
         /// </summary>
-        public List<Customer> Customers
+        public ObservableCollection<Customer> Customers
         {
             get
             {
@@ -98,6 +101,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             CustomersComboBox.Items.Clear();
             ItemsListBox.Items.Clear();
+            DiscountsCheckedListBox.Items.Clear();
 
             for (int i = 0; i < _items.Count; i++)
             {
@@ -117,6 +121,14 @@ namespace ObjectOrientedPractics.View.Tabs
                     continue;
                 }
                 CustomersComboBox.Items.Add($"{_customers[i].FullName}");
+            }
+
+            if (_selectedCustomer != null)
+            {
+                for (int i = 0; i < _selectedCustomer.Discounts.Count; i++)
+                {
+                    DiscountsCheckedListBox.Items.Add(_selectedCustomer.Discounts[i].Info, true);
+                }
             }
 
             CustomersComboBox.SelectedIndex = -1;
@@ -173,9 +185,12 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
 
-            for(int i = 0; i < _items.Count; i++)
+            ItemsListBox.Items.Clear();
+            CustomersComboBox.Items.Clear();
+
+            for (int i = 0; i < _items.Count; i++)
             {
-                if(_items[i].Name == "")
+                if (_items[i].Name == "")
                 {
                     ItemsListBox.Items.Add($"Item {_items[i].Id}");
                     continue;
@@ -183,7 +198,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 ItemsListBox.Items.Add($"{_items[i].Name}");
             }
 
-            for(int i = 0; i < _customers.Count; i++)
+            for (int i = 0; i < _customers.Count; i++)
             {
                 if (_customers[i].FullName == "Customer")
                 {
@@ -192,7 +207,6 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
                 CustomersComboBox.Items.Add($"{_customers[i].FullName}");
             }
-            CustomersComboBox.SelectedIndex = -1;
 
             CheckSelectedCustomer();
         }
@@ -319,7 +333,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _selectedCustomer.Discounts[i].Update(_selectedCustomer.Cart.Items);
             }
 
-            _selectedCustomerCart.Items = new List<Item>();
+            _selectedCustomerCart.Items = new ObservableCollection<Item>();
             CartListBox.Items.Clear();
             DiscountsCheckedListBox.Items.Clear();
 
@@ -329,6 +343,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             Amount.Text = "0.0";
+            OrderCreated?.Invoke(this, EventArgs.Empty);
         }
 
         private void DiscountsCheckedListBox_ItemCheck(object sender, ItemCheckEventArgs e)

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 
 namespace ObjectOrientedPractics.Model.Discounts
@@ -60,18 +60,16 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// </summary>
         /// <param name="items">Список предметов.</param>
         /// <returns>Размер скидки.</returns>
-        public double Calculate(List<Item> items)
+        public double Calculate(ObservableCollection<Item> items)
         {
-            double totalAmount = 0;
+            _totalAmount = 0;
 
             for (int i = 0; i < items.Count; i++)
             {
-                totalAmount += items[i].Cost;
+                _totalAmount += items[i].Cost;
             }
 
-            _totalAmount = totalAmount;
-
-            _dicsount = totalAmount * 0.3;
+            _dicsount = _totalAmount * 0.3;
 
             if (_points < (int)(_dicsount))
             {
@@ -88,7 +86,7 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// </summary>
         /// <param name="items">Список предметов.</param>
         /// <returns>Размер скидки.</returns>
-        public double Apply(List<Item> items)
+        public double Apply(ObservableCollection<Item> items)
         {
             _points -= (int)Calculate(items);
             return _points;
@@ -98,7 +96,7 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// Начисляет баллы за покупку.
         /// </summary>
         /// <param name="items"></param>
-        public void Update(List<Item> items)
+        public void Update(ObservableCollection<Item> items)
         {
             _points += (int)Math.Round(_totalAmount * 0.1);
         }

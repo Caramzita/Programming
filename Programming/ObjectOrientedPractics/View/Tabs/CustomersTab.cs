@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using ObjectOrientedPractics.View.Controls;
 using ObjectOrientedPractics.Model.Discounts;
 
@@ -13,10 +13,13 @@ namespace ObjectOrientedPractics.View.Tabs
     /// </summary>
     public partial class CustomersTab : UserControl
     {
+
+        public event EventHandler<EventArgs> CustomersChanged;
+
         /// <summary>
         /// Хранит список всех покупателей.
         /// </summary>
-        private List<Customer> _customers;
+        private ObservableCollection<Customer> _customers;
 
         /// <summary>
         /// Хранит данные выбранного покупателя.
@@ -26,7 +29,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Возвращает и задает список покупателей класса <see cref="Customer"/>.
         /// </summary>
-        public List<Customer> Customers
+        public ObservableCollection<Customer> Customers
         {
             get
             {
@@ -137,6 +140,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomersListBox.Items.Add($"Customer {_currentCustomer.Id}");
             AddCustomer();
             CheckListCount();
+            CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
@@ -156,6 +160,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 CustomersListBox.Items.RemoveAt(lastIndex);
             }
             CheckListCount();
+            CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void RandomizeButton_Click(object sender, EventArgs e)
@@ -164,6 +169,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomersListBox.Items.Add($"{_currentCustomer.FullName}");
             AddCustomer();
             CheckListCount();
+            CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void FullNameTextBox_TextChanged(object sender, EventArgs e)
@@ -173,6 +179,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _currentCustomer.FullName = FullNameTextBox.Text;
                 ToolTip.SetToolTip(FullNameTextBox, "");
                 FullNameTextBox.BackColor = AppColors.CorrectColor;
+                CustomersChanged?.Invoke(this, EventArgs.Empty);
             }
             catch (Exception exception)
             {
@@ -202,6 +209,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void PriorityCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             _currentCustomer.IsPriority = PriorityCheckBox.Checked;
+            CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void AddDiscountButton_Click(object sender, EventArgs e)
@@ -213,7 +221,9 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _currentCustomer.Discounts.Add(new PercentDiscount(addDiscountForm.SelectedCategory));
                 DiscountsListBox.Items.Add(_currentCustomer.Discounts[_currentCustomer.Discounts.Count - 1].Info);
-            }         
+            }
+
+            CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void RemoveDiscountButton_Click(object sender, EventArgs e)
@@ -227,8 +237,12 @@ namespace ObjectOrientedPractics.View.Tabs
 
                 _currentCustomer.Discounts.RemoveAt(DiscountsListBox.SelectedIndex);
                 DiscountsListBox.Items.RemoveAt(DiscountsListBox.SelectedIndex);
+                CustomersChanged?.Invoke(this, EventArgs.Empty);
             }
-            catch { };
+            catch 
+            {
+                return; 
+            };
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using ObjectOrientedPractics.Model.Enums;
 using Newtonsoft.Json;
 
@@ -71,7 +71,7 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// </summary>
         /// <param name="items">Список предметов.</param>
         /// <returns>Возвращает скидку на корзину.</returns>
-        public double Calculate(List<Item> items)
+        public double Calculate(ObservableCollection<Item> items)
         {
             double totalDiscount = 0;
             double spentMoney = 0;
@@ -95,7 +95,7 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// </summary>
         /// <param name="items">Список предметов.</param>
         /// <returns>Возвращает скидку со списанными баллами.</returns>
-        public double Apply(List<Item> items)
+        public double Apply(ObservableCollection<Item> items)
         {
             _currentDiscount = 0.01;
             return Calculate(items);
@@ -105,7 +105,7 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// Добавляет баллы на основе полученного списка товаров.
         /// </summary>
         /// <param name="items">Список товаров.</param>
-        public void Update(List<Item> items)
+        public void Update(ObservableCollection<Item> items)
         {
             if((_spentMoney / 1000) > 10)
             {

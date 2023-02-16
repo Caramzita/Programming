@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 
 namespace ObjectOrientedPractics.Model.Orders
@@ -13,6 +14,19 @@ namespace ObjectOrientedPractics.Model.Orders
         /// Хранит желаемое время доставки
         /// </summary>
         private string _desiredTime;
+
+        /// <summary>
+        /// Хранит список всех временных интервалов доставки.
+        /// </summary>
+        public readonly static List<string> TimeIntervals = new List<string>()
+        {
+            "9:00 – 11:00",
+            "11:00 – 13:00",
+            "13:00 – 15:00",
+            "15:00 – 17:00",
+            "17:00 – 19:00",
+            "19:00 – 21:00"
+        };
 
         /// <summary>
         /// Хранит желаемую дату доставки
@@ -41,20 +55,7 @@ namespace ObjectOrientedPractics.Model.Orders
 
                 throw new ArgumentException("Нет такого временного промежутка!");
             }
-        }
-
-        /// <summary>
-        /// Хранит список всех временных интервалов доставки.
-        /// </summary>
-        public readonly static List<string> TimeIntervals = new List<string>()
-        {
-            "9:00 – 11:00",
-            "11:00 – 13:00",
-            "13:00 – 15:00",
-            "15:00 – 17:00",
-            "17:00 – 19:00",
-            "19:00 – 21:00"
-        };
+        }       
 
         /// <summary>
         /// Создает экземпляр класса <see cref="PriorityOrder"/>.
@@ -64,7 +65,8 @@ namespace ObjectOrientedPractics.Model.Orders
         /// <param name="fullName">Полное имя покупателя.</param>
         /// <param name="desiredDate">Желаемая дата доставки.</param>
         /// <param name="desiredTime">Желаемое время доставки.</param>
-        public PriorityOrder(List<Item> items, Address address, string fullName, DateTime desiredDate, string desiredTime) : base(items, address, fullName)
+        public PriorityOrder(ObservableCollection<Item> items, Address address, string fullName, 
+            DateTime desiredDate, string desiredTime) : base(items, address, fullName)
         {
             DesiredDate = desiredDate;
             DesiredTime = desiredTime;
@@ -80,7 +82,8 @@ namespace ObjectOrientedPractics.Model.Orders
         /// <param name="desiredTime">Желаемое время доставки.</param>
         /// <param name="id"></param>
         [JsonConstructor]
-        public PriorityOrder(List<Item> items, Address address, string fullName, DateTime desiredDate, string desiredTime, int id) : base(items, address, fullName)
+        public PriorityOrder(ObservableCollection<Item> items, Address address, string fullName, 
+            DateTime desiredDate, string desiredTime, int id) : base(items, address, fullName)
         {
             Items = items;
             Address = address;

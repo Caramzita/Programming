@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
@@ -12,10 +12,13 @@ namespace ObjectOrientedPractics.View.Tabs
     /// </summary>
     public partial class ItemsTab : UserControl
     {
+
+        public event EventHandler<EventArgs> ItemsChanged;
+
         /// <summary>
         /// Хранит список всех предметов.
         /// </summary>
-        private List<Item> _items;
+        private ObservableCollection<Item> _items;
 
         /// <summary>
         /// Хранит данные выбранного предмета.
@@ -25,12 +28,12 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Хранит список отображаемых предметов.
         /// </summary>
-        private List<Item> _displayedItems = new List<Item>();
+        private ObservableCollection<Item> _displayedItems = new ObservableCollection<Item>();
 
         /// <summary>
         /// Возвращает и задает список предметов класса <see cref="Item"/>.
         /// </summary>
-        public List<Item> Items
+        public ObservableCollection<Item> Items
         {
             get
             {
@@ -48,7 +51,7 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemsTab()
         {
             InitializeComponent();
-            CheckListCount();    
+            CheckListCount();
         }
 
         /// <summary>
@@ -69,7 +72,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void AddItem()
         {
-            if(_items.Count == _displayedItems.Count)
+            if (_items.Count == _displayedItems.Count)
             {
                 _items.Add(_currentItem);
                 _displayedItems = _items;
@@ -122,21 +125,30 @@ namespace ObjectOrientedPractics.View.Tabs
                 ItemsListBox.Items.Add(_items[i].Name);
             }
 
+            _displayedItems = _items;
+
             foreach (var category in Enum.GetValues(typeof(Category)))
             {
                 CategoryComboBox.Items.Add(category);
             }
 
-            _displayedItems = _items;
-
             OrderByComboBox.SelectedIndex = 0;
             CategoryComboBox.SelectedIndex = -1;
+
+            if(ItemsListBox.Items.Count == 0)
+            {
+                return;
+            }
+
+            ItemsListBox.SelectedIndex = 0;
+
+            OrderByComboBox_SelectedIndexChanged(sender, e);
         }
 
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
-            {        
+            {
                 var index = ItemsListBox.SelectedIndex;
                 _currentItem = _items[_items.IndexOf(_displayedItems[index])];
                 IdTextBox.Text = _currentItem.Id.ToString();
@@ -161,7 +173,8 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemsListBox.Items.Add($"Предмет {_currentItem.Id}");
             AddItem();
             CheckListCount();
-            
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
+
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
@@ -186,13 +199,15 @@ namespace ObjectOrientedPractics.View.Tabs
                         ItemsListBox.SelectedIndex = lastIndex - 1;
                     }
                 }
+
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             catch
             {
                 ClearInfo();
             }
 
-            CheckListCount();   
+            CheckListCount();
         }
 
         private void RandomizeButton_Click(object sender, EventArgs e)
@@ -201,6 +216,7 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemsListBox.Items.Add($"{_currentItem.Name}");
             AddItem();
             CheckListCount();
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void NameTextBox_TextChanged(object sender, EventArgs e)
@@ -210,6 +226,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _currentItem.Name = NameTextBox.Text;
                 ToolTip.SetToolTip(NameTextBox, "");
                 NameTextBox.BackColor = AppColors.CorrectColor;
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             catch (Exception exception)
             {
@@ -243,6 +260,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _currentItem.Info = InfoTextBox.Text;
                 ToolTip.SetToolTip(InfoTextBox, "");
                 InfoTextBox.BackColor = AppColors.CorrectColor;
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             catch (Exception exception)
             {
@@ -259,6 +277,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _currentItem.Cost = Double.Parse(CostTextBox.Text);
                 ToolTip.SetToolTip(CostTextBox, "");
                 CostTextBox.BackColor = AppColors.CorrectColor;
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             catch (Exception exception)
             {
@@ -273,6 +292,7 @@ namespace ObjectOrientedPractics.View.Tabs
             try
             {
                 _currentItem.Category = (Category)CategoryComboBox.SelectedItem;
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             catch (Exception exception)
             {
@@ -287,7 +307,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
             string search = FindTextBox.Text;
 
-            _displayedItems = DataTools.SortBy(_items, item => item.Name.Contains(search, 
+            _displayedItems = DataTools.SortBy(_items, item => item.Name.Contains(search,
                 StringComparison.CurrentCultureIgnoreCase));
 
             foreach (Item item in _displayedItems)
@@ -297,14 +317,14 @@ namespace ObjectOrientedPractics.View.Tabs
 
             if (search == "")
             {
-                _displayedItems = _items;  
+                _displayedItems = _items;
             }
 
-            if(_displayedItems.IndexOf(_currentItem) > -1)
+            if (_displayedItems.IndexOf(_currentItem) > -1)
             {
                 ItemsListBox.SelectedIndex = _displayedItems.IndexOf(_currentItem);
             }
-            else if(_displayedItems.Count == 0)
+            else if (_displayedItems.Count == 0 || _displayedItems.Contains(_currentItem) == false)
             {
                 _currentItem = new Item();
                 ClearInfo();
@@ -322,19 +342,18 @@ namespace ObjectOrientedPractics.View.Tabs
 
             var selectedItem = _displayedItems[index];
 
-            ItemsListBox.Items.Clear();         
+            ItemsListBox.Items.Clear();  
 
             switch (OrderByComboBox.SelectedIndex)
             {
                 case 0:
-                    _displayedItems.Sort((item1, item2) => String.Compare(item1.Name.Split(' ')[0], 
-                        item2.Name.Split(' ')[0]));
+                    _displayedItems = DataTools.OrderBy(_items, DataTools.CompareByName);
                     break;
                 case 1:
-                    _displayedItems.Sort((item1, item2) => item2.Cost.CompareTo(item1.Cost));
+                    _displayedItems = DataTools.OrderBy(_items, DataTools.CompareByCostAscending);
                     break;
                 case 2:
-                    _displayedItems.Sort((item1, item2) => item1.Cost.CompareTo(item2.Cost));
+                    _displayedItems = DataTools.OrderBy(_items, DataTools.CompareByCostDescending);
                     break;
             }
 
@@ -344,6 +363,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             ItemsListBox.SelectedIndex = _displayedItems.IndexOf(selectedItem);
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }
