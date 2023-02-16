@@ -169,7 +169,16 @@ namespace ObjectOrientedPractics.Model
             {
                 throw new ArgumentException("Объект не Item");
             }
-        }      
+        }
+
+        /// <summary>
+        /// Создает клон.
+        /// </summary>
+        /// <returns>Возвращает клон объекта.</returns>
+        public object Clone()
+        {
+            return new Item(this.Name, this.Info, this.Cost, this.Category);
+        }
 
         /// <summary>
         /// Создает пустой экземпляр класса <see cref="Item"/>.
@@ -195,15 +204,6 @@ namespace ObjectOrientedPractics.Model
             Info = info;
             Cost = cost;
             Category = category;
-        }
-
-        /// <summary>
-        /// Создает клон.
-        /// </summary>
-        /// <returns>Возвращает клон объекта.</returns>
-        public object Clone()
-        {
-            return new Item(this.Name, this.Info, this.Cost, this.Category);
         }
 
         /// <summary>

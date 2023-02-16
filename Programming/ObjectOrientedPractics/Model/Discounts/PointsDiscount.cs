@@ -62,16 +62,14 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// <returns>Размер скидки.</returns>
         public double Calculate(ObservableCollection<Item> items)
         {
-            double totalAmount = 0;
+            _totalAmount = 0;
 
             for (int i = 0; i < items.Count; i++)
             {
-                totalAmount += items[i].Cost;
+                _totalAmount += items[i].Cost;
             }
 
-            _totalAmount = totalAmount;
-
-            _dicsount = totalAmount * 0.3;
+            _dicsount = _totalAmount * 0.3;
 
             if (_points < (int)(_dicsount))
             {

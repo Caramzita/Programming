@@ -195,6 +195,15 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
+        /// Создает клон.
+        /// </summary>
+        /// <returns>Возвращает клон объекта.</returns>
+        public object Clone()
+        {
+            return new Address(this.Index, this.Country, this.City, this.Street, this.Building, this.Apartment);
+        }
+
+        /// <summary>
         /// Создает пустой экземпляр класса <see cref="Address"/>.
         /// </summary>
         public Address()
@@ -224,15 +233,6 @@ namespace ObjectOrientedPractics.Model
             Street = street;
             Building = building;
             Apartment = apartment;
-        }
-
-        /// <summary>
-        /// Создает клон.
-        /// </summary>
-        /// <returns>Возвращает клон объекта.</returns>
-        public object Clone()
-        {
-            return new Address(this.Index, this.Country, this.City, this.Street, this.Building, this.Apartment);
-        }
+        }     
     }
 }

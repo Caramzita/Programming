@@ -16,6 +16,19 @@ namespace ObjectOrientedPractics.Model.Orders
         private string _desiredTime;
 
         /// <summary>
+        /// Хранит список всех временных интервалов доставки.
+        /// </summary>
+        public readonly static List<string> TimeIntervals = new List<string>()
+        {
+            "9:00 – 11:00",
+            "11:00 – 13:00",
+            "13:00 – 15:00",
+            "15:00 – 17:00",
+            "17:00 – 19:00",
+            "19:00 – 21:00"
+        };
+
+        /// <summary>
         /// Хранит желаемую дату доставки
         /// </summary>
         public DateTime DesiredDate { get; set; }
@@ -42,20 +55,7 @@ namespace ObjectOrientedPractics.Model.Orders
 
                 throw new ArgumentException("Нет такого временного промежутка!");
             }
-        }
-
-        /// <summary>
-        /// Хранит список всех временных интервалов доставки.
-        /// </summary>
-        public readonly static List<string> TimeIntervals = new List<string>()
-        {
-            "9:00 – 11:00",
-            "11:00 – 13:00",
-            "13:00 – 15:00",
-            "15:00 – 17:00",
-            "17:00 – 19:00",
-            "19:00 – 21:00"
-        };
+        }       
 
         /// <summary>
         /// Создает экземпляр класса <see cref="PriorityOrder"/>.

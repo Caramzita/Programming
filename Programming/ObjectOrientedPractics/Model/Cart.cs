@@ -88,14 +88,6 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Создает экземпляр класса <see cref="Cart"/>.
-        /// </summary>
-        public Cart()
-        {
-            Items = new ObservableCollection<Item>();
-        }
-
-        /// <summary>
         /// Создает клон.
         /// </summary>
         /// <returns>Возвращает клон объекта.</returns>
@@ -103,6 +95,14 @@ namespace ObjectOrientedPractics.Model
         {
             return new Cart();
         }
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Cart"/>.
+        /// </summary>
+        public Cart()
+        {
+            Items = new ObservableCollection<Item>();
+        }       
 
         /// <summary>
         /// Создает экземпляр класса <see cref="Cart"/>.
