@@ -214,6 +214,11 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void AddDiscountButton_Click(object sender, EventArgs e)
         {
+            if(CustomersListBox.SelectedIndex == -1)
+            {
+                return;
+            }
+
             AddDiscountForm addDiscountForm = new AddDiscountForm();
             addDiscountForm.ShowDialog();
 
@@ -230,7 +235,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             try
             {
-                if (DiscountsListBox.SelectedIndex == 0)
+                if (DiscountsListBox.SelectedIndex == 0 || CustomersListBox.SelectedIndex == -1)
                 {
                     return;
                 }
