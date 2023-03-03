@@ -92,7 +92,7 @@ namespace ObjectOrientedPractics.Model.Discounts
             }
             else
             {
-                return Math.Round(_dicsount);
+                return Math.Round(_dicsount, 2);
             }
         }
 
@@ -103,8 +103,10 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// <returns>Размер скидки.</returns>
         public double Apply(ObservableCollection<Item> items)
         {
-            _points -= (int)Calculate(items);
-            return _points;
+            int totalDiscoint = (int)Calculate(items);
+            _points -= totalDiscoint;
+
+            return totalDiscoint;
         }
 
         /// <summary>

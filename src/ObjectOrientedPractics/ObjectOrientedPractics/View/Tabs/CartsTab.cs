@@ -222,6 +222,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             _selectedCustomerCart.Items.Add(Items[ItemsListBox.SelectedIndex]);
+
             if(Items[ItemsListBox.SelectedIndex].Name == "")
             {
                 CartListBox.Items.Add($"Item {Items[ItemsListBox.SelectedIndex].Id}");
@@ -272,6 +273,8 @@ namespace ObjectOrientedPractics.View.Tabs
             CartListBox.Items.Clear();
             _selectedCustomerCart.Items.Clear();
             Amount.Text = "0";
+            DiscountAmount.Text = "0";
+            Total.Text = "0";
         }
 
         private void CreateOrderButton_Click(object sender, EventArgs e)

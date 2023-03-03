@@ -67,7 +67,7 @@ namespace ObjectOrientedPractics.View.Tabs
             this.ItemsListBox.FormattingEnabled = true;
             this.ItemsListBox.IntegralHeight = false;
             this.ItemsListBox.Location = new System.Drawing.Point(6, 20);
-            this.ItemsListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ItemsListBox.Margin = new System.Windows.Forms.Padding(2);
             this.ItemsListBox.Name = "ItemsListBox";
             this.ItemsListBox.Size = new System.Drawing.Size(236, 486);
             this.ItemsListBox.TabIndex = 1;
@@ -76,7 +76,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             this.AddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.AddButton.Location = new System.Drawing.Point(6, 510);
-            this.AddButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddButton.Margin = new System.Windows.Forms.Padding(2);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(237, 30);
             this.AddButton.TabIndex = 2;
@@ -101,7 +101,7 @@ namespace ObjectOrientedPractics.View.Tabs
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CustomersComboBox.FormattingEnabled = true;
             this.CustomersComboBox.Location = new System.Drawing.Point(316, 20);
-            this.CustomersComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CustomersComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.CustomersComboBox.Name = "CustomersComboBox";
             this.CustomersComboBox.Size = new System.Drawing.Size(456, 21);
             this.CustomersComboBox.TabIndex = 4;
@@ -124,7 +124,7 @@ namespace ObjectOrientedPractics.View.Tabs
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CartListBox.FormattingEnabled = true;
             this.CartListBox.Location = new System.Drawing.Point(252, 87);
-            this.CartListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CartListBox.Margin = new System.Windows.Forms.Padding(2);
             this.CartListBox.Name = "CartListBox";
             this.CartListBox.Size = new System.Drawing.Size(520, 186);
             this.CartListBox.TabIndex = 6;
@@ -145,7 +145,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             this.Amount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Amount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Amount.Location = new System.Drawing.Point(591, 290);
+            this.Amount.Location = new System.Drawing.Point(593, 290);
             this.Amount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Amount.Name = "Amount";
             this.Amount.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -158,7 +158,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             this.CreateOrderButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.CreateOrderButton.Location = new System.Drawing.Point(252, 318);
-            this.CreateOrderButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CreateOrderButton.Margin = new System.Windows.Forms.Padding(2);
             this.CreateOrderButton.Name = "CreateOrderButton";
             this.CreateOrderButton.Size = new System.Drawing.Size(95, 26);
             this.CreateOrderButton.TabIndex = 9;
@@ -170,7 +170,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             this.RemoveItemButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.RemoveItemButton.Location = new System.Drawing.Point(596, 318);
-            this.RemoveItemButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RemoveItemButton.Margin = new System.Windows.Forms.Padding(2);
             this.RemoveItemButton.Name = "RemoveItemButton";
             this.RemoveItemButton.Size = new System.Drawing.Size(95, 26);
             this.RemoveItemButton.TabIndex = 10;
@@ -182,7 +182,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             this.ClearCartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ClearCartButton.Location = new System.Drawing.Point(696, 318);
-            this.ClearCartButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ClearCartButton.Margin = new System.Windows.Forms.Padding(2);
             this.ClearCartButton.Name = "ClearCartButton";
             this.ClearCartButton.Size = new System.Drawing.Size(75, 26);
             this.ClearCartButton.TabIndex = 11;
@@ -198,7 +198,7 @@ namespace ObjectOrientedPractics.View.Tabs
             this.DiscountsCheckedListBox.CheckOnClick = true;
             this.DiscountsCheckedListBox.FormattingEnabled = true;
             this.DiscountsCheckedListBox.Location = new System.Drawing.Point(252, 373);
-            this.DiscountsCheckedListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DiscountsCheckedListBox.Margin = new System.Windows.Forms.Padding(2);
             this.DiscountsCheckedListBox.Name = "DiscountsCheckedListBox";
             this.DiscountsCheckedListBox.Size = new System.Drawing.Size(343, 165);
             this.DiscountsCheckedListBox.TabIndex = 12;
@@ -233,7 +233,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             this.DiscountAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.DiscountAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DiscountAmount.Location = new System.Drawing.Point(604, 394);
+            this.DiscountAmount.Location = new System.Drawing.Point(606, 394);
             this.DiscountAmount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.DiscountAmount.Name = "DiscountAmount";
             this.DiscountAmount.Size = new System.Drawing.Size(168, 32);
@@ -257,7 +257,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             this.Total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Total.Location = new System.Drawing.Point(600, 453);
+            this.Total.Location = new System.Drawing.Point(602, 453);
             this.Total.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Total.Name = "Total";
             this.Total.Size = new System.Drawing.Size(172, 25);
@@ -287,7 +287,7 @@ namespace ObjectOrientedPractics.View.Tabs
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.ItemsListBox);
             this.Controls.Add(this.ItemsLabel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CartsTab";
             this.Size = new System.Drawing.Size(784, 544);
             this.Load += new System.EventHandler(this.CartsTab_Load);

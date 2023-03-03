@@ -178,7 +178,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             this.DiscountsLabel.AutoSize = true;
             this.DiscountsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DiscountsLabel.Location = new System.Drawing.Point(245, 251);
+            this.DiscountsLabel.Location = new System.Drawing.Point(245, 223);
             this.DiscountsLabel.Name = "DiscountsLabel";
             this.DiscountsLabel.Size = new System.Drawing.Size(63, 13);
             this.DiscountsLabel.TabIndex = 24;
@@ -191,17 +191,17 @@ namespace ObjectOrientedPractics.View.Tabs
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DiscountsListBox.FormattingEnabled = true;
             this.DiscountsListBox.IntegralHeight = false;
-            this.DiscountsListBox.Location = new System.Drawing.Point(248, 267);
+            this.DiscountsListBox.Location = new System.Drawing.Point(248, 240);
             this.DiscountsListBox.Name = "DiscountsListBox";
-            this.DiscountsListBox.Size = new System.Drawing.Size(365, 166);
+            this.DiscountsListBox.Size = new System.Drawing.Size(365, 198);
             this.DiscountsListBox.TabIndex = 25;
             // 
             // RemoveDiscountButton
             // 
             this.RemoveDiscountButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemoveDiscountButton.Location = new System.Drawing.Point(532, 439);
+            this.RemoveDiscountButton.Location = new System.Drawing.Point(530, 441);
             this.RemoveDiscountButton.Name = "RemoveDiscountButton";
-            this.RemoveDiscountButton.Size = new System.Drawing.Size(81, 32);
+            this.RemoveDiscountButton.Size = new System.Drawing.Size(81, 30);
             this.RemoveDiscountButton.TabIndex = 26;
             this.RemoveDiscountButton.Text = "Remove";
             this.RemoveDiscountButton.UseVisualStyleBackColor = true;
@@ -210,9 +210,9 @@ namespace ObjectOrientedPractics.View.Tabs
             // AddDiscountButton
             // 
             this.AddDiscountButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddDiscountButton.Location = new System.Drawing.Point(445, 439);
+            this.AddDiscountButton.Location = new System.Drawing.Point(445, 441);
             this.AddDiscountButton.Name = "AddDiscountButton";
-            this.AddDiscountButton.Size = new System.Drawing.Size(81, 32);
+            this.AddDiscountButton.Size = new System.Drawing.Size(81, 30);
             this.AddDiscountButton.TabIndex = 27;
             this.AddDiscountButton.Text = "Add";
             this.AddDiscountButton.UseVisualStyleBackColor = true;
@@ -221,13 +221,12 @@ namespace ObjectOrientedPractics.View.Tabs
             // AddressControl
             // 
             this.AddressControl.Address = null;
-            this.AddressControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.AddressControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddressControl.Location = new System.Drawing.Point(245, 93);
-            this.AddressControl.Margin = new System.Windows.Forms.Padding(2);
+            this.AddressControl.Location = new System.Drawing.Point(248, 93);
+            this.AddressControl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AddressControl.Name = "AddressControl";
-            this.AddressControl.Size = new System.Drawing.Size(368, 156);
+            this.AddressControl.Size = new System.Drawing.Size(365, 128);
             this.AddressControl.TabIndex = 22;
             // 
             // CustomersTab

@@ -81,14 +81,12 @@
             // 
             // ItemsTab
             // 
-            this.ItemsTab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ItemsTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ItemsTab.Items = null;
             this.ItemsTab.Location = new System.Drawing.Point(2, 2);
-            this.ItemsTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ItemsTab.Margin = new System.Windows.Forms.Padding(2);
             this.ItemsTab.Name = "ItemsTab";
-            this.ItemsTab.Size = new System.Drawing.Size(706, 518);
+            this.ItemsTab.Size = new System.Drawing.Size(708, 511);
             this.ItemsTab.TabIndex = 0;
             // 
             // CustomersPage
@@ -120,7 +118,7 @@
             this.CartsTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CartsTab.Items = null;
             this.CartsTab.Location = new System.Drawing.Point(0, 0);
-            this.CartsTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CartsTab.Margin = new System.Windows.Forms.Padding(2);
             this.CartsTab.Name = "CartsTab";
             this.CartsTab.Size = new System.Drawing.Size(712, 515);
             this.CartsTab.TabIndex = 0;
@@ -166,7 +164,7 @@
             this.PriorityOrdersTab.Location = new System.Drawing.Point(4, 7);
             this.PriorityOrdersTab.Margin = new System.Windows.Forms.Padding(4);
             this.PriorityOrdersTab.Name = "PriorityOrdersTab";
-            this.PriorityOrdersTab.Size = new System.Drawing.Size(704, 504);
+            this.PriorityOrdersTab.Size = new System.Drawing.Size(184, 63);
             this.PriorityOrdersTab.TabIndex = 0;
             // 
             // DiscountTabPage

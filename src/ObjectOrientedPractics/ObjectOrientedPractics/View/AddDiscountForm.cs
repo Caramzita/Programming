@@ -30,7 +30,9 @@ namespace ObjectOrientedPractics.View
             foreach(var category in Enum.GetValues(typeof(Category)))
             {
                 CategoryComboBox.Items.Add(category);
-            }  
+            }
+
+            CategoryComboBox.SelectedIndex = 0;
         }
 
         private void OkButton_Click(object sender, EventArgs e)

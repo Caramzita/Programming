@@ -25,12 +25,7 @@ namespace ObjectOrientedPractics.Services
         /// <returns>Возвращает true, если item1 предшествует item2.</returns>
         public static bool CompareByName(Item item1, Item item2)
         {
-            if (String.Compare(item1.Name, item2.Name) < 0)
-            {
-                return true;
-            }
-
-            return false;
+            return String.Compare(item1.Name, item2.Name) < 0;
         }
 
         /// <summary>

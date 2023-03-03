@@ -58,8 +58,8 @@ namespace ObjectOrientedPractics.View.Tabs
             this.InfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.InfoTextBox.Location = new System.Drawing.Point(248, 263);
-            this.InfoTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.InfoTextBox.Location = new System.Drawing.Point(248, 270);
+            this.InfoTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.InfoTextBox.Multiline = true;
             this.InfoTextBox.Name = "InfoTextBox";
             this.InfoTextBox.Size = new System.Drawing.Size(364, 201);
@@ -81,7 +81,7 @@ namespace ObjectOrientedPractics.View.Tabs
             this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NameTextBox.Location = new System.Drawing.Point(248, 112);
-            this.NameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.NameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.NameTextBox.Multiline = true;
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(364, 123);
@@ -105,7 +105,7 @@ namespace ObjectOrientedPractics.View.Tabs
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CategoryComboBox.FormattingEnabled = true;
             this.CategoryComboBox.Location = new System.Drawing.Point(308, 70);
-            this.CategoryComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CategoryComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(141, 21);
             this.CategoryComboBox.TabIndex = 27;
@@ -116,7 +116,7 @@ namespace ObjectOrientedPractics.View.Tabs
             this.CostTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CostTextBox.Location = new System.Drawing.Point(308, 46);
-            this.CostTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CostTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.CostTextBox.Name = "CostTextBox";
             this.CostTextBox.Size = new System.Drawing.Size(141, 20);
             this.CostTextBox.TabIndex = 26;
@@ -127,7 +127,7 @@ namespace ObjectOrientedPractics.View.Tabs
             this.IdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IdTextBox.Location = new System.Drawing.Point(308, 22);
-            this.IdTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.IdTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.IdTextBox.Name = "IdTextBox";
             this.IdTextBox.ReadOnly = true;
             this.IdTextBox.Size = new System.Drawing.Size(141, 20);
@@ -177,8 +177,8 @@ namespace ObjectOrientedPractics.View.Tabs
             // RandomizeButton
             // 
             this.RandomizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.RandomizeButton.Location = new System.Drawing.Point(3, 434);
-            this.RandomizeButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RandomizeButton.Location = new System.Drawing.Point(3, 441);
+            this.RandomizeButton.Margin = new System.Windows.Forms.Padding(2);
             this.RandomizeButton.Name = "RandomizeButton";
             this.RandomizeButton.Size = new System.Drawing.Size(238, 30);
             this.RandomizeButton.TabIndex = 20;
@@ -189,8 +189,8 @@ namespace ObjectOrientedPractics.View.Tabs
             // RemoveButton
             // 
             this.RemoveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.RemoveButton.Location = new System.Drawing.Point(125, 396);
-            this.RemoveButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RemoveButton.Location = new System.Drawing.Point(125, 403);
+            this.RemoveButton.Margin = new System.Windows.Forms.Padding(2);
             this.RemoveButton.Name = "RemoveButton";
             this.RemoveButton.Size = new System.Drawing.Size(116, 34);
             this.RemoveButton.TabIndex = 19;
@@ -201,8 +201,8 @@ namespace ObjectOrientedPractics.View.Tabs
             // AddButton
             // 
             this.AddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddButton.Location = new System.Drawing.Point(3, 396);
-            this.AddButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddButton.Location = new System.Drawing.Point(3, 403);
+            this.AddButton.Margin = new System.Windows.Forms.Padding(2);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(116, 34);
             this.AddButton.TabIndex = 18;
@@ -217,9 +217,9 @@ namespace ObjectOrientedPractics.View.Tabs
             this.ItemsListBox.FormattingEnabled = true;
             this.ItemsListBox.IntegralHeight = false;
             this.ItemsListBox.Location = new System.Drawing.Point(3, 44);
-            this.ItemsListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ItemsListBox.Margin = new System.Windows.Forms.Padding(2);
             this.ItemsListBox.Name = "ItemsListBox";
-            this.ItemsListBox.Size = new System.Drawing.Size(238, 326);
+            this.ItemsListBox.Size = new System.Drawing.Size(238, 330);
             this.ItemsListBox.TabIndex = 17;
             this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             // 
@@ -247,7 +247,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // FindTextBox
             // 
             this.FindTextBox.Location = new System.Drawing.Point(36, 20);
-            this.FindTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FindTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.FindTextBox.Name = "FindTextBox";
             this.FindTextBox.Size = new System.Drawing.Size(205, 20);
             this.FindTextBox.TabIndex = 33;
@@ -258,7 +258,7 @@ namespace ObjectOrientedPractics.View.Tabs
             this.OrderByLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.OrderByLabel.AutoSize = true;
             this.OrderByLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.OrderByLabel.Location = new System.Drawing.Point(2, 375);
+            this.OrderByLabel.Location = new System.Drawing.Point(2, 381);
             this.OrderByLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.OrderByLabel.Name = "OrderByLabel";
             this.OrderByLabel.Size = new System.Drawing.Size(50, 13);
@@ -273,8 +273,8 @@ namespace ObjectOrientedPractics.View.Tabs
             "Name",
             "Cost (Ascending)",
             "Cost (Descending)"});
-            this.OrderByComboBox.Location = new System.Drawing.Point(53, 373);
-            this.OrderByComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.OrderByComboBox.Location = new System.Drawing.Point(53, 378);
+            this.OrderByComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.OrderByComboBox.Name = "OrderByComboBox";
             this.OrderByComboBox.Size = new System.Drawing.Size(188, 21);
             this.OrderByComboBox.TabIndex = 35;
@@ -304,7 +304,7 @@ namespace ObjectOrientedPractics.View.Tabs
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.ItemsListBox);
             this.Controls.Add(this.ItemsLabel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ItemsTab";
             this.Size = new System.Drawing.Size(616, 474);
             this.Load += new System.EventHandler(this.ItemsTab_Load);

@@ -73,20 +73,17 @@ namespace ObjectOrientedPractics.Model.Discounts
         public double Calculate(ObservableCollection<Item> items)
         {
             double totalDiscount = 0;
-            double spentMoney = 0;
 
             foreach (var item in items)
             {
                 if (item.Category == Category)
                 {
                     totalDiscount += item.Cost * _currentDiscount;
-                    spentMoney += item.Cost * (1 - _currentDiscount);             
+                    _spentMoney += item.Cost * (1 - _currentDiscount);             
                 }
             }
 
-            _spentMoney = spentMoney;
-
-            return totalDiscount;
+            return Math.Round(totalDiscount, 2);
         }
 
         /// <summary>
@@ -96,7 +93,6 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// <returns>Возвращает скидку со списанными баллами.</returns>
         public double Apply(ObservableCollection<Item> items)
         {
-            _currentDiscount = 0.01;
             return Calculate(items);
         }
 
