@@ -15,16 +15,6 @@ namespace ObjectOrientedPractics.Model.Discounts
         private int _points;
 
         /// <summary>
-        /// Хранит скидку от 0 до 1.
-        /// </summary>
-        private double _dicsount;
-
-        /// <summary>
-        /// Хранит итоговую сумму заказа.
-        /// </summary>
-        private double _totalAmount = 0;
-
-        /// <summary>
         /// Возвращает и задает накопленные баллы. Задает только при инициализации.
         /// </summary>
         public int Points
@@ -63,7 +53,7 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// <summary>
         /// Создает экземпляр класса <see cref="PointsDiscount"/>.
         /// </summary>
-        /// <param name="points"></param>
+        /// <param name="points">Баллы.</param>
         [JsonConstructor]
         public PointsDiscount(int points)
         {
@@ -77,22 +67,22 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// <returns>Размер скидки.</returns>
         public double Calculate(ObservableCollection<Item> items)
         {
-            _totalAmount = 0;
+            var totalAmount = 0.0;
 
             for (int i = 0; i < items.Count; i++)
             {
-                _totalAmount += items[i].Cost;
+                totalAmount += items[i].Cost;
             }
 
-            _dicsount = _totalAmount * 0.3;
+            var discount = totalAmount * 0.3;
 
-            if (_points < (int)(_dicsount))
+            if (_points < (int)(discount))
             {
                 return _points;
             }
             else
             {
-                return Math.Round(_dicsount, 2);
+                return Math.Round(discount, 2);
             }
         }
 
@@ -112,10 +102,17 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// <summary>
         /// Начисляет баллы за покупку.
         /// </summary>
-        /// <param name="items"></param>
+        /// <param name="items">Список предметов.</param>
         public void Update(ObservableCollection<Item> items)
         {
-            _points += (int)Math.Round(_totalAmount * 0.1);
+            var totalAmount = 0.0;
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                totalAmount += items[i].Cost;
+            }
+
+            _points += (int)Math.Round(totalAmount * 0.1);
         }
 
         /// <inheritdoc />

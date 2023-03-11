@@ -29,7 +29,7 @@ namespace ObjectOrientedPractics.Services
         /// <param name="minLength">минимальная длина.</param>
         /// <param name="maxLength">максимальная длина.</param>
         /// <param name="propertyName">имя объекта.</param>
-        public static void AssertIntOnLength(int value, int minLength, int maxLength, 
+        public static void AssertIntOnRange(int value, int minLength, int maxLength, 
             string propertyName)
         {
             if (minLength > value || value > maxLength)

@@ -37,6 +37,14 @@ namespace ObjectOrientedPractics.View.Tabs
         public ObservableCollection<Customer> Customers { get; set; }
 
         /// <summary>
+        /// Создает экземпляр класса <see cref="CartsTab"/>.
+        /// </summary>
+        public CartsTab()
+        {
+            InitializeComponent();
+        }
+
+        /// <summary>
         /// Обновляет цену товаров в корзине.
         /// </summary>
         void UpdateAmount()
@@ -73,11 +81,6 @@ namespace ObjectOrientedPractics.View.Tabs
 
             for (int i = 0; i < Items.Count; i++)
             {
-                if (Items[i].Name == "")
-                {
-                    ItemsListBox.Items.Add($"Item {Items[i].Id}");
-                    continue;
-                }
                 ItemsListBox.Items.Add($"{Items[i].Name}");
             }
 
@@ -136,14 +139,6 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             DiscountAmount.Text = CalculateTotalDiscount(customer).ToString();
             Total.Text = (customer.Cart.Amount - CalculateTotalDiscount(customer)).ToString();
-        }
-
-        /// <summary>
-        /// Создает экземпляр класса <see cref="CartsTab"/>.
-        /// </summary>
-        public CartsTab()
-        {
-            InitializeComponent();
         }
 
         private void CartsTab_Load(object sender, EventArgs e)

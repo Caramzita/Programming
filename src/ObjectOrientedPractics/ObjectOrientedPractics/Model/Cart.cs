@@ -26,7 +26,7 @@ namespace ObjectOrientedPractics.Model
         {
             get
             {
-                if(Items == null)
+                if (Items == null)
                 {
                     return _amount;
                 }

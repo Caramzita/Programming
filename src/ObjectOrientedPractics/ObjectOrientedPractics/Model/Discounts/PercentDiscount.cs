@@ -78,8 +78,7 @@ namespace ObjectOrientedPractics.Model.Discounts
             {
                 if (item.Category == Category)
                 {
-                    totalDiscount += item.Cost * _currentDiscount;
-                    _spentMoney += item.Cost * (1 - _currentDiscount);             
+                    totalDiscount += item.Cost * _currentDiscount;            
                 }
             }
 
@@ -93,6 +92,14 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// <returns>Возвращает скидку со списанными баллами.</returns>
         public double Apply(ObservableCollection<Item> items)
         {
+            foreach (var item in items)
+            {
+                if (item.Category == Category)
+                {
+                    _spentMoney += item.Cost * (1 - _currentDiscount);
+                }
+            }
+
             return Calculate(items);
         }
 

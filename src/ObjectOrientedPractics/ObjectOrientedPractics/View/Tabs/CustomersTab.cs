@@ -41,7 +41,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Очищает все поля.
         /// </summary>
-        private void ClearInfo()
+        private void ClearData()
         {
             IdTextBox.Clear();
             FullNameTextBox.Clear();
@@ -122,7 +122,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 if (Customers.Count == 0)
                 {
                     AddressControl.ClearAllTextBox();
-                    ClearInfo();
+                    ClearData();
                 }
             }
         }
@@ -199,7 +199,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             catch(ArgumentOutOfRangeException)
             {
-                ClearInfo();
+                ClearData();
             }
         }
 

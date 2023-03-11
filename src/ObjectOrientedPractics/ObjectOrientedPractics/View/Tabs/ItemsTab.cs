@@ -12,6 +12,13 @@ namespace ObjectOrientedPractics.View.Tabs
     /// </summary>
     public partial class ItemsTab : UserControl
     {
+        private readonly string[] sortingArray = new string[]
+        {
+            "Name",
+            "Cost (Ascending)",
+            "Cost (Descending)"
+        };
+
         /// <summary>
         /// Хранит данные выбранного предмета.
         /// </summary>
@@ -44,7 +51,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Очищает все поля.
         /// </summary>
-        private void ClearInfo()
+        private void ClearData()
         {
             IdTextBox.Clear();
             NameTextBox.Clear();
@@ -52,6 +59,19 @@ namespace ObjectOrientedPractics.View.Tabs
             CostTextBox.Clear();
             CostTextBox.BackColor = AppColors.CorrectColor;
             CategoryComboBox.Text = "";
+        }
+
+        /// <summary>
+        /// Обновляет данные в <see cref="ItemsListBox"/>.
+        /// </summary>
+        private void UpdateListBox(ObservableCollection<Item> items)
+        {
+            ItemsListBox.Items.Clear();
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                ItemsListBox.Items.Add(items[i].Name);
+            }
         }
 
         /// <summary>
@@ -63,13 +83,26 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 Items.Add(_currentItem);
                 _displayedItems = Items;
-                ItemsListBox.SelectedIndex = Items.Count - 1;
+                UpdateListBox(Items);
+                ItemsListBox.SelectedIndex = Items.IndexOf(_currentItem);
                 return;
             }
+            else
+            {
+                var search = FindTextBox.Text;
 
-            Items.Add(_currentItem);
-            _displayedItems.Add(_currentItem);
-            ItemsListBox.SelectedIndex = _displayedItems.Count - 1;
+                if (_currentItem.Name.Contains(search, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    Items.Add(_currentItem);
+                    _displayedItems.Add(_currentItem);
+                    UpdateListBox(_displayedItems);
+                    ItemsListBox.SelectedIndex = _displayedItems.IndexOf(_currentItem);
+                }
+                else
+                {
+                    Items.Add(_currentItem);
+                }
+            }
         }
 
         /// <summary>
@@ -105,12 +138,6 @@ namespace ObjectOrientedPractics.View.Tabs
 
             for (int i = 0; i < Items.Count; i++)
             {
-                if (Items[i].Name == "")
-                {
-                    ItemsListBox.Items.Add($"Item {Items[i].Id}");
-                    continue;
-                }
-
                 ItemsListBox.Items.Add(Items[i].Name);
             }
 
@@ -119,6 +146,11 @@ namespace ObjectOrientedPractics.View.Tabs
             foreach (var category in Enum.GetValues(typeof(Category)))
             {
                 CategoryComboBox.Items.Add(category);
+            }
+
+            foreach(var method in sortingArray)
+            {
+                OrderByComboBox.Items.Add(method);
             }
 
             OrderByComboBox.SelectedIndex = 0;
@@ -151,7 +183,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 if (Items.Count == 0)
                 {
-                    ClearInfo();
+                    ClearData();
                 }
             }
         }
@@ -159,8 +191,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void AddButton_Click(object sender, EventArgs e)
         {
             _currentItem = new Item();
-            ItemsListBox.Items.Add($"Предмет {_currentItem.Id}");
-            AddItem();
+            AddItem();       
             CheckListCount();
             ItemsChanged?.Invoke(this, EventArgs.Empty);
 
@@ -193,7 +224,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             catch(ArgumentOutOfRangeException)
             {
-                ClearInfo();
+                ClearData();
             }
 
             CheckListCount();
@@ -201,8 +232,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void RandomizeButton_Click(object sender, EventArgs e)
         {
-            _currentItem = ItemFactory.Randomize();
-            ItemsListBox.Items.Add($"{_currentItem.Name}");
+            _currentItem = ItemFactory.Randomize();         
             AddItem();
             CheckListCount();
             ItemsChanged?.Invoke(this, EventArgs.Empty);
@@ -238,7 +268,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             catch
             {
-                ClearInfo();
+                ClearData();
             }
         }
 
@@ -296,7 +326,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
             string search = FindTextBox.Text;
 
-            _displayedItems = DataTools.SortBy(Items, item => item.Name.Contains(search,
+            _displayedItems = DataTools.Search(Items, item => item.Name.Contains(search,
                 StringComparison.CurrentCultureIgnoreCase));
 
             foreach (Item item in _displayedItems)
@@ -306,7 +336,13 @@ namespace ObjectOrientedPractics.View.Tabs
 
             if (search == "")
             {
+                Items = DataTools.OrderBy(Items, DataTools.CompareByName);
                 _displayedItems = Items;
+                UpdateListBox(Items);
+            }
+            else
+            {
+                ItemsListBox.SelectedIndex = -1;
             }
 
             if (_displayedItems.IndexOf(_currentItem) > -1)
@@ -316,42 +352,26 @@ namespace ObjectOrientedPractics.View.Tabs
             else if (_displayedItems.Count == 0 || _displayedItems.Contains(_currentItem) == false)
             {
                 _currentItem = new Item();
-                ClearInfo();
+                ClearData();
             }
         }
 
         private void OrderByComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var index = ItemsListBox.SelectedIndex;
-
-            if(index == -1)
+            switch (OrderByComboBox.SelectedItem.ToString())
             {
-                return;
-            }
-
-            var selectedItem = _displayedItems[index];
-
-            ItemsListBox.Items.Clear();  
-
-            switch (OrderByComboBox.SelectedIndex)
-            {
-                case 0:
-                    _displayedItems = DataTools.OrderBy(Items, DataTools.CompareByName);
+                case "Name":
+                    _displayedItems = DataTools.OrderBy(_displayedItems, DataTools.CompareByName);
                     break;
-                case 1:
-                    _displayedItems = DataTools.OrderBy(Items, DataTools.CompareByCostAscending);
+                case "Cost (Ascending)":
+                    _displayedItems = DataTools.OrderBy(_displayedItems, DataTools.CompareByCostAscending);
                     break;
-                case 2:
-                    _displayedItems = DataTools.OrderBy(Items, DataTools.CompareByCostDescending);
+                case "Cost (Descending)":
+                    _displayedItems = DataTools.OrderBy(_displayedItems, DataTools.CompareByCostDescending);
                     break;
             }
 
-            foreach (Item item in _displayedItems)
-            {
-                ItemsListBox.Items.Add($"{item.Name}");
-            }
-
-            ItemsListBox.SelectedIndex = _displayedItems.IndexOf(selectedItem);
+            UpdateListBox(_displayedItems);
             ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
     }

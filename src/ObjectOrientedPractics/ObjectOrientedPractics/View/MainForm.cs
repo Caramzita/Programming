@@ -26,6 +26,7 @@ namespace ObjectOrientedPractics
             CartsTab.Customers = _store.Customers;
             OrdersTab.Customers = _store.Customers;
             ItemsTab.ItemsChanged += ItemsTab_Changed;
+            CustomersTab.CustomersChanged += CustomerTab_Changed;
             CartsTab.OrderCreated += OrderTab_CreatedOrder;
         }
 

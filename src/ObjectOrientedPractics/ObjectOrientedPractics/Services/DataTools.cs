@@ -14,7 +14,7 @@ namespace ObjectOrientedPractics.Services
         /// </summary>
         /// <param name="item1">Предмет 1.</param>
         /// <param name="item2">Предмет 2.</param>
-        /// <returns></returns>
+        /// <returns>Возвращает bool при проверке.</returns>
         public delegate bool Compare(Item item1, Item item2);
 
         /// <summary>
@@ -55,8 +55,9 @@ namespace ObjectOrientedPractics.Services
         /// </summary>
         /// <param name="items">Список предметов.</param>
         /// <param name="action">Признак сортировки.</param>
-        /// <returns></returns>
-        public static ObservableCollection<Item> SortBy(ObservableCollection<Item> items, 
+        /// <returns>Возвращает отсортированный список.</returns>
+        public static ObservableCollection<Item> Search(
+            ObservableCollection<Item> items, 
             Predicate<Item> action)
         {
             ObservableCollection<Item> sortedItems = new ObservableCollection<Item>();

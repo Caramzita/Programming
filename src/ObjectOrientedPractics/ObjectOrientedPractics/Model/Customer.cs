@@ -17,14 +17,9 @@ namespace ObjectOrientedPractics.Model
         private string _fullname;
 
         /// <summary>
-        /// Возвращает и задает корзину покупателя.
+        /// Возвращает уникальный идентификатор.
         /// </summary>
-        public Cart Cart { get; set; }
-
-        /// <summary>
-        /// Возвращает и задает список заказов.
-        /// </summary>
-        public ObservableCollection<Order> Orders { get; set; }
+        public int Id { get; }
 
         /// <summary>
         /// Возвращает и задает полное имя покупателя. Должно быть не больше 200 символов.
@@ -48,9 +43,14 @@ namespace ObjectOrientedPractics.Model
         public Address Address { get; set; }
 
         /// <summary>
-        /// Возвращает уникальный идентификатор.
+        /// Возвращает и задает корзину покупателя.
         /// </summary>
-        public int Id { get; }
+        public Cart Cart { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает список заказов.
+        /// </summary>
+        public ObservableCollection<Order> Orders { get; set; }
 
         /// <summary>
         /// Возвращает и задает список скидок.

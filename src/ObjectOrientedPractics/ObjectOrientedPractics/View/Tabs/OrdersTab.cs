@@ -61,6 +61,14 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
+        /// Создает экземпляр класс <see cref="OrdersTab"/>.
+        /// </summary>
+        public OrdersTab()
+        {
+            InitializeComponent();
+        }
+
+        /// <summary>
         /// Обновляет данные заказов.
         /// </summary>
         public void RefreshData()
@@ -119,14 +127,6 @@ namespace ObjectOrientedPractics.View.Tabs
                     DataGridView.Rows[i].Cells["IsPriority"].Value = Resources.empty_24;
                 }
             }
-        }
-
-        /// <summary>
-        /// Создает экземпляр класс <see cref="OrdersTab"/>.
-        /// </summary>
-        public OrdersTab()
-        {
-            InitializeComponent();
         }
 
         private void OrdersTab_Load(object sender, EventArgs e)

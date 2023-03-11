@@ -54,7 +54,7 @@ namespace ObjectOrientedPractics.Model
             }
             set
             {
-                ValueValidator.AssertIntOnLength(value, 99999, 1000000, nameof(PostalCode));
+                ValueValidator.AssertIntOnRange(value, 99999, 1000000, nameof(PostalCode));
 
                 if(_postalCode != value)
                 {

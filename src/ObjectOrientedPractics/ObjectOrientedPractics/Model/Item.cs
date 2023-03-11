@@ -11,17 +11,17 @@ namespace ObjectOrientedPractics.Model
     public class Item : ICloneable, IComparable
     {
         /// <summary>
-        /// хранит имя предмета.
+        /// Хранит имя предмета.
         /// </summary>
         private string _name;
 
         /// <summary>
-        /// хранит информацию о предмете.
+        /// Хранит информацию о предмете.
         /// </summary>
         private string _info;
 
         /// <summary>
-        /// хранит цену предмета.
+        /// Хранит цену предмета.
         /// </summary>
         private double _cost;
 
@@ -41,9 +41,9 @@ namespace ObjectOrientedPractics.Model
         public event EventHandler<EventArgs> InfoChanged;
 
         /// <summary>
-        /// Возвращает и задает категорию предмета.
+        /// Возвращает уникальный идентификатор.
         /// </summary>
-        public Category Category { get; set; }
+        public int Id { get; }
 
         /// <summary>
         /// Возвращает и задает имя предмета. Не должно превышать 200 символов.
@@ -112,9 +112,9 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Возвращает уникальный идентификатор.
+        /// Возвращает и задает категорию предмета.
         /// </summary>
-        public int Id { get; } 
+        public Category Category { get; set; }
 
         /// <summary>
         /// Создает пустой экземпляр класса <see cref="Item"/>.
