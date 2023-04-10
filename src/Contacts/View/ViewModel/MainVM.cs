@@ -2,6 +2,8 @@
 using System.Runtime.CompilerServices;
 using View.Model;
 using View.Model.Services;
+using System.Collections.ObjectModel;
+using System;
 
 namespace View.ViewModel
 {
@@ -15,15 +17,21 @@ namespace View.ViewModel
         /// </summary>
         private Contact _currentContact = new Contact(); 
 
+        private ObservableCollection<Contact> _contacts = new ObservableCollection<Contact>();
+
         /// <summary>
         /// Хранит команду для сохранения данных.
         /// </summary>
-        private RelayCommand _saveCommand;
+        private RelayCommand _addCommand;
 
         /// <summary>
         /// Хранит команду для загрузки данных из файлов.
         /// </summary>
-        private RelayCommand _loadCommand;
+        private RelayCommand _removeCommand;
+
+        private RelayCommand _editCommand;
+
+        private RelayCommand _applyCommand;
 
         /// <summary>
         /// Хранит событие на изменение контакта. Зажигается при изменении свойства контакта.
@@ -33,89 +41,44 @@ namespace View.ViewModel
         /// <summary>
         /// Команда на выполнение сохранения данных.
         /// </summary>
-        public RelayCommand SaveCommand
+        public RelayCommand AddCommand
         {
             get
             {
-                return _saveCommand ??
-                  (_saveCommand = new RelayCommand(obj =>
+                return _addCommand ??
+                  (_addCommand = new RelayCommand(obj =>
                   {
-                      ContactSerializer.SaveData(CurrentContact);
+                      AddContact();
                   }));
             }
-        }      
+        }
+
+        public RelayCommand ApplyCommand
+        {
+            get
+            {
+                return _addCommand ??
+                  (_applyCommand = new RelayCommand(obj =>
+                  {
+                      ApplyContact();
+                  }));
+            }
+        }
 
         /// <summary>
         /// Команда на выполнение загрузки данных из файла.
         /// </summary>
-        public RelayCommand LoadCommand
+        public RelayCommand RemoveCommand
         {
             get
             {
-                return _loadCommand ??
-                  (_loadCommand = new RelayCommand(obj =>
+                return _removeCommand ??
+                  (_removeCommand = new RelayCommand(obj =>
                   {
-                      CurrentContact = ContactSerializer.LoadDataFromFile();
+                      RemoveContact();
                   }));
             }
-        }
-
-        /// <summary>
-        /// Возвращает и задает имя контакта.
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return _currentContact.Name;
-            }
-            set
-            {
-                if (value != _currentContact.Name)
-                {
-                    _currentContact.Name = value;
-                    OnPropertyChanged(nameof(Name));
-                }               
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и задает телефон контакта.
-        /// </summary>
-        public string PhoneNumber
-        {
-            get
-            {
-                return _currentContact.PhoneNumber;
-            }
-            set
-            {
-                if (value != _currentContact.PhoneNumber)
-                {
-                    _currentContact.PhoneNumber = value;
-                    OnPropertyChanged(nameof(PhoneNumber));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и задает электронный адрес контакта.
-        /// </summary>
-        public string Email
-        {
-            get
-            {
-                return _currentContact.Email;
-            }
-            set
-            {
-                if (value != _currentContact.Email)
-                {
-                    _currentContact.Email = value;
-                    OnPropertyChanged(nameof(Email));
-                }
-            }
-        } 
+        }     
         
         /// <summary>
         /// Возвращает и задает текущий контакт.
@@ -133,6 +96,48 @@ namespace View.ViewModel
                     _currentContact = value;
                     OnPropertyChanged(nameof(CurrentContact));
                 }
+            }
+        }
+
+        public ObservableCollection<Contact> Contacts
+        {
+            get
+            {
+                return _contacts;
+            }
+        }
+
+        private void AddContact()
+        {
+            CurrentContact = new Contact();
+        }
+
+        private void ApplyContact()
+        {
+            _contacts.Add(CurrentContact);
+        }
+
+        private void RemoveContact()
+        {
+            if(_contacts.Count > 1)
+            {
+                int index = _contacts.IndexOf(_currentContact);
+                _contacts.RemoveAt(index);
+                CurrentContact = _contacts[index];
+            }
+
+            if(_contacts.Count == 1)
+            {
+                _contacts.Remove(CurrentContact);
+                CurrentContact = null;
+            }
+        }
+        
+        public void EditContact(Contact contact)
+        {
+            if (contact == null)
+            {
+                return;
             }
         }
 

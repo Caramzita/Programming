@@ -6,38 +6,46 @@
         xmlns:viewmodel="clr-namespace:View.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainVM}"
         mc:Ignorable="d"
         Title="Contacts" Height="403" Width="506" Icon="/contacts_96x96.ico">
-    <Grid Margin="15">
+    <Grid Margin="8">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <GroupBox Header="Edit Contact" Grid.Row="0" Grid.Column="0" Margin="3">
-            <StackPanel>
-                <TextBlock Text="Name:" Margin="3"/>
-                <TextBox TextWrapping="Wrap" Margin="3" Text="{Binding CurrentContact.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock Text="Phone Number:" Margin="3"/>
-                <TextBox TextWrapping="Wrap" Margin="3" Text="{Binding CurrentContact.PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock Text="Email:" Margin="3"/>
-                <TextBox TextWrapping="Wrap" Margin="3" Text="{Binding CurrentContact.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <DockPanel Background="#f8f8f8">
+            <TextBlock Margin="3" HorizontalAlignment="Left">Find:</TextBlock>
+            <TextBox Margin="3" TextWrapping="Wrap"/>
+        </DockPanel>
+        <UniformGrid Grid.Row="1" Background="#f8f8f8">
+            <ListBox Margin ="3" ItemsSource="{Binding Contacts}" SelectedItem="{Binding CurrentContact, Mode=TwoWay}" 
+                     DisplayMemberPath="Name"/>
+        </UniformGrid>
+        <GridSplitter Grid.Column="1" Grid.RowSpan="3" Width="3" HorizontalAlignment="Center"></GridSplitter>
+        <Grid Grid.Column="2" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="/photo_placeholder_100x100.png" Margin="3,25,3,3" Height="100" Width="100" VerticalAlignment="Top"/>
+            <StackPanel Grid.Column="1">
+                <TextBlock Margin="3">Name:</TextBlock>
+                <TextBox Margin="3" Text="{Binding CurrentContact.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <TextBlock Margin="3">Phone Number:</TextBlock>
+                <TextBox Margin="3" Text="{Binding CurrentContact.PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <TextBlock Margin="3">Email:</TextBlock>
+                <TextBox Margin="3" Text="{Binding CurrentContact.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <Button Content="Apply" Width="75" Height="25" HorizontalAlignment="Left" Margin="3" Command="{Binding ApplyCommand}"></Button>
             </StackPanel>
-        </GroupBox>
-        <GroupBox Header="Read Contact" Grid.Row="0" Grid.Column="1" Margin="3">
-            <StackPanel>
-                <TextBlock TextWrapping="Wrap" Text="Name:" Margin="3"/>
-                <TextBlock TextWrapping="Wrap" Text="{Binding CurrentContact.Name}" Margin="3" FontWeight="Bold"/>
-                <TextBlock TextWrapping="Wrap" Text="Phone Number:" Margin="3"/>
-                <TextBlock TextWrapping="Wrap" Text="{Binding CurrentContact.PhoneNumber}" Margin="3" FontWeight="Bold"/>
-                <TextBlock TextWrapping="Wrap" Text="Email:" Margin="3"/>
-                <TextBlock TextWrapping="Wrap" Text="{Binding CurrentContact.Email}" FontWeight="Bold" Margin="3"/>
-            </StackPanel>
-        </GroupBox>
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Content="Save" Width="75" Height="25" Command="{Binding SaveCommand}" CommandParameter="{Binding CurrentContact}" Margin="3"/>
-            <Button Content="Load" Width="75" Height="25" Command="{Binding LoadCommand}" Margin="3"/>
-        </StackPanel>
+        </Grid>
+        <UniformGrid Columns="3" Grid.Row="2" Background="#f8f8f8">
+            <Button Content="Add" MinWidth="75" Height="25" Margin="3" Command="{Binding AddCommand}"></Button>
+            <Button Content="Edit" MinWidth="75" Height="25" Margin="3" ></Button>
+            <Button Content="Remove" MinWidth="75" Height="25" Margin="3"  Command="{Binding RemoveCommand}"></Button>
+        </UniformGrid>
     </Grid>
 </Window>
