@@ -1,18 +1,19 @@
 ﻿using System;
 using System.IO;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
 
 namespace View.Model.Services
 {
     /// <summary>
     /// Выполняет сериализацию и десериализацию.
     /// </summary>
-    internal static class ContactSerializer
+    public static class ContactSerializer
     {
         /// <summary>
         /// Хранит название файла.
         /// </summary>
-        private static readonly string _contactData = @"contacts.json";
+        private static readonly string _contactsData = @"contacts.json";
 
         /// <summary>
         /// Возвращает путь файла.
@@ -44,8 +45,8 @@ namespace View.Model.Services
         /// <summary>
         /// Выполняет сериализацию.
         /// </summary>
-        /// <param name="contact">Текущий контакт.</param>
-        public static void SaveData(Contact contact)
+        /// <param name="contacts">Список контактов.</param>
+        public static void SaveData(ObservableCollection<Contact> contacts)
         {
             // Проверка наличия пути сохранения.
             String folder = FilePath;
@@ -55,40 +56,40 @@ namespace View.Model.Services
             }
 
             // Открываем поток для записи в файл с указанием п
-            using (StreamWriter sw = new StreamWriter(FilePath + _contactData))
+            using (StreamWriter sw = new StreamWriter(FilePath + _contactsData))
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
                 // Вызываем десериализацию и явно преобразуем результат в тип данных.
-                Serializer.Serialize(writer, contact);
+                Serializer.Serialize(writer, contacts);
             }
         }
 
         /// <summary>
         /// Выполняет десериализацию.
         /// </summary>
-        /// <returns>Возвращает текущий контакт.</returns>
-        public static Contact LoadDataFromFile()
+        /// <returns>Возвращает список контактов.</returns>
+        public static ObservableCollection<Contact> LoadDataFromFile()
         {
             // Создаём переменную, в которую поместим результат десериализации.
-            Contact contact = null;
+            ObservableCollection<Contact> contacts = null;
 
             String folder = FilePath;
 
             // Проверка наличия пути загрузки.
             if (!Directory.Exists(folder))
             {
-                return new Contact();
+                return new ObservableCollection<Contact>();
             }
 
             // Открываем поток для чтения из файла с указанием пути.
-            using (StreamReader sr = new StreamReader(FilePath + _contactData))
+            using (StreamReader sr = new StreamReader(FilePath + _contactsData))
             using (JsonReader reader = new JsonTextReader(sr))
             {
                 // Вызываем десериализацию и явно преобразуем результат в целевой тип данных.
-                contact = Serializer.Deserialize<Contact>(reader);
+                contacts = Serializer.Deserialize<ObservableCollection<Contact>>(reader);
             }
 
-            return contact;
+            return contacts;
         }
     }
 }

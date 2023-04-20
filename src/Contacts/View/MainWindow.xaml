@@ -3,10 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewmodel="clr-namespace:View.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainVM}"
+        xmlns:viewmodel="clr-namespace:View.ViewModel"
+        xmlns:viewmodelview="clr-namespace:View.ViewModel.View"
+        d:DataContext="{d:DesignInstance Type=viewmodel:MainVM}"
         mc:Ignorable="d"
-        Title="Contacts" Height="403" Width="506" Icon="/contacts_96x96.ico">
-    <Grid Margin="8">
+        Title="Contacts" Height="403" Width="506" Icon="Resources/contacts_96x96.ico">
+    <Window.Resources>
+        <viewmodelview:BoolToVisibilityConverter x:Key="boolConverter" />
+    </Window.Resources>
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
@@ -17,35 +22,39 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <DockPanel Background="#f8f8f8">
+        <Rectangle Fill="#f8f8f8" Grid.RowSpan="3"/>
+        <DockPanel Margin="8,8,0,0" Background="#f8f8f8">
             <TextBlock Margin="3" HorizontalAlignment="Left">Find:</TextBlock>
             <TextBox Margin="3" TextWrapping="Wrap"/>
         </DockPanel>
-        <UniformGrid Grid.Row="1" Background="#f8f8f8">
-            <ListBox Margin ="3" ItemsSource="{Binding Contacts}" SelectedItem="{Binding CurrentContact, Mode=TwoWay}" 
-                     DisplayMemberPath="Name"/>
-        </UniformGrid>
-        <GridSplitter Grid.Column="1" Grid.RowSpan="3" Width="3" HorizontalAlignment="Center"></GridSplitter>
+        <ListBox Grid.Row="1" Margin ="8,3,3,3" ItemsSource="{Binding Contacts}" SelectedItem="{Binding CurrentContact, 
+            UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name"/>
+        <GridSplitter Grid.Column="1" Grid.RowSpan="3" Width="3" HorizontalAlignment="Center" Background="#ffffff"></GridSplitter>
         <Grid Grid.Column="2" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Image Source="/photo_placeholder_100x100.png" Margin="3,25,3,3" Height="100" Width="100" VerticalAlignment="Top"/>
-            <StackPanel Grid.Column="1">
+            <Image Source="Resources/photo_placeholder_100x100.png" Margin="3,25,3,3" Height="100" Width="100" 
+                   VerticalAlignment="Top"/>
+            <StackPanel Grid.Column="1" Margin="0,0,8,0">
                 <TextBlock Margin="3">Name:</TextBlock>
-                <TextBox Margin="3" Text="{Binding CurrentContact.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <TextBox Margin="3" Text="{Binding CurrentContact.Name}" IsReadOnly="{Binding IsReadOnly}"></TextBox>
                 <TextBlock Margin="3">Phone Number:</TextBlock>
-                <TextBox Margin="3" Text="{Binding CurrentContact.PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <TextBox Margin="3" Text="{Binding CurrentContact.PhoneNumber}" IsReadOnly="{Binding IsReadOnly}"></TextBox>
                 <TextBlock Margin="3">Email:</TextBlock>
-                <TextBox Margin="3" Text="{Binding CurrentContact.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                <Button Content="Apply" Width="75" Height="25" HorizontalAlignment="Left" Margin="3" Command="{Binding ApplyCommand}"></Button>
+                <TextBox Margin="3" Text="{Binding CurrentContact.Email}" IsReadOnly="{Binding IsReadOnly}"></TextBox>
+                <Button Content="Apply" Width="75" Height="25" HorizontalAlignment="Left" Margin="3,50,3,3" 
+                        Visibility="{Binding IsVisibility, Converter={StaticResource boolConverter}}"  Command="{Binding ApplyCommand}"></Button>
             </StackPanel>
         </Grid>
-        <UniformGrid Columns="3" Grid.Row="2" Background="#f8f8f8">
-            <Button Content="Add" MinWidth="75" Height="25" Margin="3" Command="{Binding AddCommand}"></Button>
-            <Button Content="Edit" MinWidth="75" Height="25" Margin="3" ></Button>
-            <Button Content="Remove" MinWidth="75" Height="25" Margin="3"  Command="{Binding RemoveCommand}"></Button>
+        <UniformGrid Columns="3" Grid.Row="2" Background="#f8f8f8" Margin="8,0,0,8">
+            <Button Content="Add" Height="25" Margin="0,3,3,3" Command="{Binding AddCommand}"
+                    IsEnabled="{Binding IsReadOnly}"></Button>
+            <Button Content="Edit" Height="25" Margin="3" Command="{Binding EditCommand}"
+                     IsEnabled="{Binding IsReadOnly}"></Button>
+            <Button Content="Remove" Height="25" Margin="3"  Command="{Binding RemoveCommand}"
+                    IsEnabled="{Binding IsReadOnly}"></Button>
         </UniformGrid>
     </Grid>
 </Window>

@@ -3,35 +3,58 @@ using System.Runtime.CompilerServices;
 using View.Model;
 using View.Model.Services;
 using System.Collections.ObjectModel;
-using System;
 
 namespace View.ViewModel
 {
     /// <summary>
     /// ViewModel главного окна.
     /// </summary>
-    internal class MainVM : INotifyPropertyChanged
+    public class MainVM : INotifyPropertyChanged
     {
         /// <summary>
         /// Хранит текущий контакт.
         /// </summary>
-        private Contact _currentContact = new Contact(); 
+        private Contact _currentContact; 
 
+        /// <summary>
+        /// Хранит список контактов.
+        /// </summary>
         private ObservableCollection<Contact> _contacts = new ObservableCollection<Contact>();
 
         /// <summary>
-        /// Хранит команду для сохранения данных.
+        /// Хранит команду для добавления контакта.
         /// </summary>
         private RelayCommand _addCommand;
 
         /// <summary>
-        /// Хранит команду для загрузки данных из файлов.
+        /// Хранит команду для удаления контакта.
         /// </summary>
         private RelayCommand _removeCommand;
 
+        /// <summary>
+        /// Хранит команду для изменения контакта.
+        /// </summary>
         private RelayCommand _editCommand;
 
+        /// <summary>
+        /// Хранит команду для применения изменений контакта.
+        /// </summary>
         private RelayCommand _applyCommand;
+
+        /// <summary>
+        /// Хранит значение видимости.
+        /// </summary>
+        private bool _isVisibility = false;
+
+        /// <summary>
+        /// Хранит клон текущего контакта.
+        /// </summary>
+        private Contact _contactClone;
+
+        /// <summary>
+        /// Хранит исходный текущий контакт.
+        /// </summary>
+        private Contact _initialContact;
 
         /// <summary>
         /// Хранит событие на изменение контакта. Зажигается при изменении свойства контакта.
@@ -39,47 +62,37 @@ namespace View.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// Команда на выполнение сохранения данных.
+        /// Возвращает и задает значение доступности на чтение.
         /// </summary>
-        public RelayCommand AddCommand
+        public bool IsReadOnly
         {
             get
             {
-                return _addCommand ??
-                  (_addCommand = new RelayCommand(obj =>
-                  {
-                      AddContact();
-                  }));
+                return !_isVisibility;
             }
-        }
-
-        public RelayCommand ApplyCommand
-        {
-            get
+            private set
             {
-                return _addCommand ??
-                  (_applyCommand = new RelayCommand(obj =>
-                  {
-                      ApplyContact();
-                  }));
+                _isVisibility = !value;
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Команда на выполнение загрузки данных из файла.
+        /// Возвращает и задает значение видимости.
         /// </summary>
-        public RelayCommand RemoveCommand
+        public bool IsVisibility
         {
             get
             {
-                return _removeCommand ??
-                  (_removeCommand = new RelayCommand(obj =>
-                  {
-                      RemoveContact();
-                  }));
+                return _isVisibility;
             }
-        }     
-        
+            private set
+            {
+                _isVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// Возвращает и задает текущий контакт.
         /// </summary>
@@ -91,54 +104,194 @@ namespace View.ViewModel
             }
             set
             {
-                if( value != _currentContact)
+                if (value != _currentContact)
                 {
                     _currentContact = value;
+
+                    IsVisibility = false;
+                    IsReadOnly = true;           
+
                     OnPropertyChanged(nameof(CurrentContact));
                 }
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает список контактов.
+        /// </summary>
         public ObservableCollection<Contact> Contacts
         {
             get
             {
                 return _contacts;
             }
+            private set
+            {
+                if (value != _contacts)
+                {
+                    _contacts = value;
+                    OnPropertyChanged(nameof(Contacts));
+                }
+            }
         }
 
-        private void AddContact()
+        /// <summary>
+        /// Команда на добавление контакта.
+        /// </summary>
+        public RelayCommand AddCommand
         {
-            CurrentContact = new Contact();
+            get
+            {
+                return _addCommand ??
+                  (_addCommand = new RelayCommand(obj =>
+                  {
+                      _contactClone = null;
+                      CurrentContact = null;
+                      CurrentContact = new Contact();
+                      IsReadOnly = false;
+                      IsVisibility = true;
+                  }));
+            }
         }
 
+        /// <summary>
+        /// Команда на применение изменений контакта.
+        /// </summary>
+        public RelayCommand ApplyCommand
+        {
+            get
+            {
+                return _applyCommand ??
+                  (_applyCommand = new RelayCommand(obj =>
+                  {
+                      ApplyContact();
+                  }));
+            }
+        }
+
+        /// <summary>
+        /// Команда на удаление контакта.
+        /// </summary>
+        public RelayCommand RemoveCommand
+        {
+            get
+            {
+                return _removeCommand ??
+                  (_removeCommand = new RelayCommand(obj =>
+                  {
+                      RemoveContact();
+                  }));
+            }
+        }
+
+        /// <summary>
+        /// Команда на изменение контакта.
+        /// </summary>
+        public RelayCommand EditCommand
+        {
+            get
+            {
+                return _editCommand ??
+                  (_editCommand = new RelayCommand(obj =>
+                  {
+                     EditContact();                    
+                  }));
+            }
+        }
+
+        /// <summary>
+        /// Применяет изменения контакта в текущий контакт.
+        /// </summary>
         private void ApplyContact()
         {
-            _contacts.Add(CurrentContact);
-        }
+            IsVisibility = false;
+            IsReadOnly = true;
 
-        private void RemoveContact()
-        {
-            if(_contacts.Count > 1)
+            if (_contactClone != null)
             {
-                int index = _contacts.IndexOf(_currentContact);
-                _contacts.RemoveAt(index);
-                CurrentContact = _contacts[index];
+                _initialContact.Name = CurrentContact.Name;
+                _initialContact.PhoneNumber = CurrentContact.PhoneNumber;
+                _initialContact.Email = CurrentContact.Email;
+
+                _contactClone = null;
+
+                return;
             }
 
-            if(_contacts.Count == 1)
+            if (!Contacts.Contains(CurrentContact))
+            {
+                _contacts.Add(CurrentContact);
+                return;
+            }
+        }
+
+        /// <summary>
+        /// Удаляет выбранный контакт из списка контактов.
+        /// </summary>
+        private void RemoveContact()
+        {
+            if (CurrentContact == null)
+            {
+                return;
+            }
+
+            if (_contacts.Count > 1 && CurrentContact != null)
+            {
+                int index = _contacts.IndexOf(_currentContact);
+
+                if (index == 0)
+                {
+                    CurrentContact = _contacts[index + 1];
+                }
+                else
+                {
+                    CurrentContact = _contacts[index - 1];
+                }
+
+                _contacts.RemoveAt(index);
+            }
+            else
             {
                 _contacts.Remove(CurrentContact);
                 CurrentContact = null;
             }
         }
         
-        public void EditContact(Contact contact)
+        /// <summary>
+        /// Изменяет текущий контакт.
+        /// </summary>
+        public void EditContact()
         {
-            if (contact == null)
+            if (CurrentContact == null)
             {
                 return;
             }
+
+            _contactClone = (Contact)CurrentContact.Clone();
+            _initialContact = CurrentContact;
+            CurrentContact = _contactClone;
+
+            if (_currentContact != null && _contacts.Count > 0)
+            {
+                IsReadOnly = false;
+                IsVisibility = true;
+            }      
+        }
+
+        /// <summary>
+        /// Сохраняет данные списка контактов.
+        /// </summary>
+        public void Save()
+        {
+            ContactSerializer.SaveData(Contacts);
+        }
+
+        /// <summary>
+        /// Загружает данные списка контактов.
+        /// </summary>
+        public void Load()
+        {
+            Contacts = ContactSerializer.LoadDataFromFile();
         }
 
         /// <summary>

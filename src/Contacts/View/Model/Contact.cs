@@ -1,24 +1,34 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System;
 
 namespace View.Model
 {
     /// <summary>
     /// Хранит данные о контакте.
     /// </summary>
-    internal class Contact : INotifyPropertyChanged
+    public class Contact : INotifyPropertyChanged, ICloneable
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private string _name;
-
-        private string _phoneNumber;
-
-        private string _email;
-
         /// <summary>
         /// Хранит полное имя контакта.
         /// </summary>
+        private string _name;
+
+        /// <summary>
+        /// Хранит номер телефона контакта.
+        /// </summary>
+        private string _phoneNumber;
+
+        /// <summary>
+        /// Хранит электронный адрес контакта.
+        /// </summary>
+        private string _email;
+
+        /// <summary>
+        /// Хранит событие на изменение контакта. Зажигается при изменении свойства контакта.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>
         /// Возвращает и задает имя контакта.
         /// </summary>
@@ -76,6 +86,26 @@ namespace View.Model
             }
         }
 
+        /// <summary>
+        /// Создает клон текущего контакта.
+        /// </summary>
+        /// <returns>Клон контакта.</returns>
+        public object Clone()
+        {
+            Contact contact = new Contact() 
+            { 
+                Name = this.Name,
+                PhoneNumber = this.PhoneNumber,
+                Email = this.Email
+            };
+
+            return contact;
+        }
+
+        /// <summary>
+        /// Зажигает событие при изменении свойства контакта.
+        /// </summary>
+        /// <param name="prop">Имя свойства.</param>
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));

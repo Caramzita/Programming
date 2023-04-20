@@ -6,7 +6,7 @@ namespace View.ViewModel
     /// <summary>
     /// Реализация интерфейса <see cref="ICommand"/>.
     /// </summary>
-    internal class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
         /// <summary>
         /// Делегат, выполняющийся при вызове метода <see cref="Execute(object)"/>.
