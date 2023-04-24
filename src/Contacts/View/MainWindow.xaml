@@ -4,12 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodel="clr-namespace:View.ViewModel"
-        xmlns:viewmodelview="clr-namespace:View.ViewModel.View"
+        xmlns:converter="clr-namespace:View.ViewModel.View"
         d:DataContext="{d:DesignInstance Type=viewmodel:MainVM}"
         mc:Ignorable="d"
         Title="Contacts" Height="403" Width="506" Icon="Resources/contacts_96x96.ico">
     <Window.Resources>
-        <viewmodelview:BoolToVisibilityConverter x:Key="boolConverter" />
+        <converter:BoolToVisibilityConverter x:Key="boolConverter" />
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
