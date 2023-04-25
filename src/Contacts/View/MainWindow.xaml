@@ -7,9 +7,10 @@
         xmlns:converter="clr-namespace:View.ViewModel.View"
         d:DataContext="{d:DesignInstance Type=viewmodel:MainVM}"
         mc:Ignorable="d"
-        Title="Contacts" Height="403" Width="506" Icon="Resources/contacts_96x96.ico">
+        Title="Contacts" Height="403" Width="506" Icon="Resources/contacts_96x96.ico" Closing="MainWindow_Closing">
     <Window.Resources>
         <converter:BoolToVisibilityConverter x:Key="boolConverter" />
+        <converter:InverseBoolConverter x:Key="inverseBoolConverter" />
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -39,22 +40,25 @@
                    VerticalAlignment="Top"/>
             <StackPanel Grid.Column="1" Margin="0,0,8,0">
                 <TextBlock Margin="3">Name:</TextBlock>
-                <TextBox Margin="3" Text="{Binding CurrentContact.Name}" IsReadOnly="{Binding IsReadOnly}"></TextBox>
+                <TextBox Margin="3" Text="{Binding CurrentContact.Name}" 
+                         IsReadOnly="{Binding IsVisibility, Converter={StaticResource inverseBoolConverter}}"></TextBox>
                 <TextBlock Margin="3">Phone Number:</TextBlock>
-                <TextBox Margin="3" Text="{Binding CurrentContact.PhoneNumber}" IsReadOnly="{Binding IsReadOnly}"></TextBox>
+                <TextBox Margin="3" Text="{Binding CurrentContact.PhoneNumber}" 
+                         IsReadOnly="{Binding IsVisibility, Converter={StaticResource inverseBoolConverter}}"></TextBox>
                 <TextBlock Margin="3">Email:</TextBlock>
-                <TextBox Margin="3" Text="{Binding CurrentContact.Email}" IsReadOnly="{Binding IsReadOnly}"></TextBox>
+                <TextBox Margin="3" Text="{Binding CurrentContact.Email}" 
+                         IsReadOnly="{Binding IsVisibility, Converter={StaticResource inverseBoolConverter}}"></TextBox>
                 <Button Content="Apply" Width="75" Height="25" HorizontalAlignment="Left" Margin="3,50,3,3" 
                         Visibility="{Binding IsVisibility, Converter={StaticResource boolConverter}}"  Command="{Binding ApplyCommand}"></Button>
             </StackPanel>
         </Grid>
         <UniformGrid Columns="3" Grid.Row="2" Background="#f8f8f8" Margin="8,0,0,8">
             <Button Content="Add" Height="25" Margin="0,3,3,3" Command="{Binding AddCommand}"
-                    IsEnabled="{Binding IsReadOnly}"></Button>
+                    IsEnabled="{Binding IsVisibility, Converter={StaticResource inverseBoolConverter}}"></Button>
             <Button Content="Edit" Height="25" Margin="3" Command="{Binding EditCommand}"
-                     IsEnabled="{Binding IsReadOnly}"></Button>
-            <Button Content="Remove" Height="25" Margin="3"  Command="{Binding RemoveCommand}"
-                    IsEnabled="{Binding IsReadOnly}"></Button>
+                    IsEnabled="{Binding IsVisibility, Converter={StaticResource inverseBoolConverter}}"></Button>
+            <Button Content="Remove" Height="25" Margin="3" Command="{Binding RemoveCommand}"
+                    IsEnabled="{Binding IsVisibility, Converter={StaticResource inverseBoolConverter}}"></Button>
         </UniformGrid>
     </Grid>
 </Window>

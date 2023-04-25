@@ -5,29 +5,19 @@ using System.Windows;
 
 namespace View.ViewModel.View
 {
-    /// <summary>
-    /// Конвертер для <see cref="Visibility"/> из <see cref="bool"/>.
-    /// </summary>
-    public class BoolToVisibilityConverter : IValueConverter
+    public class InverseBoolConverter : IValueConverter
     {
         /// <summary>
-        /// Выполняет конвертацию для <see cref="Visibility"/> из <see cref="bool"/>.
+        /// Выполняет конвертацию обратную булевому значению.
         /// </summary>
         /// <param name="value">Значение конвертации.</param>
         /// <param name="targetType"></param>
         /// <param name="parameter"></param>
         /// <param name="culture"></param>
-        /// <returns>Возвращает значение типа <see cref="Visibility"/>.</returns>
+        /// <returns>Возвращает обратное булевое значение.</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            bool isVisibility = (bool)value;
-
-            if (isVisibility)
-            {
-                return Visibility.Visible;
-            }
-
-            return Visibility.Collapsed;
+            return !(bool)value;
         }
 
         /// <summary>
@@ -44,4 +34,3 @@ namespace View.ViewModel.View
         }
     }
 }
-

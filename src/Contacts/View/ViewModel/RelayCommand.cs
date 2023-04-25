@@ -49,7 +49,12 @@ namespace View.ViewModel
         /// <returns></returns>
         public bool CanExecute(object parameter)
         {
-            return true;
+            if (_canExecute == null)
+            {
+                return true;
+            }
+
+            return _canExecute.Invoke(parameter);
         }
 
         /// <summary>

@@ -106,9 +106,9 @@ namespace View.Model
         /// Зажигает событие при изменении свойства контакта.
         /// </summary>
         /// <param name="prop">Имя свойства.</param>
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

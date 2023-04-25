@@ -62,22 +62,6 @@ namespace View.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// Возвращает и задает значение доступности на чтение.
-        /// </summary>
-        public bool IsReadOnly
-        {
-            get
-            {
-                return !_isVisibility;
-            }
-            private set
-            {
-                _isVisibility = !value;
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
         /// Возвращает и задает значение видимости.
         /// </summary>
         public bool IsVisibility
@@ -89,7 +73,7 @@ namespace View.ViewModel
             private set
             {
                 _isVisibility = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsVisibility));
             }
         }
 
@@ -108,8 +92,7 @@ namespace View.ViewModel
                 {
                     _currentContact = value;
 
-                    IsVisibility = false;
-                    IsReadOnly = true;           
+                    IsVisibility = false;         
 
                     OnPropertyChanged(nameof(CurrentContact));
                 }
@@ -148,7 +131,6 @@ namespace View.ViewModel
                       _contactClone = null;
                       CurrentContact = null;
                       CurrentContact = new Contact();
-                      IsReadOnly = false;
                       IsVisibility = true;
                   }));
             }
@@ -180,7 +162,8 @@ namespace View.ViewModel
                   (_removeCommand = new RelayCommand(obj =>
                   {
                       RemoveContact();
-                  }));
+                  },
+                  (obj) => CurrentContact != null));
             }
         }
 
@@ -195,7 +178,8 @@ namespace View.ViewModel
                   (_editCommand = new RelayCommand(obj =>
                   {
                      EditContact();                    
-                  }));
+                  },
+                  (obj) => CurrentContact != null));
             }
         }
 
@@ -205,15 +189,14 @@ namespace View.ViewModel
         private void ApplyContact()
         {
             IsVisibility = false;
-            IsReadOnly = true;
 
             if (_contactClone != null)
             {
-                _initialContact.Name = CurrentContact.Name;
-                _initialContact.PhoneNumber = CurrentContact.PhoneNumber;
-                _initialContact.Email = CurrentContact.Email;
+                int index = Contacts.IndexOf(_initialContact);
 
+                Contacts[index] = CurrentContact;
                 _contactClone = null;
+                CurrentContact = Contacts[index];
 
                 return;
             }
@@ -230,11 +213,6 @@ namespace View.ViewModel
         /// </summary>
         private void RemoveContact()
         {
-            if (CurrentContact == null)
-            {
-                return;
-            }
-
             if (_contacts.Count > 1 && CurrentContact != null)
             {
                 int index = _contacts.IndexOf(_currentContact);
@@ -262,18 +240,12 @@ namespace View.ViewModel
         /// </summary>
         public void EditContact()
         {
-            if (CurrentContact == null)
-            {
-                return;
-            }
-
             _contactClone = (Contact)CurrentContact.Clone();
             _initialContact = CurrentContact;
             CurrentContact = _contactClone;
 
             if (_currentContact != null && _contacts.Count > 0)
             {
-                IsReadOnly = false;
                 IsVisibility = true;
             }      
         }
@@ -298,9 +270,9 @@ namespace View.ViewModel
         /// Зажигает событие при изменении свойства контакта.
         /// </summary>
         /// <param name="prop">Имя свойства.</param>
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }   
 }
