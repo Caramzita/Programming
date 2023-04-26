@@ -45,8 +45,8 @@ namespace View.ViewModel
         /// <summary>
         /// Определяет, может ли команда выполняться.
         /// </summary>
-        /// <param name="parameter"></param>
-        /// <returns></returns>
+        /// <param name="parameter">параметр.</param>
+        /// <returns>Возвращает булевое значение, может ли команда выполниться.</returns>
         public bool CanExecute(object parameter)
         {
             if (_canExecute == null)

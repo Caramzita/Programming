@@ -52,7 +52,7 @@ namespace View.ViewModel
         private Contact _contactClone;
 
         /// <summary>
-        /// Хранит исходный текущий контакт.
+        /// Хранит состояние текущего контакта.
         /// </summary>
         private Contact _initialContact;
 
@@ -213,7 +213,7 @@ namespace View.ViewModel
         /// </summary>
         private void RemoveContact()
         {
-            if (_contacts.Count > 1 && CurrentContact != null)
+            if (_contacts.Count > 1)
             {
                 int index = _contacts.IndexOf(_currentContact);
 
@@ -231,7 +231,6 @@ namespace View.ViewModel
             else
             {
                 _contacts.Remove(CurrentContact);
-                CurrentContact = null;
             }
         }
         
@@ -269,7 +268,7 @@ namespace View.ViewModel
         /// <summary>
         /// Зажигает событие при изменении свойства контакта.
         /// </summary>
-        /// <param name="prop">Имя свойства.</param>
+        /// <param name="propertyName">Имя свойства.</param>
         public void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
