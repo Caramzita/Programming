@@ -14,7 +14,7 @@ namespace View.ViewModel
         /// <summary>
         /// Хранит текущий контакт.
         /// </summary>
-        private Contact _currentContact; 
+        private Contact _currentContact = new Contact(); 
 
         /// <summary>
         /// Хранит список контактов.
@@ -44,7 +44,7 @@ namespace View.ViewModel
         /// <summary>
         /// Хранит значение видимости.
         /// </summary>
-        private bool _isVisibility = false;
+        private bool _isEditMode = false;
 
         /// <summary>
         /// Хранит клон текущего контакта.
@@ -64,16 +64,16 @@ namespace View.ViewModel
         /// <summary>
         /// Возвращает и задает значение видимости.
         /// </summary>
-        public bool IsVisibility
+        public bool IsEditMode
         {
             get
             {
-                return _isVisibility;
+                return _isEditMode;
             }
             private set
             {
-                _isVisibility = value;
-                OnPropertyChanged(nameof(IsVisibility));
+                _isEditMode = value;
+                OnPropertyChanged(nameof(IsEditMode));
             }
         }
 
@@ -92,7 +92,7 @@ namespace View.ViewModel
                 {
                     _currentContact = value;
 
-                    IsVisibility = false;         
+                    IsEditMode = false;         
 
                     OnPropertyChanged(nameof(CurrentContact));
                 }
@@ -131,7 +131,7 @@ namespace View.ViewModel
                       _contactClone = null;
                       CurrentContact = null;
                       CurrentContact = new Contact();
-                      IsVisibility = true;
+                      IsEditMode = true;
                   }));
             }
         }
@@ -188,7 +188,7 @@ namespace View.ViewModel
         /// </summary>
         private void ApplyContact()
         {
-            IsVisibility = false;
+            IsEditMode = false;
 
             if (_contactClone != null)
             {
@@ -245,7 +245,7 @@ namespace View.ViewModel
 
             if (_currentContact != null && _contacts.Count > 0)
             {
-                IsVisibility = true;
+                IsEditMode = true;
             }      
         }
 

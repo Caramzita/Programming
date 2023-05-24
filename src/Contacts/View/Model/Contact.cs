@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System;
+using System.Windows;
 
 namespace View.Model
 {
