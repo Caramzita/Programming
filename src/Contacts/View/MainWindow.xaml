@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewmodel="clr-namespace:View.ViewModel"
-        xmlns:converter="clr-namespace:View.ViewModel.View"
-        xmlns:Controls="clr-namespace:View.ViewModel.Controls" xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms" x:Class="View.MainWindow"
+        xmlns:viewmodel="clr-namespace:ViewModel;assembly=ViewModel"
+        xmlns:converter="clr-namespace:View.Converters"
+        xmlns:Controls="clr-namespace:View.Controls"
+        x:Class="View.MainWindow"
         d:DataContext="{d:DesignInstance Type={x:Type viewmodel:MainVM}}"
         mc:Ignorable="d"
         Title="Contacts" Height="403" Width="506" Icon="Resources/contacts_96x96.ico" Closing="MainWindow_Closing">
@@ -52,9 +53,9 @@
                                  HorizontalAlignment="Stretch" Margin="3,3,3,3" VerticalAlignment="Top"/>
         <Button Grid.Column="2" Grid.RowSpan="2" Content="Apply" Width="75" Height="25" HorizontalAlignment="Left" Margin="113,175,0,0" 
                         Visibility="{Binding IsEditMode, Converter={StaticResource boolConverter}}"  
-                Command="{Binding ApplyCommand}"
+                Command="{Binding ApplyContactCommand}"
                 VerticalAlignment="Top">
-        <Button.Style>
+            <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="IsEnabled" Value="True" />
                     <Style.Triggers>
@@ -71,11 +72,13 @@
             </Button.Style>
         </Button>
         <UniformGrid Columns="3" Grid.Row="2" Background="#f8f8f8" Margin="8,0,0,8">
-            <Button Content="Add" Height="25" Margin="0,3,3,3" Command="{Binding AddCommand}"
+            <Button Content="Add" Height="25" Margin="0,3,3,3" Command="{Binding AddContactCommand}"
                     IsEnabled="{Binding IsEditMode, Converter={StaticResource inverseBoolConverter}}"/>
-            <Button Content="Edit" Height="25" Margin="3" Command="{Binding EditCommand}"
+            <Button Content="Edit" Height="25" Margin="3" Command="{Binding EditContactCommand}"
+                    CommandParameter="{Binding CurrentContact}"
                     IsEnabled="{Binding IsEditMode, Converter={StaticResource inverseBoolConverter}}"/>
-            <Button Content="Remove" Height="25" Margin="3" Command="{Binding RemoveCommand}"
+            <Button Content="Remove" Height="25" Margin="3" Command="{Binding RemoveContactCommand}"
+                    CommandParameter="{Binding CurrentContact}"
                     IsEnabled="{Binding IsEditMode, Converter={StaticResource inverseBoolConverter}}"/>
         </UniformGrid>
     </Grid>

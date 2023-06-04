@@ -3,7 +3,7 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 
-namespace View.Model.Services
+namespace Model.Services
 {
     /// <summary>
     /// Выполняет сериализацию и десериализацию.
@@ -40,7 +40,7 @@ namespace View.Model.Services
                     TypeNameHandling = TypeNameHandling.All
                 };
             }
-        }   
+        }
 
         /// <summary>
         /// Выполняет сериализацию.

@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System;
 using System.Text.RegularExpressions;
 
-namespace View.Model
+namespace Model
 {
     /// <summary>
     /// Хранит данные о контакте.
@@ -28,7 +27,7 @@ namespace View.Model
         /// <summary>
         /// Хранит событие на изменение контакта. Зажигается при изменении свойства контакта.
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;    
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Возвращает и задает имя контакта.
@@ -139,8 +138,8 @@ namespace View.Model
         /// <returns>Клон контакта.</returns>
         public object Clone()
         {
-            Contact contact = new Contact() 
-            { 
+            Contact contact = new Contact()
+            {
                 Name = this.Name,
                 PhoneNumber = this.PhoneNumber,
                 Email = this.Email

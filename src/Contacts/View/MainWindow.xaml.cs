@@ -1,6 +1,5 @@
 ﻿using System.Windows;
-using View.ViewModel;
-using View.ViewModel.Controls;
+using ViewModel;
 
 namespace View
 {
@@ -28,7 +27,7 @@ namespace View
         {
             _vm.Save();
         }
-        
+
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             _vm.Load();
