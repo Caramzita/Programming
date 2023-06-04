@@ -14,7 +14,7 @@ namespace View.ViewModel
         /// <summary>
         /// Хранит текущий контакт.
         /// </summary>
-        private Contact _currentContact = new Contact(); 
+        private Contact _currentContact; 
 
         /// <summary>
         /// Хранит список контактов.

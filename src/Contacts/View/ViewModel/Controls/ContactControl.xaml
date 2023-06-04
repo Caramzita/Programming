@@ -10,6 +10,20 @@
     <UserControl.Resources>
         <converter:BoolToVisibilityConverter x:Key="boolConverter" />
         <converter:InverseBoolConverter x:Key="inverseBoolConverter" />
+        <Style x:Key="textErrorStyle" TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="Background" Value="LightPink"/>
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <ControlTemplate x:Key="validationFailed">
+            <Border BorderBrush="White">
+                <AdornedElementPlaceholder/>
+            </Border>
+        </ControlTemplate>
     </UserControl.Resources>
     <Grid>
         <DockPanel>
@@ -17,18 +31,27 @@
                    VerticalAlignment="Top"/>
             <StackPanel Grid.Column="1" Margin="0,0,8,0">
                 <TextBlock Margin="3">Name:</TextBlock>
-                <TextBox Margin="3" 
-                         Text="{Binding Name, Mode=TwoWay}"
+                <TextBox Name="NameTextBox"
+                    Margin="3" Validation.ErrorTemplate="{StaticResource validationFailed}"
+                         Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                          IsReadOnly="{Binding IsEdit, RelativeSource={RelativeSource AncestorType=controls:ContactControl},
-                    Converter={StaticResource inverseBoolConverter}}"/>
+                    Converter={StaticResource inverseBoolConverter}}"
+                         Style="{StaticResource textErrorStyle}"/>
                 <TextBlock Margin="3">Phone Number:</TextBlock>
-                <TextBox Margin="3" Text="{Binding PhoneNumber, Mode=TwoWay}"
+                <TextBox Name="PhoneNumberTextBox" Margin="3" Validation.ErrorTemplate="{StaticResource validationFailed}" 
+                         Text="{Binding PhoneNumber, Mode=TwoWay,
+                    ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"                      
                          IsReadOnly="{Binding IsEdit, RelativeSource={RelativeSource AncestorType=controls:ContactControl},
-                    Converter={StaticResource inverseBoolConverter}}"/>
+                    Converter={StaticResource inverseBoolConverter}}"
+                          Style="{StaticResource textErrorStyle}"
+                          PreviewTextInput="PhoneNumberTextBox_PreviewTextInput"
+                          DataObject.Pasting="PhoneNumberTextBox_Pasting"/>
                 <TextBlock Margin="3">Email:</TextBlock>
-                <TextBox Margin="3" Text="{Binding Email, Mode=TwoWay}" 
+                <TextBox Name="EmailTextBox" Margin="3" Validation.ErrorTemplate="{StaticResource validationFailed}"
+                         Text="{Binding Email, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
                          IsReadOnly="{Binding IsEdit, RelativeSource={RelativeSource AncestorType=controls:ContactControl},
-                    Converter={StaticResource inverseBoolConverter}}"/>
+                    Converter={StaticResource inverseBoolConverter}}"
+                         Style="{StaticResource textErrorStyle}"/>
             </StackPanel>
         </DockPanel>
     </Grid>

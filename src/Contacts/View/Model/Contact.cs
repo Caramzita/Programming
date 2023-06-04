@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System;
-using System.Windows;
+using System.Text.RegularExpressions;
 
 namespace View.Model
 {
     /// <summary>
     /// Хранит данные о контакте.
     /// </summary>
-    public class Contact : INotifyPropertyChanged, ICloneable
+    public class Contact : INotifyPropertyChanged, ICloneable, IDataErrorInfo
     {
         /// <summary>
         /// Хранит полное имя контакта.
@@ -28,7 +28,7 @@ namespace View.Model
         /// <summary>
         /// Хранит событие на изменение контакта. Зажигается при изменении свойства контакта.
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;    
 
         /// <summary>
         /// Возвращает и задает имя контакта.
@@ -85,6 +85,52 @@ namespace View.Model
                     OnPropertyChanged(nameof(Email));
                 }
             }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string errorMessage = String.Empty;
+                switch (columnName)
+                {
+                    case nameof(Name):
+                        if ((Name.Length <= 0) || (Name.Length > 100))
+                        {
+                            errorMessage = "Имя должно быть больше 0 и меньше 100 символов";
+                        }
+
+                        break;
+                    case nameof(PhoneNumber):
+                        if (!Regex.Match(PhoneNumber, @"^\+?[0-9]\s?\(?\d{3}\)?\s?\d{3}[\s-]?\d{2}[\s-]?\d{2}$").Success)
+                        {
+                            errorMessage = "Номер телефона может содержать только цифры и символы '+()-'." +
+                                "Например: +7 (800) 555-35-35";
+                        }
+
+                        break;
+                    case nameof(Email):
+                        if ((Email.Length < 0 || Email.Length > 100) || !Regex.Match(Email, @"\w+[@]\w*[.]\w+").Success)
+                        {
+                            errorMessage = "Почта должна быть больше 0 и меньше 100 символов, а также" +
+                                "должна содержать @";
+                        }
+                        break;
+                }
+                return errorMessage;
+            }
+        }
+
+        public string Error
+        {
+            get { return null; }
+        }
+
+        public Contact()
+        {
+            Name = String.Empty;
+            PhoneNumber = String.Empty;
+            Email = String.Empty;
         }
 
         /// <summary>
