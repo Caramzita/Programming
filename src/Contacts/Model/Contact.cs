@@ -86,6 +86,13 @@ namespace Model
             }
         }
 
+        /// <inheritdoc/>
+        public string Error
+        {
+            get { return null; }
+        }
+
+        /// <inheritdoc/>
         public string this[string columnName]
         {
             get
@@ -118,13 +125,11 @@ namespace Model
                 }
                 return errorMessage;
             }
-        }
+        }      
 
-        public string Error
-        {
-            get { return null; }
-        }
-
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Contact"/>
+        /// </summary>
         public Contact()
         {
             Name = String.Empty;

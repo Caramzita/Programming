@@ -35,6 +35,16 @@ namespace ViewModel
         [NotifyCanExecuteChangedFor(nameof(EditContactCommand))]
         private Contact? currentContact;
 
+        /// <summary>
+        /// Возвращает и задает список контактов.
+        /// </summary>
+        [ObservableProperty]
+        private ObservableCollection<Contact> contacts;
+
+        /// <summary>
+        /// Проверяет текущий контакт на null.
+        /// </summary>
+        /// <returns>Возвращает true, если текущий контакт не равен null, иначе false.</returns>
         private bool CheckNullCurrentContact()
         {
             if (CurrentContact != null)
@@ -46,11 +56,8 @@ namespace ViewModel
         }
 
         /// <summary>
-        /// Возвращает и задает список контактов.
+        /// Команда на добавление контакта.
         /// </summary>
-        [ObservableProperty]
-        private ObservableCollection<Contact> contacts;
-
         [RelayCommand]
         private void AddContact()
         {
@@ -61,7 +68,7 @@ namespace ViewModel
         }
 
         /// <summary>
-        /// Применяет изменения контакта в текущий контакт.
+        /// Команда на применение внесенных изменений в текущий контакт.
         /// </summary>
         [RelayCommand]
         private void ApplyContact()
@@ -87,7 +94,7 @@ namespace ViewModel
         }
 
         /// <summary>
-        /// Удаляет выбранный контакт из списка контактов.
+        /// Команда на удаление выбранного контакта из списка контактов.
         /// </summary>
         [RelayCommand(CanExecute = nameof(CheckNullCurrentContact))]
         private void RemoveContact()
@@ -114,7 +121,7 @@ namespace ViewModel
         }
 
         /// <summary>
-        /// Изменяет текущий контакт.
+        /// Команда на изменение текущего контакта.
         /// </summary>
         [RelayCommand(CanExecute = nameof(CheckNullCurrentContact))]
         private void EditContact()

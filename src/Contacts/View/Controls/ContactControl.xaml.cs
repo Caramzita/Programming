@@ -11,15 +11,24 @@ namespace View.Controls
     /// </summary>
     public partial class ContactControl : UserControl
     {
+        /// <summary>
+        /// Хранит свойство зависимости возможности редактирования.
+        /// </summary>
         public static readonly DependencyProperty IsEditProperty =
             DependencyProperty.Register(nameof(IsEdit), typeof(bool), typeof(ContactControl));
 
+        /// <summary>
+        /// Возвращает и задает возможность редактирования.
+        /// </summary>
         public bool IsEdit
         {
             get => (bool)GetValue(IsEditProperty);
             set => SetValue(IsEditProperty, value);
         }
-
+        
+        /// <summary>
+        /// Создает экземпляр класса <see cref="ContactControl"/>
+        /// </summary>
         public ContactControl()
         {
             InitializeComponent();
