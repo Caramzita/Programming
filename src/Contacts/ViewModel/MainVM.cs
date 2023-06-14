@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Model;
@@ -21,25 +23,51 @@ namespace ViewModel
         /// </summary>
         private Contact _initialContact;
 
+        private Contact _currentContact;
+
+        private ObservableCollection<Contact> _contacts;
+
+        private bool _isEditMode = false;
+
         /// <summary>
         /// Возвращает и задает значение видимости.
         /// </summary>
-        [ObservableProperty]
-        private bool isEditMode;
+        public bool IsEditMode
+        {
+            get
+            {
+                return _isEditMode;
+            }
+            private set
+            {
+                _isEditMode = value;
+                OnPropertyChanged(nameof(IsEditMode));
+            }
+        }
 
         /// <summary>
         /// Возвращает и задает текущий контакт.
         /// </summary>
-        [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(RemoveContactCommand))]
-        [NotifyCanExecuteChangedFor(nameof(EditContactCommand))]
-        private Contact? currentContact;
+        public Contact CurrentContact
+        {
+            get => _currentContact;
+            set
+            {
+                if (SetProperty(ref _currentContact, value))
+                {
+                    IsEditMode = false;
+                    RemoveContactCommand.NotifyCanExecuteChanged();
+                    EditContactCommand.NotifyCanExecuteChanged();
+                    ApplyContactCommand.NotifyCanExecuteChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Возвращает и задает список контактов.
         /// </summary>
         [ObservableProperty]
-        private ObservableCollection<Contact> contacts;
+        public ObservableCollection<Contact> contacts;
 
         /// <summary>
         /// Проверяет текущий контакт на null.
@@ -47,12 +75,7 @@ namespace ViewModel
         /// <returns>Возвращает true, если текущий контакт не равен null, иначе false.</returns>
         private bool CheckNullCurrentContact()
         {
-            if (CurrentContact != null)
-            {
-                return true;
-            }
-
-            return false;
+            return CurrentContact is not null;
         }
 
         /// <summary>

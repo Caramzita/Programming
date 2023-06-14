@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using ViewModel;
+using View.Controls;
 
 namespace View
 {
@@ -18,7 +19,7 @@ namespace View
             InitializeComponent();
             _vm = new MainVM();
             DataContext = _vm;
-
+            
             this.Closing += MainWindow_Closing;
             this.Loaded += MainWindow_Loaded;
         }

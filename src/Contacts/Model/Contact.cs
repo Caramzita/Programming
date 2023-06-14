@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
@@ -7,8 +8,11 @@ namespace Model
     /// <summary>
     /// Хранит данные о контакте.
     /// </summary>
-    public class Contact : INotifyPropertyChanged, ICloneable, IDataErrorInfo
+    public class Contact : INotifyPropertyChanged, ICloneable, INotifyDataErrorInfo
     {
+        private readonly Dictionary<string, List<string>> _propertyErrors = 
+            new Dictionary<string,List<string>>();
+
         /// <summary>
         /// Хранит полное имя контакта.
         /// </summary>
@@ -29,6 +33,8 @@ namespace Model
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
+
         /// <summary>
         /// Возвращает и задает имя контакта.
         /// </summary>
@@ -43,6 +49,14 @@ namespace Model
                 if (value != _name)
                 {
                     _name = value;
+
+                    ClearError(nameof(Name));
+                    if ((Name.Length <= 0) || (Name.Length > 100))
+                    {
+                        AddError(nameof(Name), "Имя должно быть больше 0 и меньше 100 символов");
+                    }
+
+                    OnPropertyChanged(nameof(HasErrors));
                     OnPropertyChanged(nameof(Name));
                 }
             }
@@ -61,7 +75,17 @@ namespace Model
             {
                 if (value != _phoneNumber)
                 {
-                    _phoneNumber = value;
+                    _phoneNumber = value;     
+                    ClearError(nameof(PhoneNumber));
+
+                    if (!Regex.Match(_phoneNumber,
+                        @"^\+?[0-9]\s?\(?\d{3}\)?\s?\d{3}[\s-]?\d{2}[\s-]?\d{2}$").Success)
+                    {
+                        AddError(nameof(PhoneNumber), "Номер телефона может содержать только " +
+                            "цифры и символы '+()-'. Например: +7 (800) 555-35-35");
+                    }
+
+                    OnPropertyChanged(nameof(HasErrors));
                     OnPropertyChanged(nameof(PhoneNumber));
                 }
             }
@@ -81,61 +105,23 @@ namespace Model
                 if (value != _email)
                 {
                     _email = value;
+
+                    ClearError(nameof(Email));
+
+                    if ((Email.Length < 0 || Email.Length > 100) || 
+                        !Regex.Match(Email, @"\w+[@]\w*[.]\w+").Success)
+                    {
+                        AddError(nameof(Email), "Почта должна быть больше 0 и меньше 100 символов, " +
+                            "а также должна содержать @");
+                    }
+
+                    OnPropertyChanged(nameof(HasErrors));
                     OnPropertyChanged(nameof(Email));
                 }
             }
         }
 
-        /// <inheritdoc/>
-        public string Error
-        {
-            get { return null; }
-        }
-
-        /// <inheritdoc/>
-        public string this[string columnName]
-        {
-            get
-            {
-                string errorMessage = String.Empty;
-                switch (columnName)
-                {
-                    case nameof(Name):
-                        if ((Name.Length <= 0) || (Name.Length > 100))
-                        {
-                            errorMessage = "Имя должно быть больше 0 и меньше 100 символов";
-                        }
-
-                        break;
-                    case nameof(PhoneNumber):
-                        if (!Regex.Match(PhoneNumber, @"^\+?[0-9]\s?\(?\d{3}\)?\s?\d{3}[\s-]?\d{2}[\s-]?\d{2}$").Success)
-                        {
-                            errorMessage = "Номер телефона может содержать только цифры и символы '+()-'." +
-                                "Например: +7 (800) 555-35-35";
-                        }
-
-                        break;
-                    case nameof(Email):
-                        if ((Email.Length < 0 || Email.Length > 100) || !Regex.Match(Email, @"\w+[@]\w*[.]\w+").Success)
-                        {
-                            errorMessage = "Почта должна быть больше 0 и меньше 100 символов, а также" +
-                                "должна содержать @";
-                        }
-                        break;
-                }
-                return errorMessage;
-            }
-        }      
-
-        /// <summary>
-        /// Создает экземпляр класса <see cref="Contact"/>
-        /// </summary>
-        public Contact()
-        {
-            Name = String.Empty;
-            PhoneNumber = String.Empty;
-            Email = String.Empty;
-        }
+        public bool HasErrors => _propertyErrors.Any();
 
         /// <summary>
         /// Создает клон текущего контакта.
@@ -160,6 +146,36 @@ namespace Model
         public void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public IEnumerable GetErrors(string? propertyName)
+        {
+            return _propertyErrors.GetValueOrDefault(propertyName, null);
+        }
+
+        public void AddError(string propertyName, string errorMessage)
+        {
+            if (!_propertyErrors.ContainsKey(propertyName))
+            {
+                _propertyErrors.Add(propertyName, new List<string>());
+            }
+
+            _propertyErrors[propertyName].Add(errorMessage);
+            OnErrorsChanged(propertyName);
+        }
+
+        public void ClearError(string propertyName)
+        {
+            if (_propertyErrors.Remove(propertyName))
+            {
+                OnPropertyChanged(propertyName);
+            }
+        }
+
+        private void OnErrorsChanged(string propertyName)
+        {
+            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+            OnPropertyChanged(nameof(HasErrors));
         }
     }
 }

@@ -31,7 +31,7 @@
                    VerticalAlignment="Top"/>
             <StackPanel Grid.Column="1" Margin="0,0,8,0">
                 <TextBlock Margin="3">Name:</TextBlock>
-                <TextBox Name="NameTextBox"
+                <TextBox
                     Margin="3" Validation.ErrorTemplate="{StaticResource validationFailed}"
                          Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                          IsReadOnly="{Binding IsEdit, RelativeSource={RelativeSource AncestorType=controls:ContactControl},
