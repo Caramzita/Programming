@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows;
 
-namespace View.ViewModel.View
+namespace View.Converters
 {
     public class InverseBoolConverter : IValueConverter
     {

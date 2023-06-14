@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using View.ViewModel;
+using ViewModel;
 
 namespace View
 {
@@ -8,6 +8,9 @@ namespace View
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Хранит ViewModel главного окна. 
+        /// </summary>
         private MainVM _vm;
 
         /// <summary>
@@ -18,7 +21,7 @@ namespace View
             InitializeComponent();
             _vm = new MainVM();
             DataContext = _vm;
-
+            
             this.Closing += MainWindow_Closing;
             this.Loaded += MainWindow_Loaded;
         }
@@ -27,7 +30,7 @@ namespace View
         {
             _vm.Save();
         }
-        
+
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             _vm.Load();
