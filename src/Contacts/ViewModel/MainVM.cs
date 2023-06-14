@@ -1,6 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Model;
@@ -23,27 +21,16 @@ namespace ViewModel
         /// </summary>
         private Contact _initialContact;
 
+        /// <summary>
+        /// Хранит текущий контакт.
+        /// </summary>
         private Contact _currentContact;
-
-        private ObservableCollection<Contact> _contacts;
-
-        private bool _isEditMode = false;
 
         /// <summary>
         /// Возвращает и задает значение видимости.
         /// </summary>
-        public bool IsEditMode
-        {
-            get
-            {
-                return _isEditMode;
-            }
-            private set
-            {
-                _isEditMode = value;
-                OnPropertyChanged(nameof(IsEditMode));
-            }
-        }
+        [ObservableProperty]
+        public bool isEditMode;
 
         /// <summary>
         /// Возвращает и задает текущий контакт.

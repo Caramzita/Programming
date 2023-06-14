@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using ViewModel;
-using View.Controls;
 
 namespace View
 {
@@ -9,6 +8,9 @@ namespace View
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Хранит ViewModel главного окна. 
+        /// </summary>
         private MainVM _vm;
 
         /// <summary>

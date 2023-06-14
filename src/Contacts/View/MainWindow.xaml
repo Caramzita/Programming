@@ -60,10 +60,8 @@
             <Button Content="Add" Height="25" Margin="0,3,3,3" Command="{Binding AddContactCommand}"
                     IsEnabled="{Binding IsEditMode, Converter={StaticResource inverseBoolConverter}}"/>
             <Button Content="Edit" Height="25" Margin="3" Command="{Binding EditContactCommand}"
-                    CommandParameter="{Binding CurrentContact}"
                     IsEnabled="{Binding IsEditMode, Converter={StaticResource inverseBoolConverter}}"/>
             <Button Content="Remove" Height="25" Margin="3" Command="{Binding RemoveContactCommand}"
-                    CommandParameter="{Binding CurrentContact}"
                     IsEnabled="{Binding IsEditMode, Converter={StaticResource inverseBoolConverter}}"/>
         </UniformGrid>
     </Grid>
